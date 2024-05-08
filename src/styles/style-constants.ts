@@ -1,0 +1,15 @@
+export enum STYLE_CONSTANTS {
+  HEADER_HEIGHT = '110px',
+  SIDEBAR_COLLAPSE = '80px',
+  SIDEBAR_EXPAND = '216px',
+  NAV_BAR_HEIGHT = '4rem',
+  MODULE_HEADER = '72px',
+  BLOCK_HEADER = '72px',
+  MAIN_HEADER_HEIGHT = '72px',
+  SECONDARY_HEADER_HEIGHT = '72px',
+  SCROLLBAR_WIDTH = '6px',
+  MAIN_PAGE_SCROLL_ID = 'main-page-scroll',
+  MAIN_MODAL_SCROLL_ID = 'main-modal-scroll',
+  PAGE_BOTTOM_SPACE = '34px',
+  ANALYTICS_FILE_COLUMN = '300px',
+}

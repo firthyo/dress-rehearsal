@@ -1,0 +1,16 @@
+ <Controller
+              name="email"
+              control={control}
+              defaultValue=""
+              render={({ field, fieldState: { error } }) => (
+                <TextFieldForm
+                  variant="outlined"
+                  label="Email"
+                  onChange={field.onChange}
+                  value={field.value}
+                  error={!!error}
+                  name={"Email"}
+                  helperText={error ? error.message : ""}
+                />
+              )}
+            />
