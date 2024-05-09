@@ -5,7 +5,7 @@ export const Navbar = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-
+  z-index: 1000;
   max-height: 102px;
 `;
 

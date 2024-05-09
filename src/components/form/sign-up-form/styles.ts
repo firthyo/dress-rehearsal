@@ -6,6 +6,7 @@ type LinkProps = {
 
 export const Wrapper = styled.div`
   width: 100%;
+  display: flex;
 `;
 
 export const FormContainer = styled.div`
@@ -32,4 +33,10 @@ export const Link = styled.a<LinkProps>`
   color: ${(props) => props.linkColor || props.theme.colors.info};
   text-decoration: none;
   text-decoration: underline;
+`;
+
+export const TextWrapper = styled.div`
+  text-align: start;
+  display: flex;
+  margin-left: 12px;
 `;
