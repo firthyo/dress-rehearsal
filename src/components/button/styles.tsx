@@ -48,7 +48,7 @@ export const Wrapper = styled.button<WrapperProps>`
   height: ${(props) => props.height || 40}px;
   width: ${(props) => (props.width ? `${props.width}px` : "auto")};
   border-radius: 8px;
-
+  cursor: pointer; //
   ${(props) => variants[props.variant]}
   ${(props) =>
     props.disabled &&

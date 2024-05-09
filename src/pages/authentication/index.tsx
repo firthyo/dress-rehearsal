@@ -6,6 +6,7 @@ import Tabs from "components/tab";
 import Divertimento from "assets/dress-rehearsal/Divertimento.svg";
 
 import { CenteredContent, Container, FormWrapper } from "./styles";
+import LoginForm from "components/form/login-form";
 
 const Authentication = () => {
   const handleChangeActiveTab = (index: number) => {
@@ -26,11 +27,11 @@ const Authentication = () => {
             items={[
               {
                 name: "Sign up",
-                content: () => <SignUpForm></SignUpForm>,
+                content: () => <SignUpForm />,
               },
               {
                 name: "Login",
-                content: () => <>TEST</>,
+                content: () => <LoginForm />,
               },
             ]}
           />

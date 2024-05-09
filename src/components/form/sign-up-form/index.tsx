@@ -45,13 +45,13 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
-          <Spacer y={36} />
+          <Spacer y={24} />
           <TextWrapper>
             <Typography variant="titles" customColor={"#684F3B"}>
               Create new account
             </Typography>
           </TextWrapper>
-          <Spacer y={36} />
+          <Spacer y={24} />
           <FormContainer>
             <RowWrapperMultipleCol>
               <TextFieldForm

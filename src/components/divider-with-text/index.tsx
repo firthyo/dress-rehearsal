@@ -4,7 +4,9 @@ type DividerWithTextProps = {
   label?: string;
 };
 
-const DividerWithText: React.FC<DividerWithTextProps> = ({ label = "or" }) => {
+export const DividerWithText: React.FC<DividerWithTextProps> = ({
+  label = "or",
+}) => {
   return (
     <Divider>
       <Line />
