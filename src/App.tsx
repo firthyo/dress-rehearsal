@@ -3,7 +3,7 @@ import React from "react";
 import "./App.css";
 import Theme from "./styles/Theme";
 import styled from "styled-components";
-import HeaderNav from "./components/header/nav-bar";
+import HeaderNav from "./components/core/header/nav-bar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "pages/home";
 

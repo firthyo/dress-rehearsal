@@ -5,7 +5,7 @@ export const Navbar = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1;
   max-height: 102px;
 `;
 
@@ -29,6 +29,7 @@ export const NavbarLink = styled.a`
 // Styled page content
 export const Content = styled.div`
   position: fixed;
+
   height: 100vh;
   /* padding-top: 20px; Add padding-top equal to the height of the navbar */
 `;

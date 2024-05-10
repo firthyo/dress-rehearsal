@@ -5,18 +5,18 @@ import { FormControlLabel, Checkbox } from "@mui/material";
 
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
-import TextFieldForm from "components/text-field";
-import Button from "components/button";
-import Spacer from "components/spacer";
+import TextFieldForm from "components/core/text-field";
+import Button from "components/core/button";
+import Spacer from "components/core/spacer";
 
-import DiviverWithText from "components/divider-with-text";
+import DiviverWithText from "components/core/divider-with-text";
 
 import { FormContainer, Link, RowWrapper, TextWrapper } from "./styles";
-import { Typography } from "components/typography";
+import { Typography } from "components/core/typography";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "graphql/user/authMutation";
 import { LoginFormType } from "../sign-up-form/type";
-import AlertMessage from "components/AlertMessage";
+import AlertMessage from "components/core/AlertMessage";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<boolean>(false);

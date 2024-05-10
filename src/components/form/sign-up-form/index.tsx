@@ -5,11 +5,11 @@ import { FormControlLabel, Checkbox } from "@mui/material";
 
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
-import TextFieldForm from "components/text-field";
-import Spacer from "components/spacer";
-import Button from "components/button";
-import { Typography } from "components/typography";
-import DiviverWithText from "components/divider-with-text";
+import TextFieldForm from "components/core/text-field";
+import Spacer from "components/core/spacer";
+import Button from "components/core/button";
+import { Typography } from "components/core/typography";
+import DiviverWithText from "components/core/divider-with-text";
 
 import {
   FormContainer,

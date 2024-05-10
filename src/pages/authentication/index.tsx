@@ -1,7 +1,7 @@
 import React from "react";
 
 import SignUpForm from "components/form/sign-up-form";
-import Tabs from "components/tab";
+import Tabs from "components/core/tab";
 
 import Divertimento from "assets/dress-rehearsal/Divertimento.svg";
 

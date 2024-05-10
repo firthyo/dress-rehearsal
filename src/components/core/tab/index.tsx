@@ -2,8 +2,8 @@ import React, { useCallback, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Header, Wrapper } from "./styles";
-import TabNavItem from "components/navItem";
-import Spacer from "components/spacer";
+import TabNavItem from "components/core/navItem";
+import Spacer from "components/core/spacer";
 
 export type TabProps = {
   name: string;

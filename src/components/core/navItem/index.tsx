@@ -2,8 +2,8 @@ import React from "react";
 
 import { Wrapper } from "./styles";
 
-import Spacer from "components/spacer";
-import { Typography } from "components/typography";
+import Spacer from "components/core/spacer";
+import { Typography } from "components/core/typography";
 
 type Props = {
   name: string;
