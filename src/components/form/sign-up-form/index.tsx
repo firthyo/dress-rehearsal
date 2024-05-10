@@ -20,16 +20,36 @@ import {
 } from "./styles";
 
 import { SignUpFormType } from "./type";
+import { useMutation } from "@apollo/client";
+import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
 
 const SignUpForm = () => {
+  const [registerUser, { data, loading, error }] = useMutation(
+    REGISTER_USER_MUTATION
+  );
+  console.log("this is data from mutation :", data, loading);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormType>({ mode: "onTouched" });
 
-  const onSubmit: SubmitHandler<SignUpFormType> = (data) => {
-    console.log("this is data", data); // You can replace this with a call to your backend API
+  const onSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
+    console.log("this is formData", formData);
+    try {
+      const response = await registerUser({
+        variables: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          terms: formData.terms,
+        },
+      });
+      console.log("Registration successful", response.data); // Log the data here
+    } catch (err) {
+      console.error("Registration error", err);
+    }
   };
 
   const TermsLabel = () => {

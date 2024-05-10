@@ -6,3 +6,8 @@ export type SignUpFormType = {
   terms: boolean;
   rememberMe: boolean;
 };
+
+export type LoginFormType = {
+  email: string;
+  password: string;
+};

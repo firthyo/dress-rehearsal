@@ -25,8 +25,8 @@ export const TabNavItem: React.FC<Props> = ({
   const color =
     background === "FILLED"
       ? isActive
-      ? "#fff"
-      : "#684F3B"
+        ? "#fff"
+        : "#684F3B"
       : isActive
       ? "#fff"
       : "#684F3B";
@@ -41,7 +41,9 @@ export const TabNavItem: React.FC<Props> = ({
       data-cy={datacy}
     >
       <Spacer y={12} />
-      <Typography variant="p-semi-bold" customColor={color}>{name}</Typography>
+      <Typography variant="h4" customColor={color}>
+        {name}
+      </Typography>
       <Spacer y={12} />
     </Wrapper>
   );

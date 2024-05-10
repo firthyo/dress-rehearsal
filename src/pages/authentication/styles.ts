@@ -10,15 +10,13 @@ export const FormWrapper = styled.div`
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
   padding: 48px;
   width: 50%; // Set width to 50%
-  max-width: 488px;  // Set maximum width to 688px
-
+  max-width: 488px; // Set maximum width to 688px
 `;
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between; // Adjusts alignment to keep children separated
 
-  /* justify-content: space-around; */
+  justify-content: space-around;
   align-items: center;
   height: calc(100vh - 120px);
   padding: 0px 56px;

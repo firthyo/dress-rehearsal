@@ -8,7 +8,7 @@ import Divertimento from "assets/dress-rehearsal/Divertimento.svg";
 import { CenteredContent, Container, FormWrapper } from "./styles";
 import LoginForm from "components/form/login-form";
 
-const Authentication = () => {
+export const AuthenticationPage = () => {
   const handleChangeActiveTab = (index: number) => {
     // setValue("activeTab", index);
   };
@@ -22,7 +22,7 @@ const Authentication = () => {
           <Tabs
             background="FILLED"
             variant="grouped"
-            active={1}
+            active={0}
             onChange={handleChangeActiveTab}
             items={[
               {
@@ -41,4 +41,4 @@ const Authentication = () => {
   );
 };
 
-export default Authentication;
+export default AuthenticationPage;

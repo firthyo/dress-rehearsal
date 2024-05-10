@@ -37,9 +37,9 @@ export const Header4 = styled.h4<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 140%;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 `;
 
 export const Label = styled.p<Props>`

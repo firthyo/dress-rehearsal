@@ -20,7 +20,9 @@ export const HeaderNav = () => {
         {/* <MainLogo /> */}
         <NavWrapper>
           <LogoWrapper>
-            <MainLogo />
+            <NavbarLink href="/">
+              <MainLogo />
+            </NavbarLink>
           </LogoWrapper>
 
           <NavbarLinksContainer>
