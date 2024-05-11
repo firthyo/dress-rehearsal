@@ -17,9 +17,11 @@ export const ModalBackground = styled.div<{ isPopup?: boolean }>`
 export const ModalContainer = styled.div<{ noPadding?: boolean }>`
   background: white;
   border-radius: 8px;
-  padding: ${({ noPadding }) => (noPadding ? "0" : "20px")};
-  width: auto;
-  max-width: 500px;
+  padding: ${({ noPadding }) => (noPadding ? "0" : "0px")};
+  /* props width */
+  /* width: 100%; */
+  /* height: 900px; */
+  /* max-width: 500px; */
   z-index: 1000;
 `;
 

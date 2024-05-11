@@ -37,7 +37,7 @@ export const Header4 = styled.h4<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 140%;
   /* text-transform: uppercase; */
 `;
@@ -62,7 +62,7 @@ export const Titles = styled.h1<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 600;
-  font-size: 26px;
+  font-size: 18px;
   line-height: 125%;
 `;
 export const PageTitle = styled.p<Props>`

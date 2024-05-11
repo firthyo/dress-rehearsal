@@ -65,13 +65,13 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
-          <Spacer y={24} />
+          <Spacer y={16} />
           <TextWrapper>
             <Typography variant="titles" customColor={"#684F3B"}>
               Create new account
             </Typography>
           </TextWrapper>
-          <Spacer y={24} />
+          <Spacer y={16} />
           <FormContainer>
             <RowWrapperMultipleCol>
               <TextFieldForm
@@ -102,9 +102,9 @@ const SignUpForm = () => {
               />
             </RowWrapper>
 
-            <Spacer y={24} />
+            <Spacer y={16} />
             <DiviverWithText label={"or"} />
-            <Spacer y={24} />
+            <Spacer y={16} />
 
             <RowWrapper>
               <Button type="button" variant="outlined">
@@ -114,7 +114,7 @@ const SignUpForm = () => {
               </Button>
             </RowWrapper>
 
-            <Spacer y={24} />
+            {/* <Spacer y={16} /> */}
 
             <RowWrapper>
               <FormControlLabel

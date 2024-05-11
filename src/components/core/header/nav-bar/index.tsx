@@ -13,6 +13,8 @@ import {
   NavbarLinksContainer,
 } from "./styles";
 import Modal from "components/core/modal";
+import SignUpForm from "components/form/sign-up-form";
+import AuthenticationPage from "pages/authentication";
 
 export const HeaderNav = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,8 +45,8 @@ export const HeaderNav = () => {
             <Spacer x={32} />
             <Divider marginHorizontal={4}></Divider>
             <Spacer x={32} />
-            <NavbarLink href="/sign-up">
-              <Button>Sign up</Button>
+            <NavbarLink>
+              <Button onClick={handleOpenModal}>Sign up</Button>
             </NavbarLink>
           </NavbarLinksContainer>
         </NavWrapper>
@@ -52,14 +54,11 @@ export const HeaderNav = () => {
           <button onClick={handleOpenModal}>Open Modal</button>
           {isModalOpen && (
             <Modal
-              title="Important Notice"
               content={
-                <p>
-                  This is the content of the modal. You can put any React node
-                  here.
-                </p>
+                <>
+                  <AuthenticationPage></AuthenticationPage>
+                </>
               }
-              header={<div>Modal Header</div>}
               onAfterClose={handleCloseModal}
               cancelCloseOnClick={true}
               confirmBeforeClose={true}

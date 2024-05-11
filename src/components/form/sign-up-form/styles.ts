@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const FormContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 536px;
   flex-direction: column;
 `;
 

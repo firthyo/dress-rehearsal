@@ -3,7 +3,9 @@ import React from "react";
 import SignUpForm from "components/form/sign-up-form";
 import Tabs from "components/core/tab";
 
-import Divertimento from "assets/dress-rehearsal/Divertimento.svg";
+import Divertimento from "assets/dress-rehearsal/divertimento-white.svg";
+import Drlogobg from "assets/dress-rehearsal/dr-logo-bg.svg";
+import Drbg from "assets/dress-rehearsal/Full-bg-dr.svg";
 
 import { CenteredContent, Container, FormWrapper } from "./styles";
 import LoginForm from "components/form/login-form";
@@ -15,8 +17,12 @@ export const AuthenticationPage = () => {
   return (
     <div>
       <Container>
-        <CenteredContent>
-          <img src={Divertimento} alt="divertimento-logo" />
+        <CenteredContent backgroundImage={Drbg}>
+          <img
+            style={{ width: "80%" }}
+            src={Divertimento}
+            alt="divertimento-logo"
+          />
         </CenteredContent>
         <FormWrapper>
           <Tabs
