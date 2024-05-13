@@ -36,3 +36,12 @@ export const LOGIN_USER_MUTATION = gql`
     }
   }
 `;
+
+export const VERIFY_EMAIL = gql`
+  mutation verifyEmail($token: String!) {
+    verifyEmail(token: $token) {
+      success
+      message
+    }
+  }
+`;

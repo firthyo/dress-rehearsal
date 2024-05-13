@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormControlLabel, Checkbox } from "@mui/material";
@@ -17,11 +17,15 @@ import {
   RowWrapper,
   RowWrapperMultipleCol,
   TextWrapper,
-} from "./styles";
+} from "../styles";
 
-import { SignUpFormType } from "./type";
+import { SignUpFormType } from "../type";
 import { useMutation } from "@apollo/client";
-import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
+import {
+  REGISTER_USER_MUTATION,
+  VERIFY_EMAIL,
+} from "graphql/user/authMutation";
+import VerifyEmail from "../verify-email";
 
 const SignUpForm = () => {
   const [registerUser, { data, loading, error }] = useMutation(
@@ -35,7 +39,6 @@ const SignUpForm = () => {
   } = useForm<SignUpFormType>({ mode: "onTouched" });
 
   const onSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
-    console.log("this is formData", formData);
     try {
       const response = await registerUser({
         variables: {
@@ -65,6 +68,7 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
+          {/* {data && <VerifyEmail></VerifyEmail>} */}
           <Spacer y={16} />
           <TextWrapper>
             <Typography variant="titles" customColor={"#684F3B"}>

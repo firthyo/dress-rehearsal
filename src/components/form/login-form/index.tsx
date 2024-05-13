@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { FormControlLabel, Checkbox } from "@mui/material";
-
+import { useMutation } from "@apollo/client";
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
 import TextFieldForm from "components/core/text-field";
@@ -11,12 +10,12 @@ import Spacer from "components/core/spacer";
 
 import DiviverWithText from "components/core/divider-with-text";
 
-import { FormContainer, Link, RowWrapper, TextWrapper } from "./styles";
+import { FormContainer, Link, RowWrapper, TextWrapper } from "../styles";
 import { Typography } from "components/core/typography";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER_MUTATION } from "graphql/user/authMutation";
-import { LoginFormType } from "../sign-up-form/type";
 import AlertMessage from "components/core/AlertMessage";
+
+import { LOGIN_USER_MUTATION } from "graphql/user/authMutation";
+import { LoginFormType } from "../type";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<boolean>(false);

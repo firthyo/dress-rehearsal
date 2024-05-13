@@ -1,11 +1,13 @@
 import React from "react";
 
 import {
+  IconWrapper,
   ModalBackground,
   ModalBody,
   ModalContainer,
   ModalHeader,
 } from "./styles";
+import CloseIcon from "assets/icons/common/close";
 
 type MainButtonProps = {
   title?: string;
@@ -17,6 +19,7 @@ type MainButtonProps = {
   onAfterClose?: () => void;
   icon?: JSX.Element;
   isPopup?: boolean;
+  borderRadius?: string;
 };
 
 const Modal: React.FC<MainButtonProps> = ({
@@ -26,17 +29,18 @@ const Modal: React.FC<MainButtonProps> = ({
   confirmBeforeClose = false,
   header,
   noPadding = false,
+  borderRadius = "0px",
   onAfterClose,
   icon,
   isPopup = false,
 }) => {
   const handleClose = () => {
-    if (
-      confirmBeforeClose &&
-      !window.confirm("Are you sure you want to close?")
-    ) {
-      return;
-    }
+    // if (
+    //   confirmBeforeClose &&
+    //   !window.confirm("Are you sure you want to close?")
+    // ) {
+    //   return;
+    // }
     onAfterClose?.();
   };
 
@@ -48,9 +52,14 @@ const Modal: React.FC<MainButtonProps> = ({
 
   return (
     <ModalBackground onClick={handleClickBackground} isPopup={isPopup}>
+      <IconWrapper>
+        <CloseIcon size={36} />
+      </IconWrapper>
+
       <ModalContainer
         onClick={(e) => e.stopPropagation()}
         noPadding={noPadding}
+        borderRadius={borderRadius}
       >
         {header && <ModalHeader>{header}</ModalHeader>}
         <ModalBody>{content}</ModalBody>

@@ -46,27 +46,12 @@ export const HeaderNav = () => {
             <Divider marginHorizontal={4}></Divider>
             <Spacer x={32} />
             <NavbarLink>
-              <Button onClick={handleOpenModal}>Sign up</Button>
+              {/* <Button onClick={handleOpenModal}>Sign up</Button> */}
+              <AuthenticationPage></AuthenticationPage>
             </NavbarLink>
           </NavbarLinksContainer>
         </NavWrapper>
-        <div>
-          <button onClick={handleOpenModal}>Open Modal</button>
-          {isModalOpen && (
-            <Modal
-              content={
-                <>
-                  <AuthenticationPage></AuthenticationPage>
-                </>
-              }
-              onAfterClose={handleCloseModal}
-              cancelCloseOnClick={true}
-              confirmBeforeClose={true}
-              noPadding={false}
-              isPopup={false}
-            />
-          )}
-        </div>
+
         {/* Add other navbar content, e.g., logo */}
       </Navbar>
     </>

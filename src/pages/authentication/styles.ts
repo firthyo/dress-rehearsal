@@ -40,4 +40,5 @@ export const CenteredContent = styled.div<CenteredContentProps>`
   width: auto;
   flex-basis: 50%;
   overflow: hidden;
+  /* border-radius: 20px 0px 0px 20px; */
 `;
