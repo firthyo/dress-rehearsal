@@ -10,8 +10,6 @@ const Home = () => {
       <FirstSectionWrapper>
         <DressRehearsalLogo />
       </FirstSectionWrapper>
-      <DressRehearsalLogo />
-      <DressRehearsalLogo />
     </Wrapper>
   );
 };
