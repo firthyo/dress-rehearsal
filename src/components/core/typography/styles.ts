@@ -4,11 +4,16 @@ type Props = {
   color: string;
 };
 
+// font-weight: 400; /* normal */
+// font-weight: 500;  /* Medium */
+// font-weight: 600;  /* semi-bold */
+// font-weight: 700; /* bold */
+
 export const Header1 = styled.h1<Props>`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 40px;
   line-height: 110%;
   letter-spacing: 0.02em;
   text-transform: uppercase;

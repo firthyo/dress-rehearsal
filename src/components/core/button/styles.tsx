@@ -1,5 +1,21 @@
 import styled, { css } from "styled-components";
-import { ButtonAlignItemsProps, ButtonVariantProps } from ".";
+import {
+  ButtonAlignItemsProps,
+  ButtonVariantProps,
+  borderRadiusMapping,
+} from ".";
+
+type WrapperProps = {
+  variant: ButtonVariantProps;
+  color: string;
+  disabled?: boolean;
+  paddingHorizontal?: number;
+  paddingVertical?: number;
+  height?: number;
+  width?: number;
+  alignItem: ButtonAlignItemsProps;
+  borderRadius?: string;
+};
 
 const variants: Record<ButtonVariantProps, any> = {
   link: css<WrapperProps>`
@@ -15,18 +31,8 @@ const variants: Record<ButtonVariantProps, any> = {
   outlined: css<WrapperProps>`
     color: ${(props) => props.color};
     background-color: inherit;
+    border: 1px solid ${(props) => props.color};
   `,
-};
-
-type WrapperProps = {
-  variant: ButtonVariantProps;
-  color: string;
-  disabled?: boolean;
-  paddingHorizontal?: number;
-  paddingVertical?: number;
-  height?: number;
-  width?: number;
-  alignItem: ButtonAlignItemsProps;
 };
 
 export const Wrapper = styled.button<WrapperProps>`
@@ -47,7 +53,8 @@ export const Wrapper = styled.button<WrapperProps>`
       props.paddingHorizontal === undefined ? 32 : props.paddingHorizontal}px;
   height: ${(props) => props.height || 40}px;
   width: ${(props) => (props.width ? `${props.width}px` : "auto")};
-  border-radius: 8px;
+  border-radius: ${(props) => props.borderRadius};
+
   cursor: pointer; //
   ${(props) => variants[props.variant]}
   ${(props) =>

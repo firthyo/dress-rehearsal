@@ -10,6 +10,7 @@ import HomePage from "pages/home";
 import AuthenticationPage from "pages/authentication";
 import { AuthProvider } from "provider/AuthProvider";
 import { ModalProvider } from "provider/ModalProvider";
+import VerifyEmail from "pages/verify-email";
 // import { AuthProvider } from "context/Authcontext";
 // import { ModalProvider } from "context/ModalContext";
 
@@ -24,6 +25,10 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sign-up" element={<AuthenticationPage />} />
+                <Route
+                  path="/verify-email/:token"
+                  element={<VerifyEmail></VerifyEmail>}
+                />
               </Routes>
             </div>
           </ModalProvider>

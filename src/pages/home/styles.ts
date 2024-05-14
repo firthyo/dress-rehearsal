@@ -14,3 +14,13 @@ export const FirstSectionWrapper = styled.div`
   height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT});
   width: 100vw;
 `;
+
+export const CollectionWrapper = styled.div`
+  text-align: left;
+  padding: 0px 116px;
+`;
+
+export const CardWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

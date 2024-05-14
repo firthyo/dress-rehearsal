@@ -11,6 +11,13 @@ export type ButtonAlignItemsProps =
   | "stretch"
   | "baseline";
 
+export type ButtonBorderRadius = "none" | "small" | "large";
+export const borderRadiusMapping: Record<ButtonBorderRadius, string> = {
+  none: "0px",
+  small: "8px",
+  large: "50px",
+};
+
 export type MainButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariantProps;
   height?: number;
@@ -20,18 +27,20 @@ export type MainButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   isLoading?: boolean;
   alignItem?: ButtonAlignItemsProps;
   customColor?: string;
+  borderRadius?: ButtonBorderRadius;
 };
 export const Button: React.FC<MainButtonProps> = ({
   color,
-
   customColor = "#684F3B",
   variant = "filled",
   isLoading,
   alignItem = "center",
   children,
+  borderRadius = "small",
   ...props
 }) => {
   //   const hexColor = useSelectColor(color, customColor);
+  const processedBorderRadius = borderRadiusMapping[borderRadius];
 
   return (
     <Wrapper
@@ -40,6 +49,7 @@ export const Button: React.FC<MainButtonProps> = ({
       color={customColor}
       className={isLoading ? "loading" : undefined}
       alignItem={alignItem}
+      borderRadius={processedBorderRadius}
     >
       {children}
     </Wrapper>

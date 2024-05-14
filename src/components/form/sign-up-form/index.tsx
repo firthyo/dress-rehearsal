@@ -21,11 +21,7 @@ import {
 
 import { SignUpFormType } from "../type";
 import { useMutation } from "@apollo/client";
-import {
-  REGISTER_USER_MUTATION,
-  VERIFY_EMAIL,
-} from "graphql/user/authMutation";
-import VerifyEmail from "../verify-email";
+import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
 
 const SignUpForm = () => {
   const [registerUser, { data, loading, error }] = useMutation(

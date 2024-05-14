@@ -31,8 +31,6 @@ export const LOGIN_USER_MUTATION = gql`
     login(email: $email, password: $password) {
       id
       email
-      firstName
-      lastName
     }
   }
 `;
