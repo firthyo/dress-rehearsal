@@ -1,6 +1,5 @@
-import React from "react";
-
-// import { ColorProps, useSelectColor } from 'modules/core/presenters/utils';
+import React, { useContext } from "react";
+import { ThemeContext } from "styled-components";
 
 import {
   Header1,
@@ -21,7 +20,9 @@ import {
   TitleCase,
   TagsSmall,
   TagsMedium,
+  PageSubtitle,
 } from "./styles";
+import { MyTheme } from "styles/Theme";
 
 export type TypographyVariant =
   | "h1"
@@ -32,6 +33,7 @@ export type TypographyVariant =
   | "input-validation"
   | "titles"
   | "page-title"
+  | "page-subtitle"
   | "p"
   | "p-articles"
   | "p-semi-bold"
@@ -52,6 +54,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   "input-validation": InputValidation,
   titles: Titles,
   "page-title": PageTitle,
+  "page-subtitle": PageSubtitle,
   p: Paragraph,
   "p-articles": ParagraphArticles,
   "p-semi-bold": ParagraphSemiBold,
@@ -69,16 +72,22 @@ export type TypographyProps = {
   title?: string;
   customColor?: string;
   children?: React.ReactNode;
+  color?: keyof MyTheme["colors"]; // Using keyof to refer to theme color keys
 };
 export const Typography: React.FC<TypographyProps> = ({
   customColor = "#574E61",
   variant = "p",
   title,
   children,
+  color = "primary",
 }) => {
+  const theme = useContext(ThemeContext);
   const Component = mappedStyles[variant];
+  const colorProps =
+    (color && theme?.colors[color]) || theme?.colors.primary || customColor;
+  console.log("this is colorProps", colorProps);
   return (
-    <Component color={customColor} title={title}>
+    <Component color={colorProps} title={title}>
       {children}
     </Component>
   );

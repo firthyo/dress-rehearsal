@@ -64,7 +64,7 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
-          {/* {data && <VerifyEmail></VerifyEmail>} */}
+         
           <Spacer y={16} />
           <TextWrapper>
             <Typography variant="titles" customColor={"#684F3B"}>

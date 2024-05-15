@@ -1,10 +1,34 @@
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider, DefaultTheme } from "styled-components";
 
 type ThemeProps = {
   children: React.ReactNode;
 };
 
-const theme = {
+// Define the structure of your theme
+export interface MyTheme extends DefaultTheme {
+  colors: {
+    primary: string;
+    secondary: string;
+    surface: string;
+    ternary: string;
+    systemLight: string;
+    systemDark: string;
+    info: string;
+  };
+  fontWeight: {
+    medium: number;
+    semiBold: number;
+  };
+  fontSizes: {
+    title: string;
+    h1: string;
+    body: string;
+    detail: string;
+  };
+}
+
+// Declare your theme object
+const theme: MyTheme = {
   colors: {
     primary: "#684F3B",
     secondary: "#BCB0A0",
@@ -12,7 +36,7 @@ const theme = {
     ternary: "#EDE3DA",
     systemLight: "#fff",
     systemDark: "#000",
-    info: " #0077cc",
+    info: "#0077cc",
   },
   fontWeight: {
     medium: 500,

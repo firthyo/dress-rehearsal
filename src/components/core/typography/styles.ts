@@ -78,6 +78,14 @@ export const PageTitle = styled.p<Props>`
   line-height: 110%;
 `;
 
+export const PageSubtitle = styled.p<Props>`
+  color: ${(props) => props.color};
+  margin: 0px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 110%;
+`;
+
 export const TitleCase = styled.p<Props>`
   color: ${(props) => props.color};
   margin: 0px;
@@ -140,7 +148,7 @@ export const BigNumbers = styled.p<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 36px;
   line-height: 110%;
 `;
 
