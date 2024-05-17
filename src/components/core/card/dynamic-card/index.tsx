@@ -10,18 +10,16 @@ type Props = {
   title?: string;
   button?: JSX.Element;
   color?: keyof MyTheme["colors"];
-  fullWidth?: boolean;
 };
 
-export const CollectionCard: React.FC<Props> = ({
+export const DCollectionCard: React.FC<Props> = ({
   backgroundUrl = collectionTest,
   title,
   button,
   color,
-  fullWidth = false,
 }) => {
   return (
-    <Container backgroundUrl={backgroundUrl} fullWidth={fullWidth}>
+    <Container backgroundUrl={backgroundUrl}>
       <Typography variant="h1" color={color}>
         {title}
       </Typography>
@@ -31,4 +29,4 @@ export const CollectionCard: React.FC<Props> = ({
   );
 };
 
-export default CollectionCard;
+export default DCollectionCard;

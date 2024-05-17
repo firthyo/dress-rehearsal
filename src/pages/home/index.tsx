@@ -7,6 +7,7 @@ import Button from "components/core/button";
 import ShoppingCartIcon from "assets/icons/common/shopping-cart-icon";
 import { Typography } from "components/core/typography";
 import collectionTest2 from "assets/dress-rehearsal/collection-test2.jpeg";
+import TryLessFormalLogo from "assets/logo/TryLessFormalLogo";
 
 import {
   FirstSectionWrapper,
@@ -14,6 +15,8 @@ import {
   CollectionWrapper,
   CardWrapper,
 } from "./styles";
+import { InlineWrapper } from "components/core/inline-wrapper";
+
 const Home = () => {
   return (
     <Wrapper>
@@ -27,7 +30,7 @@ const Home = () => {
         <CardWrapper>
           <CollectionCard
             title="Practice etiquette"
-            color="#fff"
+            color="systemLight"
             button={
               <Button
                 type="button"
@@ -37,14 +40,15 @@ const Home = () => {
               >
                 <ShoppingCartIcon color="#fff" />
                 <Spacer x={8} />
-                <Typography customColor="#fff"> {"Shop now"}</Typography>
+                <Typography color="systemLight"> {"Shop now"}</Typography>
               </Button>
             }
           />
+
           <CollectionCard
-            title="Practice etiquette"
+            title="Divertimento"
             backgroundUrl={collectionTest2}
-            color="#fff"
+            color="systemLight"
             button={
               <Button
                 type="button"
@@ -54,11 +58,45 @@ const Home = () => {
               >
                 <ShoppingCartIcon color="#fff" />
                 <Spacer x={8} />
-                <Typography customColor="#fff"> {"Shop now"}</Typography>
+                <Typography color="systemLight"> {"Shop now"}</Typography>
               </Button>
             }
           />
         </CardWrapper>
+        <Spacer y={36} />
+        <CardWrapper>
+          <CollectionCard
+            title="Divertimento"
+            backgroundUrl={collectionTest2}
+            color="systemLight"
+            fullWidth={true}
+            button={
+              <Button
+                type="button"
+                variant="outlined"
+                customColor="#fff"
+                borderRadius="large"
+              >
+                <ShoppingCartIcon color="#fff" />
+                <Spacer x={8} />
+                <Typography color="systemLight"> {"Shop now"}</Typography>
+              </Button>
+            }
+          />
+        </CardWrapper>
+        <Spacer y={120} />
+        <InlineWrapper justifyContent="center">
+          <TryLessFormalLogo />
+        </InlineWrapper>
+
+        <Spacer y={90} />
+        <Typography color="primary" variant="titles">
+          Our brand is like your favorite song in clothing form – rich in detail
+          and full of soul. It's about waking up your spirit and letting the
+          magic of what you wear transform your day. Dive into what makes you
+          unique and discover how music and style can dance together in perfect
+          harmony.
+        </Typography>
       </CollectionWrapper>
     </Wrapper>
   );

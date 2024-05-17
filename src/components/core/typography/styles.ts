@@ -66,9 +66,9 @@ export const InputValidation = styled.p<Props>`
 export const Titles = styled.h1<Props>`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 125%;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 135%;
 `;
 export const PageTitle = styled.p<Props>`
   color: ${(props) => props.color};

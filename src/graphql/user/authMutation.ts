@@ -17,11 +17,8 @@ export const REGISTER_USER_MUTATION = gql`
       password: $password
       terms: $terms
     ) {
-      id
-      firstName
-      lastName
-      email
-      terms
+      success
+      message
     }
   }
 `;
@@ -40,6 +37,9 @@ export const VERIFY_EMAIL = gql`
     verifyEmail(token: $token) {
       success
       message
+      authToken
+      firstName
+      lastName
     }
   }
 `;

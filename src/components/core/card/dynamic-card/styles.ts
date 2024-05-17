@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-type ContainerProps = {
+type BackgroundUrl = {
   backgroundUrl?: string;
-  fullWidth?: boolean;
 };
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<BackgroundUrl>`
   background-image: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 11.5%,
@@ -16,9 +15,8 @@ export const Container = styled.div<ContainerProps>`
   background-position: center;
   background-repeat: no-repeat;
   transition: border 0.3s;
-
+  width: 620px;
   height: 646px;
-  width: ${(props) => (props.fullWidth ? "100%" : "620px")};
 
   display: flex;
   flex-direction: column;
