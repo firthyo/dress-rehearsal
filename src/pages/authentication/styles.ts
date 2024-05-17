@@ -5,6 +5,10 @@ type CenteredContentProps = {
   backgroundImage: string;
 };
 
+type LinkProps = {
+  linkColor?: string;
+};
+
 export const Wrapper = styled.div`
   margin-top: ${STYLE_CONSTANTS.HEADER_HEIGHT};
 `;
@@ -41,4 +45,22 @@ export const CenteredContent = styled.div<CenteredContentProps>`
   flex-basis: 50%;
   overflow: hidden;
   /* border-radius: 20px 0px 0px 20px; */
+`;
+
+export const VerifyEmailWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Link = styled.a<LinkProps>`
+  color: ${(props) => props.linkColor || props.theme.colors.info};
+  text-decoration: none;
+  text-decoration: underline;
+  margin-left: 5px;
+`;
+
+export const PageWrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.surface};
 `;

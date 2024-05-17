@@ -22,6 +22,7 @@ import {
 import { SignUpFormType } from "../type";
 import { useMutation } from "@apollo/client";
 import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
+import PaletteIcon from "components/core/PaletteIcon";
 
 const SignUpForm = () => {
   const [registerUser, { data, loading, error }] = useMutation(
@@ -64,7 +65,6 @@ const SignUpForm = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
-         
           <Spacer y={16} />
           <TextWrapper>
             <Typography variant="titles" customColor={"#684F3B"}>
@@ -113,8 +113,6 @@ const SignUpForm = () => {
                 {"Sign up with Google"}
               </Button>
             </RowWrapper>
-
-            {/* <Spacer y={16} /> */}
 
             <RowWrapper>
               <FormControlLabel

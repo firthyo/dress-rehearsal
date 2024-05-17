@@ -7,16 +7,18 @@ import Divertimento from "assets/dress-rehearsal/divertimento-white.svg";
 import Drlogobg from "assets/dress-rehearsal/dr-logo-bg.svg";
 import Drbg from "assets/dress-rehearsal/Dr-bg-light.svg";
 
-import { CenteredContent, Container, FormWrapper } from "./styles";
+import { CenteredContent, Container, FormWrapper, PageWrapper } from "./styles";
 import LoginForm from "components/form/login-form";
 import { useModal } from "context/ModalContext";
 import Button from "components/core/button";
+import PaletteIcon from "components/core/PaletteIcon";
+import VerifyEmailInfo from "./verifyEmailInfo";
 
 export const AuthenticationPage = () => {
   const { showModal, hideModal } = useModal();
   const handleOpenModal = () => {
     showModal(
-      <div>
+      <PageWrapper>
         <Container>
           <CenteredContent backgroundImage={Drbg}>
             <img
@@ -25,8 +27,10 @@ export const AuthenticationPage = () => {
               alt="divertimento-logo"
             />
           </CenteredContent>
+
           <FormWrapper>
-            <Tabs
+            <VerifyEmailInfo></VerifyEmailInfo>
+            {/* <Tabs
               background="FILLED"
               variant="grouped"
               active={0}
@@ -41,10 +45,10 @@ export const AuthenticationPage = () => {
                   content: () => <LoginForm />,
                 },
               ]}
-            />
+            /> */}
           </FormWrapper>
         </Container>
-      </div>,
+      </PageWrapper>,
       {
         onAfterClose: () => {}, // Define this function if needed
         cancelCloseOnClick: true,

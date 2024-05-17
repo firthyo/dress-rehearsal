@@ -20,6 +20,7 @@ const VerifyEmail = () => {
     if (data && data.verifyEmail && data.verifyEmail.success) {
       const { authToken, firstName, lastName, email, id } = data.verifyEmail;
       const userInfo = { firstName, lastName, email, id };
+      localStorage.setItem("authToken", authToken);
       login(authToken, userInfo);
       // navigate("/", { replace: true });
     }

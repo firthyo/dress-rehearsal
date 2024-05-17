@@ -9,6 +9,7 @@ const httpLink = createHttpLink({
 // Create an auth link to add the JWT token to each request
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("authToken");
+  console.log("this is token", token);
   return {
     headers: {
       ...headers,

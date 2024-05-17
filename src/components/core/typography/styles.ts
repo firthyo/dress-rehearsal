@@ -23,10 +23,9 @@ export const Header2 = styled.h2<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 110%;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
 `;
 
 export const Header3 = styled.h3<Props>`
