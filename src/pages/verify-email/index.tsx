@@ -19,28 +19,24 @@ const VerifyEmail = () => {
   useEffect(() => {
     if (data && data.verifyEmail && data.verifyEmail.success) {
       const { authToken, firstName, lastName, email, id } = data.verifyEmail;
+      console.log("authToken", authToken);
       const userInfo = { firstName, lastName, email, id };
       localStorage.setItem("authToken", authToken);
       login(authToken, userInfo);
       // navigate("/", { replace: true });
     }
-  }, [data, navigate, login]);
+  }, [data]);
+
   useEffect(() => {
     if (token) {
       verifyEmail({ variables: { token } });
     }
-  }, [token, verifyEmail]);
-
-  console.log(
-    "this is authToken,  data.verifyEmail.",
-    data && data.verifyEmail
-  );
+  }, []);
 
   if (loading) return <p>Verifying...</p>;
   if (error) return <p>An error occurred.</p>;
 
   if (data && data.verifyEmail.success) {
-    localStorage.setItem("authToken", data?.verifyEmail); // Storing the authToken if provided
     return (
       <Wrapper>
         <TaskCheckedLight size={128} color="#684F3B" />

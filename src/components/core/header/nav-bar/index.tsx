@@ -30,7 +30,7 @@ export const HeaderNav = () => {
     console.log("Modal closed!");
   };
   const { isLoggedIn, user } = useAuth(); // Use the authentication context
-  console.log("thisi s user", user);
+
   const stringToColor = (string: string) => {
     let hash = 0;
     let i;

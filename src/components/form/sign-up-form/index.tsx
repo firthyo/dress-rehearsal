@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormControlLabel, Checkbox } from "@mui/material";
@@ -20,33 +20,53 @@ import {
 } from "../styles";
 
 import { SignUpFormType } from "../type";
-import { useMutation } from "@apollo/client";
-import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
-import PaletteIcon from "components/core/PaletteIcon";
 
-const SignUpForm = () => {
-  const [registerUser, { data, loading, error }] = useMutation(
-    REGISTER_USER_MUTATION
-  );
+import { ApolloError } from "apollo-server";
+
+interface SignUpProps {
+  registerUser: (variables: SignUpVariables) => Promise<any>;
+  loading: boolean;
+  data?: SignUpResponse | any;
+  error?: ApolloError | any;
+}
+
+// Define these types based on your actual data structure
+interface SignUpVariables {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  terms: boolean;
+}
+
+interface SignUpResponse {
+  register: {
+    success: boolean;
+    message: string;
+  };
+}
+
+const SignUpForm: React.FC<SignUpProps> = ({
+  registerUser,
+  loading,
+  data,
+  error,
+}) => {
+  const { register, handleSubmit } = useForm<SignUpVariables>();
+
   console.log("this is data from mutation :", data, loading);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignUpFormType>({ mode: "onTouched" });
 
   const onSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
+    console.log("this is formData", formData);
     try {
       const response = await registerUser({
-        variables: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          terms: formData.terms,
-        },
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        terms: formData.terms,
       });
-      console.log("Registration successful", response.data); // Log the data here
+      console.log("Registration successful", response.data.register.success); // Log the data here
     } catch (err) {
       console.error("Registration error", err);
     }
@@ -60,6 +80,15 @@ const SignUpForm = () => {
       </div>
     );
   };
+
+  const [displayLoading, setDisplayLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setDisplayLoading(true);
+      setTimeout(() => setDisplayLoading(false), 9000);
+    }
+  }, [loading]);
 
   return (
     <>
@@ -118,12 +147,6 @@ const SignUpForm = () => {
               <FormControlLabel
                 control={<Checkbox defaultChecked {...register("terms")} />}
                 label={<TermsLabel />}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox defaultChecked {...register("rememberMe")} />
-                }
-                label={<div>{"Remember me"}</div>}
               />
             </RowWrapper>
 

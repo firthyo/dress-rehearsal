@@ -28,7 +28,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  width: auto;
+  width: 1332px;
 `;
 
 export const CenteredContent = styled.div<CenteredContentProps>`
@@ -40,8 +40,9 @@ export const CenteredContent = styled.div<CenteredContentProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  width: auto;
+  flex: 1;
+
+  width: 100%;
   flex-basis: 50%;
   overflow: hidden;
   /* border-radius: 20px 0px 0px 20px; */

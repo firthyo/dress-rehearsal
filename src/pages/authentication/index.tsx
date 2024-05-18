@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import SignUpForm from "components/form/sign-up-form";
 import Tabs from "components/core/tab";
@@ -13,9 +13,14 @@ import { useModal } from "context/ModalContext";
 import Button from "components/core/button";
 import PaletteIcon from "components/core/PaletteIcon";
 import VerifyEmailInfo from "./verifyEmailInfo";
+import { useRegisterUser } from "hooks/useRegisterUser";
+import { useAuth } from "context/AuthContext";
+import { CircularProgress } from "@mui/material";
+import FormContent from "components/form/form-content";
 
 export const AuthenticationPage = () => {
-  const { showModal, hideModal } = useModal();
+  const { showModal } = useModal();
+
   const handleOpenModal = () => {
     showModal(
       <PageWrapper>
@@ -29,23 +34,7 @@ export const AuthenticationPage = () => {
           </CenteredContent>
 
           <FormWrapper>
-            <VerifyEmailInfo></VerifyEmailInfo>
-            {/* <Tabs
-              background="FILLED"
-              variant="grouped"
-              active={0}
-              onChange={handleChangeActiveTab}
-              items={[
-                {
-                  name: "Sign up",
-                  content: () => <SignUpForm />,
-                },
-                {
-                  name: "Login",
-                  content: () => <LoginForm />,
-                },
-              ]}
-            /> */}
+            <FormContent />
           </FormWrapper>
         </Container>
       </PageWrapper>,
@@ -59,9 +48,6 @@ export const AuthenticationPage = () => {
     );
   };
 
-  const handleChangeActiveTab = (index: number) => {
-    // setValue("activeTab", index);
-  };
   return (
     <div>
       <Button onClick={handleOpenModal} type="button">

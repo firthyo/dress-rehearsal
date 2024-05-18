@@ -4,7 +4,6 @@ export type SignUpFormType = {
   email: string;
   password: string;
   terms: boolean;
-  rememberMe: boolean;
 };
 
 export type LoginFormType = {
