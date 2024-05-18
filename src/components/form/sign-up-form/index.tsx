@@ -96,7 +96,7 @@ const SignUpForm: React.FC<SignUpProps> = ({
         <>
           <Spacer y={16} />
           <TextWrapper>
-            <Typography variant="titles" customColor={"#684F3B"}>
+            <Typography variant="h2" customColor={"#684F3B"}>
               Create new account
             </Typography>
           </TextWrapper>

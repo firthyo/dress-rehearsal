@@ -14,7 +14,7 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
 
   const [verifyEmail, { data, loading, error }] = useMutation(VERIFY_EMAIL);
-  const { login } = useAuth();
+  const { loginAuth } = useAuth();
 
   useEffect(() => {
     if (data && data.verifyEmail && data.verifyEmail.success) {
@@ -22,7 +22,7 @@ const VerifyEmail = () => {
       console.log("authToken", authToken);
       const userInfo = { firstName, lastName, email, id };
       localStorage.setItem("authToken", authToken);
-      login(authToken, userInfo);
+      loginAuth(authToken, userInfo);
       // navigate("/", { replace: true });
     }
   }, [data]);

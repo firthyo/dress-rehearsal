@@ -12,7 +12,7 @@ import LoginForm from "components/form/login-form";
 import { useModal } from "context/ModalContext";
 import Button from "components/core/button";
 import PaletteIcon from "components/core/PaletteIcon";
-import VerifyEmailInfo from "./verifyEmailInfo";
+import VerifyEmailInfo from "./VerifyEmailInfo";
 import { useRegisterUser } from "hooks/useRegisterUser";
 import { useAuth } from "context/AuthContext";
 import { CircularProgress } from "@mui/material";

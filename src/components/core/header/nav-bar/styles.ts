@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type NavbarLinkProps = {
+  noPadding?: boolean;
+};
+
 export const Navbar = styled.nav`
   background-color: ${(props) => props.theme.colors.ternary};
   position: fixed;
@@ -13,15 +17,16 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 32px;
 `;
 
 // Styled navbar links
-export const NavbarLink = styled.a`
+export const NavbarLink = styled.a<NavbarLinkProps>`
   color: ${(props) => props.theme.colors.primary};
   font-weight: ${(props) => props.theme.fontWeight.medium};
   text-align: center;
-  padding: 14px;
+  padding: ${({ noPadding }) => (noPadding ? "0px" : "14px")};
+
   text-decoration: none;
   width: fit-content;
 `;

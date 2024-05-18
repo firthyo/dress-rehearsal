@@ -22,11 +22,12 @@ export const TabNavItem: React.FC<Props> = ({
   disabled,
   background = "EMPTY",
 }) => {
+  console.log("this is isActive", isActive, name);
   const color =
     background === "FILLED"
       ? isActive
-        ? "#fff"
-        : "#684F3B"
+        ? "#684F3B"
+        : "#fff"
       : isActive
       ? "#fff"
       : "#684F3B";
@@ -41,7 +42,7 @@ export const TabNavItem: React.FC<Props> = ({
       data-cy={datacy}
     >
       <Spacer y={12} />
-      <Typography variant="h4" customColor={color}>
+      <Typography variant="h3" customColor={color}>
         {name}
       </Typography>
       <Spacer y={12} />

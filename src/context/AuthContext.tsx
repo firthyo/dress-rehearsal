@@ -9,15 +9,15 @@ interface User {
 interface AuthContextType {
   isLoggedIn: boolean;
   user: User | null;
-  login: (token: string, userInfo: User) => void;
-  logout: () => void;
+  loginAuth: (token: string, userInfo: User) => void;
+  logoutAuth: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   user: null,
-  login: (token: string, userInfo: User) => {}, // Provide default implementation
-  logout: () => {},
+  loginAuth: (token: string, userInfo: User) => {}, // Provide default implementation
+  logoutAuth: () => {},
 });
 
 export const useAuth = (): AuthContextType => {

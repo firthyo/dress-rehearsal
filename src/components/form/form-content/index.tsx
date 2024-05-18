@@ -2,7 +2,7 @@ import Tabs from "components/core/tab";
 import React, { useEffect, useState } from "react";
 import SignUpForm from "../sign-up-form";
 import LoginForm from "../login-form";
-import VerifyEmailInfo from "pages/authentication/verifyEmailInfo";
+import VerifyEmailInfo from "pages/authentication/VerifyEmailInfo";
 import { useAuth } from "context/AuthContext";
 import { CircularProgress } from "@mui/material";
 import { useRegisterUser } from "hooks/useRegisterUser";

@@ -17,29 +17,15 @@ const headerVariantMap: Record<HeaderVariant, any> = {
       text-align: center;
       padding-bottom: 0px;
       padding: 6px 0px;
-      border: 1px solid #ccc7d2;
-
-      &:first-child {
-        border-radius: 8px 0px 0px 8px;
-      }
-      &:last-child {
-        border-radius: 0px 8px 8px 0px;
-      }
-
+      border: transparent;
+      border-radius: 6px;
+      background-color: ${(props) => props.theme.colors.primary};
       &.is-active {
         border-color: ${(props) => props.theme.colors.primary};
-        background-color: ${(props) => props.theme.colors.primary};
+        background-color: ${(props) => props.theme.colors.systemLight};
         > * {
           border-color: ${(props) => props.theme.colors.primary};
         }
-      }
-
-      > * {
-        text-transform: none;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 145%;
       }
     }
   `,
@@ -66,6 +52,9 @@ const headerVariantMap: Record<HeaderVariant, any> = {
 export const Header = styled.div<HeaderProps>`
   display: flex;
   ${(props) => headerVariantMap[props.variant]}
+  background-color: ${(props) => props.theme.colors.primary};
+  padding: 4px;
+  border-radius: 8px;
 `;
 
 export const Wrapper = styled.div`

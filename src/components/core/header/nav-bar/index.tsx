@@ -17,6 +17,7 @@ import Modal from "components/core/modal";
 import SignUpForm from "components/form/sign-up-form";
 import AuthenticationPage from "pages/authentication";
 import { Avatar } from "@mui/material";
+import ProfileMenu from "components/profile-menu";
 
 export const HeaderNav = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,18 +74,14 @@ export const HeaderNav = () => {
             <NavbarLink href="#">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
             <NavbarLink href="#">CONTACT</NavbarLink>
-            <Spacer x={32} />
+            <Spacer x={24} />
             <Divider marginHorizontal={4}></Divider>
-            <Spacer x={32} />
+            <Spacer x={24} />
+
             {isLoggedIn ? (
-              <NavbarLink>
+              <NavbarLink noPadding={true}>
                 {/* Assuming you have a way to get the user's avatar */}
-                <Avatar
-                  {...stringAvatar(
-                    (user && `${user?.firstName} ${user?.lastName}`) ||
-                      "Dress Rehearsal"
-                  )}
-                />
+                <ProfileMenu />
               </NavbarLink>
             ) : (
               <NavbarLink>

@@ -16,6 +16,7 @@ import AlertMessage from "components/core/AlertMessage";
 
 import { LOGIN_USER_MUTATION } from "graphql/user/authMutation";
 import { LoginFormType } from "../type";
+import { useAuth } from "context/AuthContext";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState<boolean>(false);
@@ -27,20 +28,22 @@ const LoginForm = () => {
   } = useForm<LoginFormType>();
 
   const [login, { data, loading, error }] = useMutation(LOGIN_USER_MUTATION);
+  console.log("this is loading fronm login", loading);
+  const { loginAuth } = useAuth();
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     try {
       const { email, password } = data;
       const response = await login({ variables: { email, password } });
 
-      if (response.data && response.data.errors) {
-        const errorMessages = response.data.errors.map(
-          (error: any) => error.message
-        );
-        console.error("Login error:", errorMessages);
-        setLoginError(true);
-      } else {
+      if (response.data && response.data.login.token) {
+        const { token, user } = response.data.login;
+        loginAuth(token, user);
         console.log("Login successful:", response.data);
+        // Redirect user or perform other actions post-login
+      } else {
+        console.error("Login error: Invalid credentials");
+        setLoginError(true);
       }
     } catch (err) {
       console.error("Login error:", err);
@@ -65,7 +68,7 @@ const LoginForm = () => {
             }
           />
         ) : (
-          <Typography variant="titles" customColor={"#684F3B"}>
+          <Typography variant="h2" customColor={"#684F3B"}>
             Welcome back!
           </Typography>
         )}

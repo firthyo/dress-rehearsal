@@ -83,7 +83,7 @@ export const Typography: React.FC<TypographyProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
   const Component = mappedStyles[variant];
-  const colorProps = (color && theme?.colors[color]) || customColor;
+  const colorProps = customColor || theme?.colors[color];
 
   return (
     <Component color={colorProps} title={title}>

@@ -25,14 +25,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = (token: string, userInfo: User) => {
+  const loginAuth = (token: string, userInfo: User) => {
     localStorage.setItem("authToken", token);
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
     setUser(userInfo);
     setIsLoggedIn(true);
   };
 
-  const logout = () => {
+  const logoutAuth = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userInfo");
     setUser(null);
@@ -44,8 +44,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       value={{
         isLoggedIn,
         user,
-        login,
-        logout,
+        loginAuth,
+        logoutAuth,
       }}
     >
       {children}

@@ -26,8 +26,13 @@ export const REGISTER_USER_MUTATION = gql`
 export const LOGIN_USER_MUTATION = gql`
   mutation LoginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      id
-      email
+      token
+      user {
+        id
+        email
+        firstName
+        lastName
+      }
     }
   }
 `;
@@ -38,8 +43,6 @@ export const VERIFY_EMAIL = gql`
       success
       message
       authToken
-      firstName
-      lastName
     }
   }
 `;
