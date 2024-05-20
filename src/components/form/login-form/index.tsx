@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "@apollo/client";
+import { ApolloError, useMutation } from "@apollo/client";
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
 import TextFieldForm from "components/core/text-field";
@@ -14,32 +14,46 @@ import { FormContainer, Link, RowWrapper, TextWrapper } from "../styles";
 import { Typography } from "components/core/typography";
 import AlertMessage from "components/core/AlertMessage";
 
-import { LOGIN_USER_MUTATION } from "graphql/user/authMutation";
 import { LoginFormType } from "../type";
 import { useAuth } from "context/AuthContext";
-
-const LoginForm = () => {
+interface LoginFormProps {
+  loginUser: (options: {
+    variables: {
+      email: string;
+      password: string;
+    };
+  }) => Promise<any>;
+  loading: boolean;
+  data?: any;
+  error?: ApolloError;
+  setIsUserForgotPassword: (isUserForgotPassword: boolean) => void;
+}
+const LoginForm: React.FC<LoginFormProps> = ({
+  loginUser,
+  loading,
+  data,
+  error,
+  setIsUserForgotPassword,
+}) => {
   const [loginError, setLoginError] = useState<boolean>(false);
-
+  console.log("this is data", data);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormType>();
 
-  const [login, { data, loading, error }] = useMutation(LOGIN_USER_MUTATION);
-  console.log("this is loading fronm login", loading);
-  const { loginAuth } = useAuth();
+  // const [login, { data, loading, error }] = useMutation(LOGIN_USER_MUTATION);
+  const { loginAuth, authStage, setAuthStage } = useAuth();
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     try {
       const { email, password } = data;
-      const response = await login({ variables: { email, password } });
+      const response = await loginUser({ variables: { email, password } });
 
       if (response.data && response.data.login.token) {
         const { token, user } = response.data.login;
         loginAuth(token, user);
-        console.log("Login successful:", response.data);
         // Redirect user or perform other actions post-login
       } else {
         console.error("Login error: Invalid credentials");
@@ -49,6 +63,11 @@ const LoginForm = () => {
       console.error("Login error:", err);
       setLoginError(true);
     }
+  };
+
+  const toggleForgotPassword = () => {
+    setIsUserForgotPassword(true);
+    setAuthStage("FORGOT_PASSWORD");
   };
 
   return (
@@ -106,9 +125,10 @@ const LoginForm = () => {
         <Spacer y={24} />
 
         <RowWrapper>
-          <Link href="/terms-of-service" linkColor="#6D4E39">
+          <Link onClick={toggleForgotPassword} linkColor="#6D4E39">
             Forgot password
           </Link>
+
           {/* <FormControlLabel
             control={<Checkbox defaultChecked {...register("rememberMe")} />}
             label={<div>{"Remember me"}</div>}

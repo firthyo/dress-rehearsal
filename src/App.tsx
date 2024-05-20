@@ -25,10 +25,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sign-up" element={<AuthenticationPage />} />
-                <Route
-                  path="/verify-email/:token"
-                  element={<VerifyEmail></VerifyEmail>}
-                />
+                <Route path="/verify-email/:token" element={<VerifyEmail />} />
               </Routes>
             </div>
           </ModalProvider>

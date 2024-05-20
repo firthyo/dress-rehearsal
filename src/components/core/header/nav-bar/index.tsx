@@ -22,14 +22,6 @@ import ProfileMenu from "components/profile-menu";
 export const HeaderNav = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    console.log("Modal closed!");
-  };
   const { isLoggedIn, user } = useAuth(); // Use the authentication context
 
   const stringToColor = (string: string) => {

@@ -22,15 +22,14 @@ export const TabNavItem: React.FC<Props> = ({
   disabled,
   background = "EMPTY",
 }) => {
-  console.log("this is isActive", isActive, name);
   const color =
     background === "FILLED"
       ? isActive
-        ? "#684F3B"
-        : "#fff"
+        ? "primary"
+        : "systemLight"
       : isActive
-      ? "#fff"
-      : "#684F3B";
+      ? "primary"
+      : "systemLight";
 
   return (
     <Wrapper
@@ -42,7 +41,7 @@ export const TabNavItem: React.FC<Props> = ({
       data-cy={datacy}
     >
       <Spacer y={12} />
-      <Typography variant="h3" customColor={color}>
+      <Typography variant="h3" color={color}>
         {name}
       </Typography>
       <Spacer y={12} />

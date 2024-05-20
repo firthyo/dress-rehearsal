@@ -54,10 +54,7 @@ const SignUpForm: React.FC<SignUpProps> = ({
 }) => {
   const { register, handleSubmit } = useForm<SignUpVariables>();
 
-  console.log("this is data from mutation :", data, loading);
-
   const onSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
-    console.log("this is formData", formData);
     try {
       const response = await registerUser({
         firstName: formData.firstName,

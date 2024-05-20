@@ -1,35 +1,87 @@
 import { useMutation } from "@apollo/client";
-import { REGISTER_USER_MUTATION } from "graphql/user/authMutation";
+import {
+  FORGOT_PASSWORD_MUTATION,
+  LOGIN_USER_MUTATION,
+  REGISTER_USER_MUTATION,
+} from "graphql/user/authMutation";
 
-interface SignUpVariables {
+type LoginVariables = {
+  email: string;
+  password: string;
+};
+
+type LoginResponse = {
+  login: {
+    token: string;
+    user: {
+      id: string;
+      email: string;
+      firstName: string;
+      lastName: string;
+    };
+  };
+};
+
+type SignUpVariables = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   terms: boolean;
-}
+};
 
-interface SignUpResponse {
+type SignUpResponse = {
   register: {
     success: boolean;
     message?: string;
   };
-}
+};
+
+type ForgotPasswordVariables = {
+  email: string;
+};
+
+type ForgotPasswordResponse = {
+  forgotPassword: {
+    success: boolean;
+    message: string;
+  };
+};
 
 export const useRegisterUser = () => {
-  const [mutationFunction, { data, loading, error }] = useMutation<
+  const [loginUser, loginResult] = useMutation<LoginResponse, LoginVariables>(
+    LOGIN_USER_MUTATION
+  );
+
+  const [registerMutation, registerResult] = useMutation<
     SignUpResponse,
     SignUpVariables
   >(REGISTER_USER_MUTATION);
 
-  // Wrap the mutation function to simplify its usage in components
-  const registerUser = (variables: SignUpVariables): Promise<any> => {
-    return mutationFunction({ variables })
+  const [forgotPassword, forgotPasswordResult] = useMutation<
+    ForgotPasswordResponse,
+    ForgotPasswordVariables
+  >(FORGOT_PASSWORD_MUTATION);
+  const registerUser = async (variables: SignUpVariables): Promise<any> => {
+    return registerMutation({ variables })
       .then((response) => response.data)
-      .catch((err) => {
-        throw err;
+      .catch((error) => {
+        throw error;
       });
   };
-  console.log("this is data from hook", data);
-  return { registerUser, data, loading, error };
+
+  return {
+    loginUser,
+    loginData: loginResult.data,
+    loginLoading: loginResult.loading,
+    loginError: loginResult.error,
+    registerUser,
+    registerData: registerResult.data,
+    registerLoading: registerResult.loading,
+    registerError: registerResult.error,
+    forgotPassword,
+    forgotPasswordData: forgotPasswordResult.data,
+    forgotPasswordLoading: forgotPasswordResult.loading,
+    forgotPasswordError: forgotPasswordResult.error,
+  };
 };

@@ -1,20 +1,22 @@
 import React, { useState, ReactNode, useEffect } from "react";
 import { AuthContext } from "context/AuthContext";
+import { AuthStageType } from "types/AuthType";
 
-interface AuthProviderProps {
+type AuthProviderProps = {
   children: ReactNode;
-}
+};
 
-interface User {
+type User = {
   email: string;
   firstName: string;
   lastName: string;
   id: string;
-}
+};
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [authStage, setAuthStage] = useState<AuthStageType>("SIGNUP");
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -46,6 +48,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         user,
         loginAuth,
         logoutAuth,
+        authStage,
+        setAuthStage,
       }}
     >
       {children}

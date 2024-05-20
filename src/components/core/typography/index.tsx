@@ -75,7 +75,7 @@ export type TypographyProps = {
   color?: keyof MyTheme["colors"]; // Using keyof to refer to theme color keys
 };
 export const Typography: React.FC<TypographyProps> = ({
-  customColor = "#574E61",
+  customColor,
   variant = "p",
   title,
   children,
@@ -83,7 +83,7 @@ export const Typography: React.FC<TypographyProps> = ({
 }) => {
   const theme = useContext(ThemeContext);
   const Component = mappedStyles[variant];
-  const colorProps = customColor || theme?.colors[color];
+  const colorProps = color ? theme?.colors[color] : customColor;
 
   return (
     <Component color={colorProps} title={title}>

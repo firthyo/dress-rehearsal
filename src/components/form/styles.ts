@@ -33,6 +33,7 @@ export const Link = styled.a<LinkProps>`
   color: ${(props) => props.linkColor || props.theme.colors.info};
   text-decoration: none;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 export const TextWrapper = styled.div`

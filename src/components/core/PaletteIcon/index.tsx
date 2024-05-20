@@ -4,12 +4,14 @@ import MailFill from "assets/icons/common/mail-fill";
 import PaletteBankground from "./PaletteBankground";
 import { Wrapper } from "./styles";
 
-export const PaletteIcon = () => {
+type PaletteIconProps = {
+  icon: JSX.Element;
+};
+
+export const PaletteIcon: React.FC<PaletteIconProps> = ({ icon }) => {
   return (
     <Wrapper>
-      <PaletteBankground>
-        <MailFill size="40" color="#684F3B"></MailFill>
-      </PaletteBankground>
+      <PaletteBankground>{icon}</PaletteBankground>
     </Wrapper>
   );
 };
