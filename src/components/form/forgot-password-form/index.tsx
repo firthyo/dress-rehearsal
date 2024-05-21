@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { FormContainer, RowWrapper, TextWrapper } from "../styles";
-import { Typography } from "components/core/typography";
-import Spacer from "components/core/spacer";
-import TextFieldForm from "components/core/text-field-form";
-import { Button } from "components/core/button";
-import AlertMessage from "components/core/alertMessage";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "context/AuthContext";
+
+import { Typography, Spacer, Button, AlertMessage } from "components/core";
+import TextFieldForm from "components/core/text-field-form";
+
+import { FormContainer, RowWrapper, TextWrapper } from "../styles";
 
 type ForgotPasswordFormProps = {
   forgotPassword: (options: { variables: { email: string } }) => Promise<any>;
@@ -17,7 +16,7 @@ type ForgotPasswordFormProps = {
 type ForgotPasswordVariables = {
   email: string;
 };
-const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
+export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   forgotPassword,
   loading,
   error,

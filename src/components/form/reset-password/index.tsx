@@ -1,7 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "@apollo/client";
+import { IconButton } from "@mui/material";
+
 import { RESET_PASSWORD_MUTATION } from "graphql/user/authMutation";
+import { VisibilityOffIcon, VisibilityIcon } from "assets/icons";
+import TaskCheckedLight from "assets/icons/common/task-checked-light";
+
 import {
   Typography,
   Button,
@@ -9,24 +15,26 @@ import {
   TextFieldForm,
   AlertMessage,
 } from "components/core";
-import { FormContainer, RowWrapper, TextWrapper } from "../styles";
-import { useParams } from "react-router-dom";
-import { IconButton } from "@mui/material";
-
-import { VisibilityOffIcon, VisibilityIcon } from "assets/icons";
+import {
+  FormContainer,
+  ResetPasswordFormContainer,
+  RowWrapper,
+  TextWrapper,
+} from "../styles";
 
 type ResetFormData = {
   newPassword: string;
   confirmPassword: string;
 };
 
-const ResetPasswordForm: React.FC = () => {
+export const ResetPasswordForm: React.FC = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<ResetFormData>();
+  const { token } = useParams();
   const newPassword = watch("newPassword");
   const [showPassword, setShowPassword] = useState({
     new: false,
@@ -42,8 +50,8 @@ const ResetPasswordForm: React.FC = () => {
   ) => {
     event.preventDefault();
   };
-  const { token } = useParams();
-  console.log("this is token", token);
+  const [isVerifyPassword, setIsVerifyPassword] = useState<boolean>(false);
+
   const [resetPassword, { loading, error }] = useMutation(
     RESET_PASSWORD_MUTATION,
     {
@@ -55,6 +63,7 @@ const ResetPasswordForm: React.FC = () => {
       },
     }
   );
+
   const onSubmit: SubmitHandler<ResetFormData> = async (data) => {
     console.log("Submitting form with data:", data);
     if (data.newPassword !== data.confirmPassword) {
@@ -72,87 +81,105 @@ const ResetPasswordForm: React.FC = () => {
       const response = await resetPassword({
         variables: { newPassword: data.newPassword, token },
       });
-      console.log("Reset password response:", response);
+      setIsVerifyPassword(response.data?.resetPassword.success);
     } catch (error) {
       console.error("Failed to reset password:", error);
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextWrapper>
-        <Typography variant="h2" color="primary">
-          Reset Your Password
-        </Typography>
-      </TextWrapper>
-      <Spacer y={24} />
-      <FormContainer>
-        <RowWrapper>
-          <TextFieldForm
-            variant="outlined"
-            label="New Password"
-            type={showPassword.new ? "text" : "password"}
-            {...register("newPassword", {
-              required: "New password is required",
-            })}
-            inputAdornment={
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => handleClickShowPassword("new")}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword.new ? (
-                  <VisibilityOffIcon size={20} />
-                ) : (
-                  <VisibilityIcon size={20} />
-                )}
-              </IconButton>
-            }
-          />
-        </RowWrapper>
-        <RowWrapper>
-          <TextFieldForm
-            variant="outlined"
-            label="Confirm New Password"
-            type={showPassword.confirm ? "text" : "password"}
-            {...register("confirmPassword", {
-              required: "Confirm password is required",
-              validate: (value) =>
-                value === newPassword || "Passwords do not match",
-            })}
-            inputAdornment={
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => handleClickShowPassword("confirm")}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword.confirm ? (
-                  <VisibilityOffIcon size={20} />
-                ) : (
-                  <VisibilityIcon size={20} />
-                )}
-              </IconButton>
-            }
-          />
-        </RowWrapper>
+  return isVerifyPassword ? (
+    <ResetPasswordFormContainer>
+      <TaskCheckedLight size={128} color="#684F3B" />
+      <Spacer y={48} />
+      <Typography variant="big-numbers" color={"systemDark"}>
+        Well done!
+      </Typography>
+      <Spacer y={16} />
+      <Typography variant="page-subtitle" color={"systemDark"}>
+        Your Password has been change successfully
+      </Typography>
+      <Spacer y={48} />
+      <Button onClick={() => <Navigate to="/dashboard" replace />}>
+        Get Started
+      </Button>
+    </ResetPasswordFormContainer>
+  ) : (
+    <ResetPasswordFormContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextWrapper>
+          <Typography variant="h2" color="primary">
+            Reset your password
+          </Typography>
+        </TextWrapper>
         <Spacer y={24} />
-        <RowWrapper>
-          <Button type="submit" disabled={loading}>
-            Reset Password!
-          </Button>
-        </RowWrapper>
-      </FormContainer>
-      {error && (
-        <AlertMessage
-          severity="error"
-          color="error"
-          title={"error"}
-          text={<div>`Error`</div>}
-        />
-      )}
-    </form>
+        <FormContainer>
+          <RowWrapper>
+            <TextFieldForm
+              variant="outlined"
+              label="New Password"
+              type={showPassword.new ? "text" : "password"}
+              {...register("newPassword", {
+                required: "New password is required",
+              })}
+              inputAdornment={
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => handleClickShowPassword("new")}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword.new ? (
+                    <VisibilityOffIcon size={20} />
+                  ) : (
+                    <VisibilityIcon size={20} />
+                  )}
+                </IconButton>
+              }
+            />
+          </RowWrapper>
+          <RowWrapper>
+            <TextFieldForm
+              variant="outlined"
+              label="Confirm New Password"
+              type={showPassword.confirm ? "text" : "password"}
+              {...register("confirmPassword", {
+                required: "Confirm password is required",
+                validate: (value) =>
+                  value === newPassword || "Passwords do not match",
+              })}
+              inputAdornment={
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => handleClickShowPassword("confirm")}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword.confirm ? (
+                    <VisibilityOffIcon size={20} />
+                  ) : (
+                    <VisibilityIcon size={20} />
+                  )}
+                </IconButton>
+              }
+            />
+          </RowWrapper>
+          <Spacer y={24} />
+          <RowWrapper>
+            <Button type="submit" disabled={loading}>
+              Submit
+            </Button>
+          </RowWrapper>
+        </FormContainer>
+        {error && (
+          <AlertMessage
+            severity="error"
+            color="error"
+            title={"error"}
+            text={<div>`Error`</div>}
+          />
+        )}
+      </form>
+    </ResetPasswordFormContainer>
   );
 };
 

@@ -1,7 +1,10 @@
 import React from "react";
 import { IconProps } from "../types";
 
-const LineIcon: React.FC<IconProps> = ({ size = "52", color = "#1C1B1F" }) => {
+export const LineIcon: React.FC<IconProps> = ({
+  size = "52",
+  color = "#1C1B1F",
+}) => {
   return (
     <svg
       width={size}

@@ -1,5 +1,5 @@
 export enum STYLE_CONSTANTS {
-  HEADER_HEIGHT = '110px',
+  HEADER_HEIGHT = '120px',
   SIDEBAR_COLLAPSE = '80px',
   SIDEBAR_EXPAND = '216px',
   NAV_BAR_HEIGHT = '4rem',

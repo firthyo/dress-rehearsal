@@ -29,7 +29,7 @@ function App() {
                 <Route path="/verify-email/:token" element={<VerifyEmail />} />
                 <Route
                   path="/reset-password/:token"
-                  element={<ResetPasswordForm></ResetPasswordForm>}
+                  element={<ResetPasswordForm />}
                 ></Route>
               </Routes>
             </div>

@@ -91,7 +91,7 @@ const SignUpForm: React.FC<SignUpProps> = ({
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
-          <Spacer y={16} />
+          <Spacer y={8} />
           <TextWrapper>
             <Typography variant="h2" customColor={"#684F3B"}>
               Create new account

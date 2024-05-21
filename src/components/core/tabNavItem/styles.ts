@@ -18,9 +18,9 @@ export const Wrapper = styled.button<Props>`
   ${(props) =>
     props.isActive
       ? css`
-          padding-bottom: 4px;
+          padding-bottom: 0px;
         `
       : css`
-          padding-bottom: 5px;
+          padding-bottom: 0px;
         `}
 `;

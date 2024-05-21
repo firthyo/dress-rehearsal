@@ -51,7 +51,7 @@ export const Wrapper = styled.button<WrapperProps>`
   padding: ${(props) => props.paddingVertical || 0}px
     ${(props) =>
       props.paddingHorizontal === undefined ? 32 : props.paddingHorizontal}px;
-  height: ${(props) => props.height || 40}px;
+  height: ${(props) => props.height || 44}px;
   width: ${(props) => (props.width ? `${props.width}px` : "auto")};
   border-radius: ${(props) => props.borderRadius};
 

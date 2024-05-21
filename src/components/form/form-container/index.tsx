@@ -42,7 +42,7 @@ export const FormContent = () => {
 
   const [loadingInterval, setLoading] = useState(false);
   useEffect(() => {
-    const loading = loginLoading || registerLoading;
+    const loading = loginLoading || registerLoading || forgotPasswordLoading;
 
     if (loading) {
       setLoading(true);
@@ -56,7 +56,7 @@ export const FormContent = () => {
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, [registerLoading, loginLoading]);
+  }, [registerLoading, loginLoading, forgotPasswordLoading]);
 
   // if (registerData?.register.success) {
   //   setAuthStage("VERIFY_EMAIL");

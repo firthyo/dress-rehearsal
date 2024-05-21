@@ -1,9 +1,15 @@
 import React from "react";
-import { RigthWrapper, Wrapper } from "./styles";
 import { Typography } from "../typography";
-import FacebookIcon from "assets/icons/social/FacebookIcon";
-import LineIcon from "assets/icons/social/LineIcon";
+
 import Spacer from "../spacer";
+import { InlineWrapper } from "../inline-wrapper";
+import {
+  InstragramIcon,
+  FacebookIcon,
+  LineIcon,
+  TiktokIcon,
+} from "assets/icons/social";
+import { LeftWrapper, RigthWrapper, Wrapper } from "./styles";
 
 export const Footer = () => {
   return (
@@ -13,17 +19,21 @@ export const Footer = () => {
           Dress Rehersal
         </Typography>
         <Spacer y={16} />
-        <Typography variant="page-subtitle" color="surface">
-          Complete your style with awesome clothes from us.
+        <Typography variant="p-articles" color="surface">
+          Copyright Dress Rehearsal, all right reserved
         </Typography>
       </RigthWrapper>
-      <div>
-        <FacebookIcon></FacebookIcon>
-        <LineIcon></LineIcon>
-        <Typography variant="page-subtitle" color="surface">
-          copyright Dress Rehearsal, all right reserved
-        </Typography>
-      </div>
+      <LeftWrapper>
+        <InlineWrapper>
+          <FacebookIcon />
+          <Spacer x={16} />
+          <LineIcon />
+          <Spacer x={16} />
+          <InstragramIcon />
+          <Spacer x={16} />
+          <TiktokIcon />
+        </InlineWrapper>
+      </LeftWrapper>
     </Wrapper>
   );
 };

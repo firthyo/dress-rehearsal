@@ -32,7 +32,7 @@ export const Header3 = styled.h3<Props>`
   color: ${(props) => props.color};
   margin: 0px;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 110%;
   letter-spacing: 0.02em;
 `;

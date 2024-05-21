@@ -34,7 +34,7 @@ export const TextFieldForm = React.forwardRef<HTMLInputElement, TextFieldprops>(
         inputRef={ref}
         InputProps={{
           style: { borderRadius: 12 },
-          endAdornment: (
+          endAdornment: inputAdornment && (
             <InputAdornment position="end">{inputAdornment}</InputAdornment>
           ),
         }}

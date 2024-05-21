@@ -1,8 +1,8 @@
 import React from "react";
 
 export const TryLessFormalLogo = ({
-  width = "484",
-  height = "223",
+  width = "372",
+  height = "171",
   color = "#6C4E39",
 }) => {
   return (

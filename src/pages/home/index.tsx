@@ -92,7 +92,7 @@ const Home = () => {
         </InlineWrapper>
 
         <Spacer y={90} />
-        <Typography color="primary" variant="titles">
+        <Typography color="primary" variant="p-articles">
           Our brand is like your favorite song in clothing form – rich in detail
           and full of soul. It's about waking up your spirit and letting the
           magic of what you wear transform your day. Dive into what makes you
@@ -100,7 +100,8 @@ const Home = () => {
           harmony.
         </Typography>
       </CollectionWrapper>
-      <Footer></Footer>
+      <Spacer y={120} />
+      <Footer />
     </Wrapper>
   );
 };

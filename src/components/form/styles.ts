@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const FormContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 536px;
+  width: 460px;
   flex-direction: column;
 `;
 
@@ -40,4 +40,12 @@ export const TextWrapper = styled.div`
   text-align: start;
   display: flex;
   margin-left: 12px;
+`;
+
+export const ResetPasswordFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 160px);
 `;

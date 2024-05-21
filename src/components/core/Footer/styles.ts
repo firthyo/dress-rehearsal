@@ -15,3 +15,11 @@ export const RigthWrapper = styled.div`
   align-self: center;
   text-align: start;
 `;
+
+export const LeftWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+  text-align: end;
+`;

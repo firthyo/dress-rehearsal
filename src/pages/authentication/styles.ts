@@ -28,7 +28,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  width: 1332px;
+  max-width: 1332px;
 `;
 
 export const CenteredContent = styled.div<CenteredContentProps>`
@@ -64,4 +64,14 @@ export const Link = styled.a<LinkProps>`
 
 export const PageWrapper = styled.div`
   background-color: ${(props) => props.theme.colors.surface};
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  top: 45px;
+  right: 170px;
+  /* background-color: #6c4e3930;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px; */
 `;

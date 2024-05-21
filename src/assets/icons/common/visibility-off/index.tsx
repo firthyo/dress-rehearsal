@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "assets/icons/types";
 
 export const VisibilityOffIcon: React.FC<IconProps> = ({
-  color = "#1C1B1F",
+  color = "#dfdfdf",
   size = "16px",
 }) => {
   return (

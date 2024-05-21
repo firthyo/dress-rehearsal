@@ -12,6 +12,7 @@ const headerVariantMap: Record<HeaderVariant, any> = {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
+    width: 95%;
 
     > * {
       text-align: center;
@@ -59,4 +60,8 @@ export const Header = styled.div<HeaderProps>`
 
 export const Wrapper = styled.div`
   height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;

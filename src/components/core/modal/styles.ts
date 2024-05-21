@@ -27,7 +27,7 @@ export const ModalContainer = styled.div<{
   /* width: 100%; */
   /* height: 900px; */
   /* max-width: 500px; */
-  z-index: 1000;
+  z-index: 10;
 `;
 
 export const ModalHeader = styled.div`

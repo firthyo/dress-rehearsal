@@ -5,7 +5,7 @@ type GoogleIconProps = {
   height?: string;
 };
 
-const GoogleIcon: React.FC<GoogleIconProps> = ({
+export const GoogleIcon: React.FC<GoogleIconProps> = ({
   width = "128px",
   height = "128px",
 }) => {

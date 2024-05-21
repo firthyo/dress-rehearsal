@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "assets/icons/types";
 
 export const VisibilityIcon: React.FC<IconProps> = ({
-  color = "#1C1B1F",
+  color = "#9c9c9c",
   size = "16px",
 }) => {
   return (

@@ -52,10 +52,9 @@ export const Modal: React.FC<MainButtonProps> = ({
 
   return (
     <ModalBackground onClick={handleClickBackground} isPopup={isPopup}>
-      <IconWrapper>
-        <CloseIcon size={36} />
-      </IconWrapper>
-
+      {/* <IconWrapper>
+          <CloseIcon size={36} />
+        </IconWrapper> */}
       <ModalContainer
         onClick={(e) => e.stopPropagation()}
         noPadding={noPadding}
