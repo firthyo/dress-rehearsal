@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
-export const Divider = styled.div`
+export const Wrapper = styled.div`
+  background-color: ${(props) => props.theme.colors.primary};
   display: flex;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  padding: 0px 50px;
+  height: 164px;
 `;
 
-export const Line = styled.div`
-  flex-grow: 1;
-  height: 1px;
-  background-color: #000; // You can customize the color
-  margin: 0 10px; // Adjust spacing around the text
-`;
-
-export const DividerText = styled.span`
-  white-space: nowrap; // Prevents the text from wrapping
+export const RigthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+  text-align: start;
 `;

@@ -18,7 +18,8 @@ export const Container = styled.div<ContainerProps>`
   transition: border 0.3s;
 
   height: 646px;
-  width: ${(props) => (props.fullWidth ? "100%" : "620px")};
+  width: ${(props) => (props.fullWidth ? "100%" : "45%")};
+  max-width: ${(props) => (props.fullWidth ? "1320px" : "620px")};
 
   display: flex;
   flex-direction: column;

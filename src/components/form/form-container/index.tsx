@@ -1,4 +1,4 @@
-import Tabs from "components/core/tab";
+import Tabs from "components/core/tabs";
 import React, { useCallback, useEffect, useState } from "react";
 import SignUpForm from "../sign-up-form";
 import LoginForm from "../login-form";
@@ -81,6 +81,41 @@ export const FormContent = () => {
             error={forgotPasswordError}
           />
         );
+      case "LOGIN":
+        return (
+          <Tabs
+            background="FILLED"
+            variant="grouped"
+            active={activeTab}
+            onChange={(index) => setActiveTab(index)}
+            items={[
+              {
+                name: "Sign Up",
+                content: () => (
+                  <SignUpForm
+                    registerUser={registerUser}
+                    data={registerData}
+                    loading={registerLoading}
+                    error={registerError}
+                  />
+                ),
+              },
+              {
+                name: "Login",
+                content: () => (
+                  <LoginForm
+                    loginUser={loginUser}
+                    data={loginData}
+                    loading={loginLoading}
+                    error={loginError}
+                    setIsUserForgotPassword={handleForgotPasswordChange}
+                  />
+                ),
+              },
+            ]}
+          />
+        );
+
       default:
         return (
           <Tabs

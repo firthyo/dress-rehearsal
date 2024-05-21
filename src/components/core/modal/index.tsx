@@ -22,7 +22,7 @@ type MainButtonProps = {
   borderRadius?: string;
 };
 
-const Modal: React.FC<MainButtonProps> = ({
+export const Modal: React.FC<MainButtonProps> = ({
   title,
   cancelCloseOnClick = false,
   content,

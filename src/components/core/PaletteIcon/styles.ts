@@ -12,7 +12,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Outer = styled.div<Props>`
-  background-color: #6d4e39;
+  background-color: ${(props) => props.theme.colors.primary};
+
   opacity: 0.1;
   width: 108px;
   height: 108px;
@@ -23,7 +24,8 @@ export const Outer = styled.div<Props>`
 `;
 
 export const Inner = styled.div<Props>`
-  background-color: #6d4e39;
+  background-color: ${(props) => props.theme.colors.primary};
+
   opacity: 0.4;
   width: 92px;
   height: 92px;
@@ -41,7 +43,6 @@ export const StyledMailFill = styled.div`
   left: 50%; // Center horizontally
   transform: translate(-50%, -50%); // Adjust position to center
 `;
-
 
 export const PaletteBackgroundWrapper = styled.div<PaletteBackgroundProps>`
   position: relative;

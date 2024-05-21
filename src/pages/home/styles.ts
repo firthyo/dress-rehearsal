@@ -22,9 +22,8 @@ export const CollectionWrapper = styled.div`
 
 export const CardWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const LogoWrapper = styled.div`
-
-`
+export const LogoWrapper = styled.div``;

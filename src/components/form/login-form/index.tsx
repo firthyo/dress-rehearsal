@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ApolloError, useMutation } from "@apollo/client";
+import { ApolloError } from "@apollo/client";
+import { useAuth } from "context/AuthContext";
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
-import TextFieldForm from "components/core/text-field";
-import Button from "components/core/button";
-import Spacer from "components/core/spacer";
-
-import DiviverWithText from "components/core/divider-with-text";
+import {
+  Button,
+  Spacer,
+  DividerWithText,
+  Typography,
+  AlertMessage,
+  TextFieldForm,
+} from "components/core";
 
 import { FormContainer, Link, RowWrapper, TextWrapper } from "../styles";
-import { Typography } from "components/core/typography";
-import AlertMessage from "components/core/AlertMessage";
 
 import { LoginFormType } from "../type";
-import { useAuth } from "context/AuthContext";
+
 interface LoginFormProps {
   loginUser: (options: {
     variables: {
@@ -111,7 +113,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         </RowWrapper>
 
         <Spacer y={24} />
-        <DiviverWithText label={"or"} />
+        <DividerWithText label={"or"} />
         <Spacer y={24} />
 
         <RowWrapper>

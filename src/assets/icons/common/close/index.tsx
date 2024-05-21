@@ -1,7 +1,7 @@
 import React from "react";
 import { IconProps } from "assets/icons/types";
 
-const CloseIcon: React.FC<IconProps> = ({ size = "24", color = "#1C1B1F" }) => {
+export const CloseIcon: React.FC<IconProps> = ({ size = "24", color = "#1C1B1F" }) => {
   return (
     <svg
       width={size}

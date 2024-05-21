@@ -7,6 +7,7 @@ import { Link, VerifyEmailWrapper } from "../../pages/authentication/styles";
 import { InlineWrapper } from "components/core/inline-wrapper";
 import Spacer from "components/core/spacer";
 import MailLock from "assets/icons/common/mail-lock";
+import { useAuth } from "context/AuthContext";
 
 type ResetPasswordInfoProps = {
   email: string;
@@ -15,6 +16,11 @@ type ResetPasswordInfoProps = {
 export const ResetPasswordInfo: React.FC<ResetPasswordInfoProps> = ({
   email,
 }) => {
+  const { setAuthStage } = useAuth();
+
+  const handleBacktoLogin = () => {
+    setAuthStage("LOGIN");
+  };
   return (
     <VerifyEmailWrapper>
       <PaletteIcon icon={<MailLock size={48} color="#FFFAF1" />} />
@@ -39,7 +45,9 @@ export const ResetPasswordInfo: React.FC<ResetPasswordInfoProps> = ({
         </Link>
       </InlineWrapper>
       <Spacer y={16} />
-      <Button>Back to login</Button>
+      <Button type="button" onClick={handleBacktoLogin}>
+        Back to login
+      </Button>
     </VerifyEmailWrapper>
   );
 };

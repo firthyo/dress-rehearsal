@@ -41,7 +41,7 @@ export const TabNavItem: React.FC<Props> = ({
       data-cy={datacy}
     >
       <Spacer y={12} />
-      <Typography variant="h3" color={color}>
+      <Typography variant="h4" color={color}>
         {name}
       </Typography>
       <Spacer y={12} />

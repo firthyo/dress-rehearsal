@@ -8,7 +8,7 @@ type AlertMessageProps = {
   text: JSX.Element;
 };
 
-const AlertMessage: React.FC<AlertMessageProps> = ({
+export const AlertMessage: React.FC<AlertMessageProps> = ({
   severity = "success",
   color = "success",
   title,

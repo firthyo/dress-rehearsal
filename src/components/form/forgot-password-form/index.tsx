@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FormContainer, RowWrapper, TextWrapper } from "../styles";
 import { Typography } from "components/core/typography";
 import Spacer from "components/core/spacer";
-import TextFieldForm from "components/core/text-field";
+import TextFieldForm from "components/core/text-field-form";
 import { Button } from "components/core/button";
-import AlertMessage from "components/core/AlertMessage";
+import AlertMessage from "components/core/alertMessage";
 import { useForm } from "react-hook-form";
 import { useAuth } from "context/AuthContext";
 

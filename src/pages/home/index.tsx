@@ -8,6 +8,7 @@ import ShoppingCartIcon from "assets/icons/common/shopping-cart-icon";
 import { Typography } from "components/core/typography";
 import collectionTest2 from "assets/dress-rehearsal/collection-test2.jpeg";
 import TryLessFormalLogo from "assets/logo/TryLessFormalLogo";
+import collectionTest3 from "assets/dress-rehearsal/collection-test3.jpeg";
 
 import {
   FirstSectionWrapper,
@@ -16,6 +17,7 @@ import {
   CardWrapper,
 } from "./styles";
 import { InlineWrapper } from "components/core/inline-wrapper";
+import Footer from "components/core/Footer";
 
 const Home = () => {
   return (
@@ -44,7 +46,7 @@ const Home = () => {
               </Button>
             }
           />
-
+          <Spacer x={40} />
           <CollectionCard
             title="Divertimento"
             backgroundUrl={collectionTest2}
@@ -66,8 +68,8 @@ const Home = () => {
         <Spacer y={36} />
         <CardWrapper>
           <CollectionCard
-            title="Divertimento"
-            backgroundUrl={collectionTest2}
+            title="Virtuoso"
+            backgroundUrl={collectionTest3}
             color="systemLight"
             fullWidth={true}
             button={
@@ -98,6 +100,7 @@ const Home = () => {
           harmony.
         </Typography>
       </CollectionWrapper>
+      <Footer></Footer>
     </Wrapper>
   );
 };

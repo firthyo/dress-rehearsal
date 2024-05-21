@@ -5,7 +5,7 @@ import { FormControlLabel, Checkbox } from "@mui/material";
 
 import GoogleIcon from "assets/icons/social/GoogleIcon";
 
-import TextFieldForm from "components/core/text-field";
+import TextFieldForm from "components/core/text-field-form";
 import Spacer from "components/core/spacer";
 import Button from "components/core/button";
 import { Typography } from "components/core/typography";
