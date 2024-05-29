@@ -12,6 +12,7 @@ import { ModalProvider } from "provider/ModalProvider";
 import VerifyEmail from "pages/verify-email";
 import ResetPasswordForm from "components/form/reset-password";
 import { HeaderNav } from "components/core";
+import Products from "components/template/products";
 // import { AuthProvider } from "context/Authcontext";
 // import { ModalProvider } from "context/ModalContext";
 
@@ -31,6 +32,7 @@ function App() {
                   path="/reset-password/:token"
                   element={<ResetPasswordForm />}
                 ></Route>
+                <Route path="/shop" element={<Products />} />
               </Routes>
             </div>
           </ModalProvider>

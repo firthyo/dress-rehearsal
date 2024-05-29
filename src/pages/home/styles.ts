@@ -26,4 +26,6 @@ export const CardWrapper = styled.div`
   align-items: center;
 `;
 
+
+
 export const LogoWrapper = styled.div``;

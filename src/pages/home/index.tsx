@@ -18,6 +18,7 @@ import {
 } from "./styles";
 import { InlineWrapper } from "components/core/inline-wrapper";
 import Footer from "components/core/Footer";
+import { CustomizedDialogs } from "components/core";
 
 const Home = () => {
   return (
@@ -25,10 +26,19 @@ const Home = () => {
       <FirstSectionWrapper>
         <DressRehearsalLogo />
       </FirstSectionWrapper>
-
       <CollectionWrapper>
-        <Typography variant="h1">Our Collection</Typography>
-        <Spacer y={32} />
+        <div
+          style={{
+            maxWidth: "1320px",
+            justifyContent: "flex-start",
+            display: "flex",
+          }}
+        >
+          {" "}
+          <Typography variant="h1">Our Collection</Typography>
+          <Spacer y={32} />
+        </div>
+
         <CardWrapper>
           <CollectionCard
             title="Practice etiquette"

@@ -46,7 +46,7 @@ interface SignUpResponse {
   };
 }
 
-const SignUpForm: React.FC<SignUpProps> = ({
+export const SignUpForm: React.FC<SignUpProps> = ({
   registerUser,
   loading,
   data,

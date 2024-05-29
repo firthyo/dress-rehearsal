@@ -13,3 +13,5 @@ export { TabNavItem } from "./tabNavItem";
 export { Tabs } from "./tabs";
 export { TextFieldForm } from "./text-field-form";
 export { Typography } from "./typography";
+
+export { CustomizedDialogs } from "./dialog";

@@ -63,7 +63,7 @@ export const HeaderNav = () => {
 
           <NavbarLinksContainer>
             <NavbarLink href="#">ABOUT US</NavbarLink>
-            <NavbarLink href="#">SHOP</NavbarLink>
+            <NavbarLink href="/shop">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
             <NavbarLink href="#">CONTACT</NavbarLink>
             <Spacer x={24} />

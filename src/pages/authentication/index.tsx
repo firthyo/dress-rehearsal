@@ -15,46 +15,30 @@ import Button from "components/core/button";
 
 import FormContent from "components/form/form-container";
 import { CloseIcon } from "assets/icons";
+import { CustomizedDialogs } from "components/core";
 
 export const AuthenticationPage = () => {
-  const { showModal, hideModal } = useModal();
+  const { showModal } = useModal();
 
   const handleOpenModal = () => {
     showModal(
-      <PageWrapper>
-        <IconWrapper>
-          <button
-            type="button"
-            onClick={hideModal}
-            style={{
-              borderColor: "transparent",
-              backgroundColor: "transparent",
-            }}
-          >
-            <CloseIcon size={36} color="#6C4E39" />
-          </button>
-        </IconWrapper>
-        <Container>
-          <CenteredContent backgroundImage={Drbg}>
-            <img
-              style={{ width: "80%" }}
-              src={Divertimento}
-              alt="divertimento-logo"
-            />
-          </CenteredContent>
+      <CustomizedDialogs
+        body={
+          <Container>
+            <CenteredContent backgroundImage={Drbg}>
+              <img
+                style={{ width: "80%" }}
+                src={Divertimento}
+                alt="divertimento-logo"
+              />
+            </CenteredContent>
 
-          <FormWrapper>
-            <FormContent />
-          </FormWrapper>
-        </Container>
-      </PageWrapper>,
-      {
-        onAfterClose: () => {}, // Define this function if needed
-        cancelCloseOnClick: true,
-        confirmBeforeClose: true,
-        noPadding: false,
-        isPopup: false,
-      }
+            <FormWrapper>
+              <FormContent />
+            </FormWrapper>
+          </Container>
+        }
+      />
     );
   };
 
