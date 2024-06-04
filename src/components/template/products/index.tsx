@@ -4,6 +4,8 @@ import { Wrapper } from "./styles";
 import MockProduct2 from "assets/mock-pic/mock_product2.png";
 import MockProduct3 from "assets/mock-pic/mock_product3.png";
 import MockProduct4 from "assets/mock-pic/mock_product4.png";
+import { GET_ALL_PRODUCTS, Product } from "graphql/product/getProducts";
+import { useQuery } from "@apollo/client";
 const colorOptions = [
   { value: "black-practive-etiquette", color: "#0C0C0C" },
   { value: "green-practive-etiquette", color: "#909225" },
@@ -21,34 +23,29 @@ const productDetails = {
 };
 
 export const Products = () => {
+  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS);
+  console.log("this is data", data);
+
   return (
     <>
       Collection
       <Wrapper>
-        <ProductCard
-          image={MockProduct2}
-          colorOptions={colorOptions}
-          detailText="Detail"
-          shirtTitle="Practice Etiquette T-shirt"
-          sizeText="Size: Over size"
-          priceText="THB 900"
-        />
-        <ProductCard
-          image={MockProduct3}
-          colorOptions={colorOptions}
-          detailText="Detail"
-          shirtTitle="Divertimento T-shirt"
-          sizeText="Size: Over size"
-          priceText="THB 900"
-        />
-        <ProductCard
-          image={MockProduct4}
-          colorOptions={colorOptions}
-          detailText="Detail"
-          shirtTitle="Virtoso T-shirt"
-          sizeText="Size: Over size"
-          priceText="THB 900"
-        />
+        {data?.getAllProducts.map((product: Product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            image={product.imageUrl}
+            colorOptions={[
+              { value: "black-practive-etiquette", color: "#0C0C0C" },
+              { value: "green-practive-etiquette", color: "#909225" },
+              { value: "dark-green-practive-etiquette", color: "#748C70" },
+            ]}
+            detailText="Detail"
+            shirtTitle={product.name}
+            sizeText="Size: Over size"
+            priceText={`THB ${product.price}`}
+          />
+        ))}
       </Wrapper>
     </>
   );

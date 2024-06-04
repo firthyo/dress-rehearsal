@@ -166,3 +166,12 @@ export const TagsMedium = styled.p`
   font-size: 20px;
   line-height: 140%;
 `;
+
+export const ParagraphDetail = styled.p`
+  color: ${(props) => props.color};
+  margin: 0px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 140%;
+  text-transform: capitalize;
+`;

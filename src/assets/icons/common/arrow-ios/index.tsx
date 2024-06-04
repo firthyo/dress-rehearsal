@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "assets/icons/types";
 
 export const ArrowIos: React.FC<IconProps> = ({
-  color = "#1C1B1F",
+  color = "#A5A5A5",
   size = "20px",
 }) => {
   return (

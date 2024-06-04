@@ -33,12 +33,20 @@ const variants: Record<ButtonVariantProps, any> = {
     background-color: inherit;
     border: 1px solid ${(props) => props.color};
   `,
+
+  none: css<WrapperProps>`
+    color: ${(props) => props.color};
+    background-color: transparent;
+    border: transparent;
+    padding: 0px;
+  `,
 };
 
 export const Wrapper = styled.button<WrapperProps>`
   border: 1px solid ${(props) => props.color};
   font-weight: 600;
   font-size: 14px;
+
   display: flex;
   line-height: 14px;
   align-items: ${(props) => props.alignItem};

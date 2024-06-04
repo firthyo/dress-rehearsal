@@ -2,7 +2,7 @@ import React from "react";
 
 import { Wrapper } from "./styles";
 
-export type ButtonVariantProps = "filled" | "outlined" | "link";
+export type ButtonVariantProps = "filled" | "outlined" | "link" | "none";
 
 export type ButtonAlignItemsProps =
   | "center"

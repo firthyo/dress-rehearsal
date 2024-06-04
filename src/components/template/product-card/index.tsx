@@ -3,9 +3,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-import { InlineWrapper, Spacer, Typography } from "components/core";
+import { Button, InlineWrapper, Spacer, Typography } from "components/core";
 import RadioColorSelector from "components/core/radioColorSelector";
 import { ArrowIos } from "assets/icons";
+import { useNavigate } from "react-router-dom";
 
 // Define the props interface if using TypeScript
 interface ProductCardProps {
@@ -18,6 +19,7 @@ interface ProductCardProps {
   shirtTitle: string;
   sizeText: string;
   priceText: string;
+  id: string;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -27,9 +29,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   shirtTitle,
   sizeText,
   priceText,
+  id,
 }) => {
+  const navigate = useNavigate(); // Hook for navigation
+
+  const handleCardClick = () => {
+    navigate(`/product/${id}`); // Navigate to product detail page
+  };
   return (
-    <div>
+    <div onClick={handleCardClick}>
       <Card sx={{ width: 345 }}>
         <CardMedia
           component="img"
@@ -40,14 +48,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <CardContent>
           <InlineWrapper justifyContent="space-between">
             <RadioColorSelector options={colorOptions} />
-            <div style={{ display: "flex" }}>
-              <Typography>{detailText}</Typography>
-              <ArrowIos />
-            </div>
+            <Button type="button" variant="none">
+              <InlineWrapper>
+                <Typography variant="p-detail" color="systemGrey">
+                  {detailText}
+                </Typography>
+
+                <ArrowIos />
+              </InlineWrapper>
+            </Button>
           </InlineWrapper>
           <Spacer y={8} />
           <InlineWrapper justifyContent="flex-start">
-            <Typography variant="tags-medium">{shirtTitle}</Typography>
+            <Typography variant="tags-medium" color="systemDark">
+              {shirtTitle}
+            </Typography>
           </InlineWrapper>
           <Spacer y={8} />
           <InlineWrapper justifyContent="flex-start">

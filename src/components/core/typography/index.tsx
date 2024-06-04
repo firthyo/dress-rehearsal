@@ -21,6 +21,7 @@ import {
   TagsSmall,
   TagsMedium,
   PageSubtitle,
+  ParagraphDetail,
 } from "./styles";
 import { MyTheme } from "styles/Theme";
 
@@ -39,6 +40,7 @@ export type TypographyVariant =
   | "p-semi-bold"
   | "p-small"
   | "p-small-strong"
+  | "p-detail"
   | "small-titles"
   | "big-numbers"
   | "titles-case"
@@ -60,6 +62,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   "p-semi-bold": ParagraphSemiBold,
   "p-small": ParagraphSmall,
   "p-small-strong": ParagraphSmallStrong,
+  "p-detail": ParagraphDetail,
   "small-titles": SmallTitles,
   "big-numbers": BigNumbers,
   "titles-case": TitleCase,

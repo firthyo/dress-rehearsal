@@ -13,6 +13,7 @@ export interface MyTheme extends DefaultTheme {
     ternary: string;
     systemLight: string;
     systemDark: string;
+    systemGrey: string;
     info: string;
   };
   fontWeight: {
@@ -36,6 +37,7 @@ const theme: MyTheme = {
     ternary: "#EDE3DA",
     systemLight: "#fff",
     systemDark: "#000",
+    systemGrey: "#A5A5A5",
     info: "#0077cc",
   },
   fontWeight: {

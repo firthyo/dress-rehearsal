@@ -20,7 +20,7 @@ import { InlineWrapper } from "components/core/inline-wrapper";
 import Footer from "components/core/Footer";
 import { CustomizedDialogs } from "components/core";
 
-const Home = () => {
+export const HomePage = () => {
   return (
     <Wrapper>
       <FirstSectionWrapper>
@@ -34,7 +34,6 @@ const Home = () => {
             display: "flex",
           }}
         >
-          {" "}
           <Typography variant="h1">Our Collection</Typography>
           <Spacer y={32} />
         </div>
@@ -116,4 +115,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
