@@ -15,7 +15,9 @@ interface ColorSelectorProps {
 export const RadioColorSelector: React.FC<ColorSelectorProps> = ({
   options,
 }) => {
-  const [selectedValue, setSelectedValue] = React.useState<string>("");
+  const [selectedValue, setSelectedValue] = React.useState<string>(
+    options[0].value
+  );
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);

@@ -1,7 +1,7 @@
 import { HeaderNav } from "components/core";
 import ResetPasswordForm from "components/form/reset-password";
-import ProductDetail from "components/template/product-detail";
-import Products from "components/template/products";
+import ProductDetail from "components/template/products/product-detail";
+import { AllProducts } from "components/template/products/all-products";
 import AuthenticationPage from "pages/authentication";
 import HomePage from "pages/home";
 import VerifyEmail from "pages/verify-email";
@@ -22,7 +22,7 @@ export const AppRoutes = () => {
             path="/reset-password/:token"
             element={<ResetPasswordForm />}
           />
-          <Route path="/shop" element={<Products />} />
+          <Route path="/shop" element={<AllProducts />} />
           <Route path="/product/:id" element={<ProductDetail />} />
         </Routes>
       </div>

@@ -4,7 +4,8 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
+  productThumbnail: string;
+  productImages :{}
 }
 
 export const GET_ALL_PRODUCTS = gql`
@@ -14,7 +15,7 @@ export const GET_ALL_PRODUCTS = gql`
       name
       description
       price
-      imageUrl
+      productThumbnail
     }
   }
 `;
@@ -24,12 +25,14 @@ export const GET_PRODUCT = gql`
     getProduct(id: $id) {
       id
       name
-      imageUrl
+      productThumbnail
+
       price
       sizes
-      colors {
+      variants {
         value
         color
+        images
       }
       description
       material
