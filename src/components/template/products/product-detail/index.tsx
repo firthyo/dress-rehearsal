@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_PRODUCT } from "graphql/product/getProducts";
+import { GET_PRODUCT_BY_ID } from "graphql/product/getProducts";
 import React from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -30,14 +30,16 @@ type VariantsOptionType = {
 export const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
 
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
+  const { loading, error, data } = useQuery(GET_PRODUCT_BY_ID, {
     variables: { id: id },
   });
+
+  console.log("this is data >>>", data);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const product = data.getProduct;
+  const product = data.getProductById;
   const colors: VariantsOptionType[] = product.variants.map(
     (variant: VariantsOptionType) => ({
       value: variant.value, // Assuming this is the text you want to display
@@ -72,8 +74,10 @@ export const ProductDetail = () => {
           <Typography variant="h3" color="primary">
             {product.name}
           </Typography>
+          <Spacer y={16} />
           {/* Subtitle */}
           <Typography variant="page-subtitle">Oversize T-shirt</Typography>
+          <Spacer y={8} />
           <Typography variant="p-semi-bold" color="systemDark">
             {product.description}
           </Typography>

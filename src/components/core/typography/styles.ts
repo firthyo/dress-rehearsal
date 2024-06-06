@@ -8,7 +8,11 @@ type Props = {
 // font-weight: 500;  /* Medium */
 // font-weight: 600;  /* semi-bold */
 // font-weight: 700; /* bold */
-
+// 40
+// 32
+// 24
+// 20
+// 16
 export const Header1 = styled.h1<Props>`
   color: ${(props) => props.color};
   margin: 0px;

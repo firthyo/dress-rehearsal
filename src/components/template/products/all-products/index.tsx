@@ -2,18 +2,18 @@ import React from "react";
 import ProductCard from "../product-card";
 import { Wrapper } from "./styles";
 
-import { GET_ALL_PRODUCTS, Product } from "graphql/product/getProducts";
+import { GET_PRODUCTS, Product } from "graphql/product/getProducts";
 import { useQuery } from "@apollo/client";
 
 export const AllProducts = () => {
-  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS);
+  const { loading, error, data } = useQuery(GET_PRODUCTS);
   console.log("this is data", data);
 
   return (
     <>
       Collection
       <Wrapper>
-        {data?.getAllProducts.map((product: Product) => (
+        {data?.getProducts.map((product: Product) => (
           <ProductCard
             key={product.id}
             id={product.id}
