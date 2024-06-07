@@ -5,8 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 
 import { Button, InlineWrapper, Spacer, Typography } from "components/core";
 import RadioColorSelector from "components/core/radioColorSelector";
-import { ArrowIos } from "assets/icons";
 import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "@assets/icons";
 
 // Define the props interface if using TypeScript
 interface ProductCardProps {
@@ -34,7 +34,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const navigate = useNavigate(); // Hook for navigation
 
   const handleCardClick = () => {
-    navigate(`/product/${id}`); // Navigate to product detail page
+    navigate(`/shop/${id}`); // Navigate to product detail page
   };
   return (
     <div onClick={handleCardClick}>
@@ -54,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   {detailText}
                 </Typography>
 
-                <ArrowIos />
+                <ArrowRight />
               </InlineWrapper>
             </Button>
           </InlineWrapper>

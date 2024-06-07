@@ -1,8 +1,27 @@
-import { ThemeProvider, DefaultTheme } from "styled-components";
+import {
+  createTheme,
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material/styles";
+import {
+  DefaultTheme,
+  ThemeProvider as StyledThemeProvider,
+} from "styled-components";
 
 type ThemeProps = {
   children: React.ReactNode;
 };
+
+const muiTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
 
 // Define the structure of your theme
 export interface MyTheme extends DefaultTheme {
@@ -53,7 +72,11 @@ const theme: MyTheme = {
 };
 
 const Theme = ({ children }: ThemeProps) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  return (
+    <MuiThemeProvider theme={muiTheme}>
+      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+    </MuiThemeProvider>
+  );
 };
 
 export default Theme;

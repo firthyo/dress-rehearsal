@@ -1,4 +1,7 @@
-body {
+body,
+button,
+input,
+textarea {
   margin: 0;
   font-family: "Poppins", 'Roboto', 'Ubuntu', sans-serif;
 
@@ -8,6 +11,7 @@ body {
   background-color: #FFFAF1;
 
 }
+
 
 code {
   font-family: "Poppins", 'Roboto', 'Ubuntu', sans-serif;

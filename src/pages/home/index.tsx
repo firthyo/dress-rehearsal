@@ -18,7 +18,6 @@ import {
 } from "./styles";
 import { InlineWrapper } from "components/core/inline-wrapper";
 import Footer from "components/core/Footer";
-import { CustomizedDialogs } from "components/core";
 
 export const HomePage = () => {
   return (
@@ -110,6 +109,7 @@ export const HomePage = () => {
         </Typography>
       </CollectionWrapper>
       <Spacer y={120} />
+
       <Footer />
     </Wrapper>
   );

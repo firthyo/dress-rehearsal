@@ -93,7 +93,7 @@ export const SignUpForm: React.FC<SignUpProps> = ({
         <>
           <Spacer y={8} />
           <TextWrapper>
-            <Typography variant="h2" customColor={"#684F3B"}>
+            <Typography variant="h4" customColor={"#684F3B"}>
               Create new account
             </Typography>
           </TextWrapper>

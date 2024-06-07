@@ -17,10 +17,13 @@ import {
   Typography,
 } from "components/core";
 import RadioColorSelector from "components/core/radioColorSelector";
-import { Breadcrumbs } from "@mui/material";
 
-import Link from "@mui/material/Link";
 import ImageGallery from "../image-gallery";
+import { Accordion } from "components/core/accordion";
+import Breadcrumb from "components/core/Breadcrumb";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import useTheme from "@mui/material/styles/useTheme";
+import MobileProductDetail from "../mobile-product-detail";
 type VariantsOptionType = {
   value: string;
   color: string;
@@ -29,12 +32,12 @@ type VariantsOptionType = {
 
 export const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
+  const theme = useTheme();
 
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const { loading, error, data } = useQuery(GET_PRODUCT_BY_ID, {
     variables: { id: id },
   });
-
-  console.log("this is data >>>", data);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -49,72 +52,74 @@ export const ProductDetail = () => {
 
   return (
     <Container>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
-          MUI
-        </Link>
-        <Link
-          underline="hover"
-          color="inherit"
-          href="/material-ui/getting-started/installation/"
-        >
-          Core
-        </Link>
-        <Typography color="primary">Breadcrumbs</Typography>
-      </Breadcrumbs>
+      {isMdUp ? (
+        <div>test test</div>
+      ) : (
+        <MobileProductDetail product={product}></MobileProductDetail>
+      )}
+
       <Spacer y={32} />
       <Wrapper>
         <Visual>
           {/* <img src={product.productThumbnail} alt={product.name} /> */}
           {product.variants && (
-            <ImageGallery images={product?.variants[0].images}></ImageGallery>
+            <ImageGallery images={product?.variants[0].images} />
           )}
         </Visual>
+
         <Detail>
+          <Breadcrumb lastPath={product.name}></Breadcrumb>
+          <Spacer y={24} />
           <Typography variant="h3" color="primary">
             {product.name}
           </Typography>
+
           <Spacer y={16} />
           {/* Subtitle */}
-          <Typography variant="page-subtitle">Oversize T-shirt</Typography>
-          <Spacer y={8} />
-          <Typography variant="p-semi-bold" color="systemDark">
-            {product.description}
-          </Typography>
-          <Typography variant="p-articles" color="primary">
+          <Typography variant="page-subtitle" color="primary">
             THB {product.price}
           </Typography>
-          <Spacer y={16} />
+          {/* <Spacer y={16} />
+          <Divider></Divider> */}
+          <Spacer y={24} />
           <SelectionContainer>
-            <TitleWrapper>
-              <Typography variant="h2" color="primary">
-                Size
-              </Typography>
-            </TitleWrapper>
-
-            <Typography variant="h2" color="primary">
-              <SizeSelection sizes={product.sizes} />
+            <Typography variant="p-articles" color="systemDark">
+              Size
             </Typography>
+            <Spacer y={4} />
+            <SizeSelection sizes={product.sizes} />
           </SelectionContainer>
           <Spacer y={16} />
           <SelectionContainer>
-            <TitleWrapper>
-              <Typography variant="h2" color="primary">
-                Color
-              </Typography>
-            </TitleWrapper>
-
+            <Typography variant="p-articles" color="systemDark">
+              Color
+            </Typography>
+            <Spacer y={8} />
             <InlineWrapper>
               <Spacer x={6} />
               <RadioColorSelector options={colors} />
             </InlineWrapper>
           </SelectionContainer>
           <Spacer y={16} />
-          <Typography variant="h2" color="primary">
-            Product Detail
-          </Typography>
-          <p>{product.material}</p>
+
           <p>{product.stock ? "In Stock" : "Out of Stock"}</p>
+          <Accordion title={"Product Detail"}>
+            <Typography variant="p" color="systemDark">
+              {product.description}
+            </Typography>
+          </Accordion>
+          <Accordion title={"Materials"}>
+            <Typography variant="p" color="systemDark">
+              {product.material}
+            </Typography>
+          </Accordion>
+
+          <Accordion title={" Care Instructions"}>
+            <Typography variant="p" color="systemDark">
+              Machine Wash Cold Gentle Cycle, Do Not Bleach, Tumble Dry Low, Do
+              Not Iron
+            </Typography>
+          </Accordion>
         </Detail>
       </Wrapper>
     </Container>

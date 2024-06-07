@@ -4,33 +4,36 @@ import { Wrapper } from "./styles";
 
 import { GET_PRODUCTS, Product } from "graphql/product/getProducts";
 import { useQuery } from "@apollo/client";
+import { Grid } from "@mui/material";
 
 export const AllProducts = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log("this is data", data);
+  console.log("this is data test", data);
 
   return (
-    <>
+    <Wrapper>
       Collection
-      <Wrapper>
+      <Grid container spacing={2}>
         {data?.getProducts.map((product: Product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            image={product.productThumbnail}
-            colorOptions={[
-              { value: "black-practive-etiquette", color: "#0C0C0C" },
-              { value: "green-practive-etiquette", color: "#909225" },
-              { value: "dark-green-practive-etiquette", color: "#748C70" },
-            ]}
-            detailText="Detail"
-            shirtTitle={product.name}
-            sizeText="Size: Over size"
-            priceText={`THB ${product.price}`}
-          />
+          <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              image={product.productThumbnail}
+              colorOptions={[
+                { value: "black-practive-etiquette", color: "#0C0C0C" },
+                { value: "green-practive-etiquette", color: "#909225" },
+                { value: "dark-green-practive-etiquette", color: "#748C70" },
+              ]}
+              detailText="Detail"
+              shirtTitle={product.name}
+              sizeText="Size: Over size"
+              priceText={`THB ${product.price}`}
+            />
+          </Grid>
         ))}
-      </Wrapper>
-    </>
+      </Grid>
+    </Wrapper>
   );
 };
 

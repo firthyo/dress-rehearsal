@@ -1,4 +1,7 @@
-export { ArrowIos } from "./common/arrow-ios";
+export { ArrowDown } from "./common/arrow-down";
+export { ArrowRight } from "./common/arrow-right";
+export { ArrowLeft } from "./common/arrow-left";
+export { ArrowUp } from "./common/arrow-up";
 export { CloseIcon } from "./common/close";
 
 export { VisibilityIcon } from "./common/visibility";

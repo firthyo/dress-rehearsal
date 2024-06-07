@@ -23,7 +23,7 @@ export const AppRoutes = () => {
             element={<ResetPasswordForm />}
           />
           <Route path="/shop" element={<AllProducts />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/shop/:id" element={<ProductDetail />} />
         </Routes>
       </div>
     </>

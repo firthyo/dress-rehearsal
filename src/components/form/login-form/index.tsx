@@ -89,7 +89,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
             }
           />
         ) : (
-          <Typography variant="h2" customColor={"#684F3B"}>
+          <Typography variant="h4" customColor={"#684F3B"}>
             Welcome back!
           </Typography>
         )}

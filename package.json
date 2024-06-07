@@ -25,6 +25,7 @@
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.9",
+    "swiper": "^11.1.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -55,6 +56,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/material-ui": "^0.21.17",
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "@types/swiper": "^6.0.0"
   }
 }

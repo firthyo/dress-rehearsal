@@ -17,7 +17,7 @@ export const VerifyEmailInfo: React.FC<VerifyEmailInfoProps> = ({ email }) => {
     <VerifyEmailWrapper>
       <PaletteIcon icon={<MailFill size="48" color="#684F3B" />} />
       <Spacer y={24} />
-      <Typography variant="h2">Verify your email</Typography>
+      <Typography variant="h4">Verify your email</Typography>
       <Spacer y={16} />
       <Typography color="secondary">
         We’ve sent a verification link to

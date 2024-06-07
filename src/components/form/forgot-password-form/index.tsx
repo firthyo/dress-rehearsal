@@ -58,7 +58,7 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           />
         ) : (
           <div>
-            <Typography variant="h2" color={"primary"}>
+            <Typography variant="h4" color={"primary"}>
               Forgot password ?
             </Typography>
             <Spacer y={8} />

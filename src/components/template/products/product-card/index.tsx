@@ -2,11 +2,16 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Grid from "@mui/material/Grid";
 
 import { Button, InlineWrapper, Spacer, Typography } from "components/core";
 import RadioColorSelector from "components/core/radioColorSelector";
-import { ArrowIos } from "assets/icons";
+
 import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "assets/icons";
+import { useTheme } from "@mui/material/styles";
+
+import { useMediaQuery } from "@mui/material";
 
 // Define the props interface if using TypeScript
 interface ProductCardProps {
@@ -34,11 +39,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const navigate = useNavigate(); // Hook for navigation
 
   const handleCardClick = () => {
-    navigate(`/product/${id}`); // Navigate to product detail page
+    navigate(`/shop/${id}`); // Navigate to product detail page
   };
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <div onClick={handleCardClick}>
-      <Card sx={{ width: 345 }}>
+      <Card
+        sx={{
+          width: isMobile ? "100%" : 345, // Responsive width
+          boxShadow: isMobile ? 0 : 1, // Reduce shadow on smaller screens
+        }}
+      >
         <CardMedia
           component="img"
           height="380"
@@ -54,7 +68,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                   {detailText}
                 </Typography>
 
-                <ArrowIos />
+                <ArrowRight />
               </InlineWrapper>
             </Button>
           </InlineWrapper>
@@ -66,11 +80,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </InlineWrapper>
           <Spacer y={8} />
           <InlineWrapper justifyContent="flex-start">
-            <Typography variant="label">{sizeText}</Typography>
+            <Typography variant="label" color="systemDark">
+              {sizeText}
+            </Typography>
           </InlineWrapper>
           <Spacer y={16} />
           <InlineWrapper justifyContent="flex-start">
-            <Typography variant="h4">{priceText}</Typography>
+            <Typography variant="p-articles" color="systemDark">
+              {priceText}
+            </Typography>
           </InlineWrapper>
         </CardContent>
       </Card>

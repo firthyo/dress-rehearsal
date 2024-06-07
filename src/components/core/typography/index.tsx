@@ -7,10 +7,12 @@ import {
   Header3,
   Header4,
   Label,
+  LabelMedium,
   InputValidation,
   Titles,
   PageTitle,
   Paragraph,
+  ParagraphMedium,
   ParagraphArticles,
   ParagraphSemiBold,
   ParagraphSmall,
@@ -31,11 +33,13 @@ export type TypographyVariant =
   | "h3"
   | "h4"
   | "label"
+  | "label-medium"
   | "input-validation"
   | "titles"
   | "page-title"
   | "page-subtitle"
   | "p"
+  | "p-medium"
   | "p-articles"
   | "p-semi-bold"
   | "p-small"
@@ -53,6 +57,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   h3: Header3,
   h4: Header4,
   label: Label,
+  "label-medium": LabelMedium,
   "input-validation": InputValidation,
   titles: Titles,
   "page-title": PageTitle,
@@ -60,6 +65,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   p: Paragraph,
   "p-articles": ParagraphArticles,
   "p-semi-bold": ParagraphSemiBold,
+  "p-medium": ParagraphMedium,
   "p-small": ParagraphSmall,
   "p-small-strong": ParagraphSmallStrong,
   "p-detail": ParagraphDetail,

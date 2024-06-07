@@ -10,10 +10,12 @@ interface ColorOption {
 
 interface ColorSelectorProps {
   options: ColorOption[];
+  isSelectAble?: boolean;
 }
 
 export const RadioColorSelector: React.FC<ColorSelectorProps> = ({
   options,
+  isSelectAble = true,
 }) => {
   const [selectedValue, setSelectedValue] = React.useState<string>(
     options[0].value

@@ -26,7 +26,7 @@ export const ResetPasswordInfo: React.FC<ResetPasswordInfoProps> = ({
       <PaletteIcon icon={<MailLock size={48} color="#FFFAF1" />} />
 
       <Spacer y={24} />
-      <Typography variant="h2">Reset Link Sent!</Typography>
+      <Typography variant="h4">Reset Link Sent!</Typography>
       <Spacer y={16} />
       <Typography color="secondary">
         A link to reset a new password has been sent to
