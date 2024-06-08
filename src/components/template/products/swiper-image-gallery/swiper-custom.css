@@ -1,0 +1,25 @@
+/* swiper-custom.css */
+.swiper-container {
+    position: relative;
+    width: 100%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.swiper-pagination-fraction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    /* Adjust as needed */
+    z-index: 10;
+    color: black;
+    /* Change color for better visibility */
+}

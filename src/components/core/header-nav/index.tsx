@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-
 import MainLogo from "assets/logo/MainLogo";
 import Button from "components/core/button";
 import Spacer from "components/core/spacer";
 import Divider from "components/core/divider";
 import { useAuth } from "context/AuthContext";
-
+import ProfileMenu from "components/profile-menu";
+import AuthenticationPage from "pages/authentication";
+import {
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import {
   LogoWrapper,
   NavWrapper,
@@ -13,44 +22,39 @@ import {
   NavbarLink,
   NavbarLinksContainer,
 } from "./styles";
-import Modal from "components/core/modal";
-import SignUpForm from "components/form/sign-up-form";
-import AuthenticationPage from "pages/authentication";
-import { Avatar } from "@mui/material";
-import ProfileMenu from "components/profile-menu";
+import { MenuIcon } from "assets/icons";
 
 export const HeaderNav = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
 
-  const { isLoggedIn, user } = useAuth(); // Use the authentication context
-
-  const stringToColor = (string: string) => {
-    let hash = 0;
-    let i;
-
-    /* eslint-disable no-bitwise */
-    for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
-    }
-
-    let color = "#";
-
-    for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
-    }
-    /* eslint-enable no-bitwise */
-
-    return color;
+  const toggleDrawer = () => {
+    setIsDrawerOpen((prev) => !prev);
   };
-  const stringAvatar = (name: string) => {
-    return {
-      sx: {
-        bgcolor: stringToColor(name),
-      },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
-    };
-  };
+  const drawer = (
+    <Box onClick={toggleDrawer} sx={{ textAlign: "center", width: "100vw" }}>
+      {/* Adjust width as needed */}
+      <Typography variant="h6" sx={{ my: 2 }}>
+        Menu
+      </Typography>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemText primary="About Us" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Shop" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Gallery" />
+        </ListItem>
+        <ListItem button>
+          <ListItemText primary="Contact" />
+        </ListItem>
+      </List>
+    </Box>
+  );
+
   return (
     <>
       <Navbar>
@@ -61,30 +65,39 @@ export const HeaderNav = () => {
             </NavbarLink>
           </LogoWrapper>
 
+          {/* Hamburger icon for small screens */}
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={toggleDrawer}
+            sx={{ mr: 2, display: { xs: "block", sm: "none" } }}
+          >
+            <MenuIcon size={32}/>
+          </IconButton>
+
+          {/* Navbar Links for larger screens */}
           <NavbarLinksContainer>
             <NavbarLink href="#">ABOUT US</NavbarLink>
             <NavbarLink href="/shop">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
             <NavbarLink href="#">CONTACT</NavbarLink>
             <Spacer x={24} />
-            <Divider marginHorizontal={4}></Divider>
+            <Divider marginHorizontal={4} />
             <Spacer x={24} />
-
-            {isLoggedIn ? (
-              <NavbarLink noPadding={true}>
-                {/* Assuming you have a way to get the user's avatar */}
-                <ProfileMenu />
-              </NavbarLink>
-            ) : (
-              <NavbarLink>
-                <AuthenticationPage></AuthenticationPage>
-              </NavbarLink>
-            )}
+            {isLoggedIn ? <ProfileMenu /> : <AuthenticationPage />}
           </NavbarLinksContainer>
         </NavWrapper>
-
-        {/* Add other navbar content, e.g., logo */}
       </Navbar>
+
+      {/* Material-UI Drawer */}
+      <Drawer
+        open={isDrawerOpen}
+        onClose={toggleDrawer}
+        sx={{ display: { xs: "block", sm: "none" } }} // Only show on small screens
+      >
+        {drawer}
+      </Drawer>
     </>
   );
 };

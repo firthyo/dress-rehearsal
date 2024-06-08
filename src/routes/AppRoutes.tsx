@@ -13,6 +13,7 @@ export const AppRoutes = () => {
   return (
     <>
       <HeaderNav />
+
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

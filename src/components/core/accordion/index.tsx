@@ -20,7 +20,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
   return (
     <AccordionWrapper>
       <AccordionTitle onClick={toggleAccordion}>
-        <Typography variant="p-articles" color="systemDark">
+        <Typography variant="p-detail" color="systemDark">
           {title}
         </Typography>
         <div>{isOpen ? <ArrowUp></ArrowUp> : <ArrowDown></ArrowDown>}</div>

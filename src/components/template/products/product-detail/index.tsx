@@ -34,6 +34,7 @@ export const ProductDetail = () => {
   const { id } = useParams(); // Get product ID from URL
   const theme = useTheme();
 
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
   const { loading, error, data } = useQuery(GET_PRODUCT_BY_ID, {
     variables: { id: id },
@@ -52,76 +53,76 @@ export const ProductDetail = () => {
 
   return (
     <Container>
-      {isMdUp ? (
-        <div>test test</div>
+      {isSmUp ? (
+        <Wrapper>
+          <Visual>
+            {/* <img src={product.productThumbnail} alt={product.name} /> */}
+            {product.variants && (
+              <ImageGallery images={product?.variants[0].images} />
+            )}
+          </Visual>
+
+          <Detail>
+            <Breadcrumb lastPath={product.name}></Breadcrumb>
+            <Spacer y={24} />
+            <Typography variant="h3" color="primary">
+              {product.name}
+            </Typography>
+
+            <Spacer y={16} />
+            {/* Subtitle */}
+            <Typography variant="page-subtitle" color="primary">
+              THB {product.price}
+            </Typography>
+            {/* <Spacer y={16} />
+        <Divider></Divider> */}
+            <Spacer y={24} />
+            <SelectionContainer>
+              <Typography variant="p-articles" color="systemDark">
+                Size
+              </Typography>
+              <Spacer y={4} />
+              <SizeSelection sizes={product.sizes} />
+            </SelectionContainer>
+            <Spacer y={16} />
+            <SelectionContainer>
+              <Typography variant="p-articles" color="systemDark">
+                Color
+              </Typography>
+              <Spacer y={8} />
+              <InlineWrapper>
+                <Spacer x={6} />
+                <RadioColorSelector options={colors} />
+              </InlineWrapper>
+            </SelectionContainer>
+            <Spacer y={16} />
+
+            <p>{product.stock ? "In Stock" : "Out of Stock"}</p>
+            <Accordion title={"Product Detail"}>
+              <Typography variant="p" color="systemDark">
+                {product.description}
+              </Typography>
+            </Accordion>
+            <Accordion title={"Materials"}>
+              <Typography variant="p" color="systemDark">
+                {product.material}
+              </Typography>
+            </Accordion>
+
+            <Accordion title={" Care Instructions"}>
+              <Typography variant="p" color="systemDark">
+                Machine Wash Cold Gentle Cycle, Do Not Bleach, Tumble Dry Low,
+                Do Not Iron
+              </Typography>
+            </Accordion>
+          </Detail>
+          
+        </Wrapper>
       ) : (
         <MobileProductDetail product={product}></MobileProductDetail>
       )}
 
       <Spacer y={32} />
-      <Wrapper>
-        <Visual>
-          {/* <img src={product.productThumbnail} alt={product.name} /> */}
-          {product.variants && (
-            <ImageGallery images={product?.variants[0].images} />
-          )}
-        </Visual>
-
-        <Detail>
-          <Breadcrumb lastPath={product.name}></Breadcrumb>
-          <Spacer y={24} />
-          <Typography variant="h3" color="primary">
-            {product.name}
-          </Typography>
-
-          <Spacer y={16} />
-          {/* Subtitle */}
-          <Typography variant="page-subtitle" color="primary">
-            THB {product.price}
-          </Typography>
-          {/* <Spacer y={16} />
-          <Divider></Divider> */}
-          <Spacer y={24} />
-          <SelectionContainer>
-            <Typography variant="p-articles" color="systemDark">
-              Size
-            </Typography>
-            <Spacer y={4} />
-            <SizeSelection sizes={product.sizes} />
-          </SelectionContainer>
-          <Spacer y={16} />
-          <SelectionContainer>
-            <Typography variant="p-articles" color="systemDark">
-              Color
-            </Typography>
-            <Spacer y={8} />
-            <InlineWrapper>
-              <Spacer x={6} />
-              <RadioColorSelector options={colors} />
-            </InlineWrapper>
-          </SelectionContainer>
-          <Spacer y={16} />
-
-          <p>{product.stock ? "In Stock" : "Out of Stock"}</p>
-          <Accordion title={"Product Detail"}>
-            <Typography variant="p" color="systemDark">
-              {product.description}
-            </Typography>
-          </Accordion>
-          <Accordion title={"Materials"}>
-            <Typography variant="p" color="systemDark">
-              {product.material}
-            </Typography>
-          </Accordion>
-
-          <Accordion title={" Care Instructions"}>
-            <Typography variant="p" color="systemDark">
-              Machine Wash Cold Gentle Cycle, Do Not Bleach, Tumble Dry Low, Do
-              Not Iron
-            </Typography>
-          </Accordion>
-        </Detail>
-      </Wrapper>
     </Container>
   );
 };

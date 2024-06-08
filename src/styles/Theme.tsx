@@ -69,6 +69,7 @@ const theme: MyTheme = {
     body: "22px",
     detail: "18px",
   },
+  breakpoints: muiTheme.breakpoints, // Assign breakpoints from muiTheme
 };
 
 const Theme = ({ children }: ThemeProps) => {

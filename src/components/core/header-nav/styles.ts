@@ -18,6 +18,9 @@ export const NavWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px 32px;
+  @media (max-width: ${({ theme }) => `${theme.breakpoints.values.sm}px`}) {
+    padding: 8px 16px; // Reduced padding for 'sm' and below
+  }
 `;
 
 // Styled navbar links
@@ -44,7 +47,16 @@ export const LogoWrapper = styled.div`
   height: 70px;
 `;
 
-export const NavbarLinksContainer = styled.div`
+interface NavbarLinksContainerProps {
+  isOpen?: boolean;
+}
+
+export const NavbarLinksContainer = styled.div<NavbarLinksContainerProps>`
   display: flex;
   align-items: center;
+  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+
+  @media (min-width: 768px) {
+    display: flex; // Always visible on larger screens
+  }
 `;

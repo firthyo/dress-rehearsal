@@ -10,7 +10,7 @@ export { Footer } from "./Footer";
 export { HeaderNav } from "./header-nav";
 export { InlineWrapper } from "./inline-wrapper";
 export { Modal } from "./modal";
-export { PaletteIcon } from "./PaletteIcon";
+export { PaletteIcon } from "./paletteIcon";
 export { SizeSelection } from "./size-selection";
 export { Spacer } from "./spacer";
 export { TabNavItem } from "./tabNavItem";

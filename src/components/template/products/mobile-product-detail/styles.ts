@@ -8,5 +8,5 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin: 24px;
+  margin: 0px 24px;
 `;

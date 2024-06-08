@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type Props = {
   color: string;
@@ -35,10 +35,18 @@ export const Header2 = styled.h2<Props>`
 export const Header3 = styled.h3<Props>`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 110%;
   letter-spacing: 0.02em;
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    font-size: ${({ theme }) =>
+      theme.fontSizes.body}; // Smaller size on medium and below
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 20px; // Even smaller size on small and below
+  }
 `;
 
 export const Header4 = styled.h4<Props>`
@@ -95,6 +103,9 @@ export const PageSubtitle = styled.p<Props>`
   font-weight: 600;
   font-size: 24px;
   line-height: 110%;
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 20px; // Even smaller size on small and below
+  }
 `;
 
 export const TitleCase = styled.p<Props>`
@@ -118,7 +129,7 @@ export const ParagraphMedium = styled.h4<Props>`
 export const Paragraph = styled.p<Props>`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: normal;
+  font-weight: 300;
   font-size: 16px;
   line-height: 145%;
 `;
@@ -183,7 +194,7 @@ export const TagsSmall = styled.p`
 export const TagsMedium = styled.p`
   color: ${(props) => props.color};
   margin: 0px;
-  
+
   font-weight: 700;
   font-size: 20px;
 
@@ -193,7 +204,7 @@ export const TagsMedium = styled.p`
 export const ParagraphDetail = styled.p`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 18px;
   line-height: 140%;
   text-transform: capitalize;

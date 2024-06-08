@@ -8,12 +8,11 @@ import {
   MainImageWrapper,
   NavigationButtonWrapper,
 } from "./styles";
-
 import { ArrowRight, ArrowLeft } from "assets/icons";
 import { InlineWrapper, Spacer } from "components/core";
 
 type ImageGalleryProps = {
-  images: string[]; // Updated to accept an array of strings
+  images: string[];
 };
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
@@ -32,20 +31,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
 
   return (
     <GalleryContainer>
-      <ThumbnailContainer>
-        {images.map((image, index) => (
-          <Thumbnail
-            key={index}
-            src={image}
-            onClick={() => setCurrentImageIndex(index)}
-            style={{ opacity: currentImage === image ? 1 : 0.6 }}
-          />
-        ))}
-      </ThumbnailContainer>
-      <Spacer x={24} />
       <MainImageWrapper>
         <MainImage src={currentImage} />
-
         <NavigationButtonWrapper>
           <InlineWrapper>
             <NavigationButton position="left" onClick={goToPrevImage}>
@@ -58,6 +45,16 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
           </InlineWrapper>
         </NavigationButtonWrapper>
       </MainImageWrapper>
+      <ThumbnailContainer>
+        {images.map((image, index) => (
+          <Thumbnail
+            key={index}
+            src={image}
+            onClick={() => setCurrentImageIndex(index)}
+            style={{ opacity: currentImage === image ? 1 : 0.6 }}
+          />
+        ))}
+      </ThumbnailContainer>
     </GalleryContainer>
   );
 };

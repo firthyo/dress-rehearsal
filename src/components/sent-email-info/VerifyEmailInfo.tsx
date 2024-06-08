@@ -1,6 +1,6 @@
 import React from "react";
 
-import PaletteIcon from "components/core/PaletteIcon";
+import PaletteIcon from "components/core/paletteIcon";
 import Button from "components/core/button";
 import { Typography } from "components/core/typography";
 import { Link, VerifyEmailWrapper } from "../../pages/authentication/styles";

@@ -13,19 +13,20 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({
   console.log("this is product", product.variants[0].images);
   return (
     <Wrapper>
+      <SwiperImageGallery
+        images={product.variants[0].images}
+      ></SwiperImageGallery>
+      <Spacer y={16} />
       <TitleWrapper>
         <Typography variant="h3" color="primary">
           {product.name}
         </Typography>
-        <Spacer y={16} />
+        <Spacer y={8} />
         {/* Subtitle */}
         <Typography variant="page-subtitle" color="primary">
           THB {product.price}
         </Typography>
       </TitleWrapper>
-      <SwiperImageGallery
-        images={product.variants[0].images}
-      ></SwiperImageGallery>
     </Wrapper>
   );
 };

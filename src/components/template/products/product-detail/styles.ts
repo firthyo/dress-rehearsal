@@ -11,6 +11,7 @@ export const Visual = styled.div`
   height: calc(100% - ${STYLE_CONSTANTS.HEADER_HEIGHT});
   display: flex;
   justify-content: center;
+  margin-right: 5%;
 `;
 
 export const Detail = styled.div`

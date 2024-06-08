@@ -2,7 +2,15 @@
   text-align: center;
   padding-top: 120px;
   font-family: 'Poppins', sans-serif;
+  background-color: #FFFAF1;
 
+}
+
+@media (max-width: 600px) {
+  .App {
+    padding-top: 100px;
+    /* Further reduce padding for small screens */
+  }
 }
 
 .App-logo {
