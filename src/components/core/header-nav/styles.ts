@@ -34,16 +34,20 @@ export const NavbarLink = styled.a<NavbarLinkProps>`
   width: fit-content;
 `;
 
-// Styled page content
 export const Content = styled.div`
   position: fixed;
 
   height: 100vh;
-  /* padding-top: 20px; Add padding-top equal to the height of the navbar */
 `;
 
 export const LogoWrapper = styled.div`
   /* width: 100%; */
+  height: 70px;
+`;
+
+export const LogoMobileWrapper = styled.div`
+  /* width: 100%; */
+  margin-top: 10px;
   height: 70px;
 `;
 
@@ -57,6 +61,15 @@ export const NavbarLinksContainer = styled.div<NavbarLinksContainerProps>`
   display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
 
   @media (min-width: 768px) {
-    display: flex; // Always visible on larger screens
+    display: flex;
   }
+`;
+
+export const MenuMobileWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  /* margin-left: 10px; */
+  /* justify-content: center;
+  align-items: center; */
 `;

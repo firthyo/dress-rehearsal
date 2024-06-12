@@ -21,6 +21,9 @@ export const Header1 = styled.h1<Props>`
   line-height: 110%;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 24px; // Even smaller size on small and below
+  }
 `;
 
 export const Header2 = styled.h2<Props>`
@@ -45,7 +48,7 @@ export const Header3 = styled.h3<Props>`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
-    font-size: 20px; // Even smaller size on small and below
+    font-size: 18px; // Even smaller size on small and below
   }
 `;
 
@@ -55,6 +58,10 @@ export const Header4 = styled.h4<Props>`
   font-weight: 500;
   font-size: 28px;
   line-height: 140%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 16px; // Even smaller size on small and below
+  }
   /* text-transform: uppercase; */
 `;
 
@@ -85,9 +92,14 @@ export const InputValidation = styled.p<Props>`
 export const Titles = styled.h1<Props>`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 135%;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 20px; // Even smaller size on small and below
+  }
 `;
 export const PageTitle = styled.p<Props>`
   color: ${(props) => props.color};
@@ -140,6 +152,10 @@ export const ParagraphArticles = styled.p<Props>`
   font-weight: normal;
   font-size: 20px;
   line-height: 145%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    font-size: 14px; // Even smaller size on small and below
+  }
 `;
 
 export const ParagraphSemiBold = styled.p<Props>`

@@ -1,127 +1,91 @@
-import React, { useRef, useState } from "react";
-import {
-  Swiper as OriginalSwiper,
-  SwiperSlide as OriginalSwiperSlide,
-} from "swiper/react";
-import { Virtual, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import { Swiper } from "swiper";
+// Import Swiper React components and types
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperClass } from "swiper";
 
-// Styled wrapper for Swiper
-export const StyledSwiper = styled(OriginalSwiper)`
-  width: 100%;
-  height: 300px;
-  margin: 20px auto;
-`;
+// Import Swiper styles globally (as recommended by Swiper documentation)
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-// Styled SwiperSlide
-export const StyledSwiperSlide = styled(OriginalSwiperSlide)`
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    display: block;
+// Import required modules
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+
+// Define the types for props
+interface AppProps {
+  slides: JSX.Element[]; // Array of JSX Elements for slides
+}
+
+// Styled component for the Swiper
+const StyledSwiper = styled(Swiper)`
+  .swiper-wrapper {
+    /* Applying padding to the left of the wrapper might affect all slides, hence commented out */
+    padding-left: 24px;
+  }
+  .swiper {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
+    /* margin-left: 24px; */
+  }
+  .swiper-slide:first-child {
+    margin-left: 24px; // Apply margin only to the first slide
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* background: #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
   }
 `;
 
-// Styled buttons container
-export const AppendButtons = styled.div`
-  text-align: center;
-  margin-top: 20px;
-  button {
-    display: inline-block;
-    cursor: pointer;
-    border: 1px solid #007aff;
-    color: #007aff;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin: 0 10px;
-    font-size: 13px;
-  }
-`;
+// The App component
+export const Carousel: React.FC<AppProps> = ({ slides }) => {
+  const swiperRef = useRef<SwiperClass | null>(null);
 
-// Import the Swiper class for type definition
-
-export const Carousel: React.FC = () => {
-  const [swiperRef, setSwiperRef] = useState<Swiper | null>(null);
-  const appendNumber = useRef<number>(500);
-  const prependNumber = useRef<number>(1);
-  const [slides, setSlides] = useState<string[]>(
-    Array.from({ length: 500 }).map((_, index) => `Slide ${index + 1}`)
-  );
-
-  const prepend = () => {
-    if (swiperRef) {
-      const newSlides = [
-        `Slide ${prependNumber.current - 2}`,
-        `Slide ${prependNumber.current - 1}`,
-        ...slides,
-      ];
-      prependNumber.current -= 2;
-      setSlides(newSlides);
-      swiperRef.slideTo(swiperRef.activeIndex + 2, 0);
+  const handleSlideChange = () => {
+    const swiper = swiperRef.current;
+    if (swiper) {
+      // Conditional logic to alter transform only for the first slide
+      if (swiper.activeIndex === 0) {
+        swiper.wrapperEl.style.transform = `translate3d(0px, 0, 0)`; // Adjust as necessary
+      } else {
+        // Reset the transform for all other slides
+        swiper.wrapperEl.style.transform = "";
+      }
     }
   };
-
-  const append = () => {
-    setSlides([...slides, `Slide ${appendNumber.current + 1}`]);
-    appendNumber.current += 1;
-  };
-
-  const slideTo = (index: number) => {
-    if (swiperRef) {
-      swiperRef.slideTo(index - 1, 0);
-    }
-  };
-
   return (
     <>
       <StyledSwiper
-        modules={[Virtual, Navigation, Pagination]}
-        onSwiper={setSwiperRef}
-        slidesPerView={3}
-        centeredSlides={true}
-        spaceBetween={30}
-        pagination={{
-          type: "fraction",
-        }}
-        navigation={true}
-        virtual
+        onSwiper={(swiper: any) => (swiperRef.current = swiper)}
+        onSlideChange={() => handleSlideChange()}
+        cssMode={true}
+        pagination={{ clickable: true }}
+        mousewheel={true}
+        keyboard={true}
+        centeredSlides={false}
+        modules={[Mousewheel, Keyboard]}
+        slidesPerView={1.4} // Ensure only one slide is visible at a time
+        spaceBetween={0} // No space between slides
+        slidesOffsetBefore={24}
+        className="mySwiper"
       >
-        {slides.map((slideContent, index) => (
-          <StyledSwiperSlide key={slideContent} virtualIndex={index}>
-            {slideContent}
-          </StyledSwiperSlide>
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index}>{slide}</SwiperSlide>
         ))}
       </StyledSwiper>
-
-      <AppendButtons>
-        <button onClick={prepend} className="prepend-2-slides">
-          Prepend 2 Slides
-        </button>
-        <button onClick={() => slideTo(1)} className="prepend-slide">
-          Slide 1
-        </button>
-        <button onClick={() => slideTo(250)} className="slide-250">
-          Slide 250
-        </button>
-        <button onClick={() => slideTo(500)} className="slide-500">
-          Slide 500
-        </button>
-        <button onClick={append} className="append-slides">
-          Append Slide
-        </button>
-      </AppendButtons>
     </>
   );
 };

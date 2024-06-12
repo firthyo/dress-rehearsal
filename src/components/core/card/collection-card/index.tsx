@@ -22,7 +22,7 @@ export const CollectionCard: React.FC<Props> = ({
 }) => {
   return (
     <Container backgroundUrl={backgroundUrl} fullWidth={fullWidth}>
-      <Typography variant="h1" color={color}>
+      <Typography variant="titles" color={color}>
         {title}
       </Typography>
       <Spacer y={12} />

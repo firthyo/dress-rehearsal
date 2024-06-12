@@ -49,7 +49,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <div onClick={handleCardClick}>
       <Card
         sx={{
-          width: isMobile ? "100%" : 345, // Responsive width
+          width: isMobile ? 345 : 345, // Responsive width
+          height: "auto",
           boxShadow: isMobile ? 0 : 1, // Reduce shadow on smaller screens
         }}
       >

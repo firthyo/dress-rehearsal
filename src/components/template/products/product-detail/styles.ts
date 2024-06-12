@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { STYLE_CONSTANTS } from "styles/style-constants";
+import { useTheme } from "@mui/material/styles";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,11 +16,22 @@ export const Visual = styled.div`
 `;
 
 export const Detail = styled.div`
-  width: calc(40% - ${STYLE_CONSTANTS.PAGE_HORIZONTAL_SPACE});
+  /* width: calc(40% - ${STYLE_CONSTANTS.PAGE_HORIZONTAL_SPACE}); */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
+  ${({ theme }) => css`
+    width: calc(40% - ${STYLE_CONSTANTS.PAGE_HORIZONTAL_SPACE});
+
+    @media (max-width: ${theme.breakpoints.values.md}px) {
+      width: 100%;
+    }
+
+    @media (max-width: ${theme.breakpoints.values.sm}px) {
+      width: 100%;
+    }
+  `}
 `;
 
 export const SelectionContainer = styled.div``;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "../typography";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 import Spacer from "../spacer";
 import { InlineWrapper } from "../inline-wrapper";
@@ -9,29 +10,33 @@ import {
   LineIcon,
   TiktokIcon,
 } from "assets/icons/social";
-import { LeftWrapper, RigthWrapper, Wrapper } from "./styles";
+import { LeftWrapper, RightWrapper, Wrapper } from "./styles";
 
 export const Footer = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const iconSize = isSmallScreen ? 36 : 52; // Icon size changes based on the screen sizeƒ
   return (
     <Wrapper>
-      <RigthWrapper>
+      <RightWrapper>
         <Typography variant="h3" color="surface">
           Dress Rehersal
         </Typography>
         <Spacer y={16} />
         <Typography variant="p-articles" color="surface">
-          Copyright Dress Rehearsal, all right reserved
+          © Copyright Dress Rehearsal, all right reserved
         </Typography>
-      </RigthWrapper>
+      </RightWrapper>
       <LeftWrapper>
         <InlineWrapper>
-          <FacebookIcon />
+          <FacebookIcon size={iconSize} />
           <Spacer x={16} />
-          <LineIcon />
+          <LineIcon size={iconSize} />
           <Spacer x={16} />
-          <InstragramIcon />
+          <InstragramIcon size={iconSize} />
           <Spacer x={16} />
-          <TiktokIcon />
+          <TiktokIcon size={iconSize} />
         </InlineWrapper>
       </LeftWrapper>
     </Wrapper>

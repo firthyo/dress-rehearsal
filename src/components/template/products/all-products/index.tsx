@@ -12,10 +12,19 @@ export const AllProducts = () => {
 
   return (
     <Wrapper>
-      Collection
-      <Grid container spacing={2}>
+      {/* Collection */}
+      <Grid container spacing={2} justifyContent="space-between">
         {data?.getProducts.map((product: Product) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            key={product.id}
+            justifyContent="center"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <ProductCard
               key={product.id}
               id={product.id}

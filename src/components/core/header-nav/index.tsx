@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import MainLogo from "assets/logo/MainLogo";
-import Button from "components/core/button";
 import Spacer from "components/core/spacer";
 import Divider from "components/core/divider";
 import { useAuth } from "context/AuthContext";
 import ProfileMenu from "components/profile-menu";
 import AuthenticationPage from "pages/authentication";
+import { Box, Drawer, IconButton, List, Typography } from "@mui/material";
 import {
-  Box,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import {
+  LogoMobileWrapper,
   LogoWrapper,
+  MenuMobileWrapper,
   NavWrapper,
   Navbar,
   NavbarLink,
   NavbarLinksContainer,
 } from "./styles";
+
 import { MenuIcon } from "assets/icons";
 
 export const HeaderNav = () => {
@@ -32,25 +26,24 @@ export const HeaderNav = () => {
     setIsDrawerOpen((prev) => !prev);
   };
   const drawer = (
-    <Box onClick={toggleDrawer} sx={{ textAlign: "center", width: "100vw" }}>
-      {/* Adjust width as needed */}
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Menu
-      </Typography>
-      <Divider />
+    <Box
+      onClick={toggleDrawer}
+      sx={{ textAlign: "left", width: "100vw", height: "100vh" }}
+    >
+      <LogoMobileWrapper>
+        <NavbarLink href="/">
+          <Spacer x={2} /> <MainLogo />
+        </NavbarLink>
+      </LogoMobileWrapper>
+      {/* <Divider /> */}
+      <Spacer x={24} />
       <List>
-        <ListItem button>
-          <ListItemText primary="About Us" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Shop" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Gallery" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Contact" />
-        </ListItem>
+        <MenuMobileWrapper>
+          <NavbarLink href="#">ABOUT US</NavbarLink>
+          <NavbarLink href="/shop">SHOP</NavbarLink>
+          <NavbarLink href="#">GALLERY</NavbarLink>
+          <NavbarLink href="#">CONTACT</NavbarLink>
+        </MenuMobileWrapper>
       </List>
     </Box>
   );
@@ -73,7 +66,7 @@ export const HeaderNav = () => {
             onClick={toggleDrawer}
             sx={{ mr: 2, display: { xs: "block", sm: "none" } }}
           >
-            <MenuIcon size={32}/>
+            <MenuIcon size={32} />
           </IconButton>
 
           {/* Navbar Links for larger screens */}
@@ -92,6 +85,7 @@ export const HeaderNav = () => {
 
       {/* Material-UI Drawer */}
       <Drawer
+        anchor="bottom"
         open={isDrawerOpen}
         onClose={toggleDrawer}
         sx={{ display: { xs: "block", sm: "none" } }} // Only show on small screens

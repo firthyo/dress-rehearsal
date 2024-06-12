@@ -9,4 +9,10 @@ export const Wrapper = styled.div`
   align-items: center;
 
   height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT});
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
+    height: calc(
+      100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE}
+    ); // Example: Adjust height for small devices
+  }
 `;

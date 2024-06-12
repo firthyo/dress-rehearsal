@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 export interface Product {
+  getProductById: any;
   id: string;
   name: string;
   description: string;

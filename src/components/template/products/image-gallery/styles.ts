@@ -59,7 +59,7 @@ export const ThumbnailContainer = styled.div`
 export const Thumbnail = styled.img`
   width: 80px;
   height: 80px;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.3s ease;

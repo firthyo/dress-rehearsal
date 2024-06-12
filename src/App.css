@@ -1,14 +1,15 @@
 .App {
   text-align: center;
-  padding-top: 120px;
+  margin-top: 80px;
   font-family: 'Poppins', sans-serif;
   background-color: #FFFAF1;
+  overflow-y: auto;
 
 }
 
 @media (max-width: 600px) {
   .App {
-    padding-top: 100px;
+    /* padding-top: 100px; */
     /* Further reduce padding for small screens */
   }
 }

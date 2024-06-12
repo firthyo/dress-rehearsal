@@ -19,6 +19,12 @@ export const Container = styled.div<ContainerProps>`
 
   height: 646px;
   width: ${(props) => (props.fullWidth ? "100%" : "45%")};
+
+  @media (max-width: ${(props) => props.theme.breakpoints.values.sm}px) {
+    width: ${(props) => (props.fullWidth ? "100%" : "224px")};
+    height: 224px;
+  }
+
   max-width: ${(props) => (props.fullWidth ? "1320px" : "620px")};
 
   display: flex;

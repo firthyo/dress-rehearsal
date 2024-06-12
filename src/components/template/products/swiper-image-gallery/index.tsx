@@ -21,7 +21,7 @@ export const SwiperImageGallery: React.FC<Props> = ({ images }) => {
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
-        modules={[Scrollbar, Pagination, Navigation]} // Register the Scrollbar module
+        modules={[Scrollbar, Pagination]} // Register the Scrollbar module
         scrollbar={{ hide: true }} // Configure the scrollbar
         onSlideChange={(swiper: SwiperClass) =>
           setCurrentIndex(swiper.activeIndex + 1)
@@ -29,7 +29,6 @@ export const SwiperImageGallery: React.FC<Props> = ({ images }) => {
         pagination={{
           type: "fraction",
         }}
-        navigation={true}
         onSwiper={(swiper: SwiperClass) => console.log(swiper)}
       >
         {images.map((image, index) => (

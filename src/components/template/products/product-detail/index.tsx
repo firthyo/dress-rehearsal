@@ -1,30 +1,18 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_BY_ID } from "graphql/product/getProducts";
-import React from "react";
+
 import { useParams } from "react-router-dom";
-import {
-  Container,
-  Detail,
-  SelectionContainer,
-  TitleWrapper,
-  Visual,
-  Wrapper,
-} from "./styles";
-import {
-  InlineWrapper,
-  SizeSelection,
-  Spacer,
-  Typography,
-} from "components/core";
-import RadioColorSelector from "components/core/radioColorSelector";
+import { Container, Visual, Wrapper } from "./styles";
+import { Spacer } from "components/core";
 
 import ImageGallery from "../image-gallery";
-import { Accordion } from "components/core/accordion";
-import Breadcrumb from "components/core/Breadcrumb";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useTheme from "@mui/material/styles/useTheme";
 import MobileProductDetail from "../mobile-product-detail";
-type VariantsOptionType = {
+import ProductDetailInfo from "./ProductDetailInfo";
+export type VariantsOptionType = {
   value: string;
   color: string;
   image: string[];
@@ -44,12 +32,6 @@ export const ProductDetail = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const product = data.getProductById;
-  const colors: VariantsOptionType[] = product.variants.map(
-    (variant: VariantsOptionType) => ({
-      value: variant.value, // Assuming this is the text you want to display
-      color: variant.color, // Assuming this maps directly to a color value
-    })
-  );
 
   return (
     <Container>
@@ -62,61 +44,7 @@ export const ProductDetail = () => {
             )}
           </Visual>
 
-          <Detail>
-            <Breadcrumb lastPath={product.name}></Breadcrumb>
-            <Spacer y={24} />
-            <Typography variant="h3" color="primary">
-              {product.name}
-            </Typography>
-
-            <Spacer y={16} />
-            {/* Subtitle */}
-            <Typography variant="page-subtitle" color="primary">
-              THB {product.price}
-            </Typography>
-            {/* <Spacer y={16} />
-        <Divider></Divider> */}
-            <Spacer y={24} />
-            <SelectionContainer>
-              <Typography variant="p-articles" color="systemDark">
-                Size
-              </Typography>
-              <Spacer y={4} />
-              <SizeSelection sizes={product.sizes} />
-            </SelectionContainer>
-            <Spacer y={16} />
-            <SelectionContainer>
-              <Typography variant="p-articles" color="systemDark">
-                Color
-              </Typography>
-              <Spacer y={8} />
-              <InlineWrapper>
-                <Spacer x={6} />
-                <RadioColorSelector options={colors} />
-              </InlineWrapper>
-            </SelectionContainer>
-            <Spacer y={16} />
-
-            <p>{product.stock ? "In Stock" : "Out of Stock"}</p>
-            <Accordion title={"Product Detail"}>
-              <Typography variant="p" color="systemDark">
-                {product.description}
-              </Typography>
-            </Accordion>
-            <Accordion title={"Materials"}>
-              <Typography variant="p" color="systemDark">
-                {product.material}
-              </Typography>
-            </Accordion>
-
-            <Accordion title={" Care Instructions"}>
-              <Typography variant="p" color="systemDark">
-                Machine Wash Cold Gentle Cycle, Do Not Bleach, Tumble Dry Low,
-                Do Not Iron
-              </Typography>
-            </Accordion>
-          </Detail>
-          
+          <ProductDetailInfo product={product}></ProductDetailInfo>
         </Wrapper>
       ) : (
         <MobileProductDetail product={product}></MobileProductDetail>
