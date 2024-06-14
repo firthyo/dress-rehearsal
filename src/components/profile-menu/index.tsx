@@ -15,7 +15,7 @@ export const ProfileMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { isLoggedIn, logoutAuth, user } = useAuth(); // Use the authentication context
-
+  console.log("this is user", user);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -47,6 +47,9 @@ export const ProfileMenu = () => {
       },
     ];
   };
+  if (!user) {
+    return <div>Loading...</div>; // or any other placeholder
+  }
 
   return (
     <div>
@@ -57,9 +60,9 @@ export const ProfileMenu = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Avatar
-          sx={{ bgcolor: brown[700], padding: 0 }}
-        >{`${user?.firstName[0]}${user?.lastName[0]}`}</Avatar>
+        <Avatar sx={{ bgcolor: brown[700], padding: 0 }}>
+          {`${user?.firstName[0]}${user?.lastName[0]}  `}
+        </Avatar>
       </Button>
 
       <Menu

@@ -3,7 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 
 // Create an HTTP link
 const httpLink = createHttpLink({
-  uri: "https://dress-rehearsal-backend.firth.cc/graphql",
+  uri: "http://localhost:4000/graphql",
 });
 
 // Create an auth link to add the JWT token to each request

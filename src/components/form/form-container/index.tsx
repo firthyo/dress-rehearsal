@@ -57,12 +57,12 @@ export const FormContent = () => {
 
     return () => clearTimeout(timer);
   }, [registerLoading, loginLoading, forgotPasswordLoading]);
-
-  // if (registerData?.register.success) {
-  //   setAuthStage("VERIFY_EMAIL");
-  // } else if (loginData?.login.token) {
-  //   setAuthStage("LOGIN");
-  // }
+  console.log("This is registerData", registerData);
+  if (registerData?.register.success) {
+    setAuthStage("VERIFY_EMAIL");
+  } else if (loginData?.login.token) {
+    setAuthStage("LOGIN");
+  }
   if (loadingInterval) {
     return <CircularProgress size={68} style={{ color: "#684F3B" }} />;
   }

@@ -43,6 +43,8 @@ export const VERIFY_EMAIL = gql`
       success
       message
       authToken
+      firstName
+      lastName
     }
   }
 `;

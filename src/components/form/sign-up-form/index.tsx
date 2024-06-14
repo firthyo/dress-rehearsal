@@ -63,9 +63,18 @@ export const SignUpForm: React.FC<SignUpProps> = ({
         password: formData.password,
         terms: formData.terms,
       });
-      console.log("Registration successful", response.data.register.success); // Log the data here
+      console.log("this is response", response);
+
+      if (response.register.success) {
+        console.log("Registration successful", response.register.success);
+      } else {
+        throw new Error("Registration failed: Invalid server response");
+      }
     } catch (err) {
       console.error("Registration error", err);
+      if (error && error.graphQLErrors && error.graphQLErrors.length > 0) {
+        console.error("GraphQL Error:", error.graphQLErrors[0].message);
+      }
     }
   };
 
