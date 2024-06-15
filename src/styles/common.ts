@@ -6,9 +6,7 @@ export const AppContainer = styled.div`
   overflow-y: auto;
 
   @media (max-width: 600px) {
-    margin-top: 80px;
-    /* Uncomment and adjust padding if needed */
-    /* padding-top: 100px; */
+    margin-top: 86px;
   }
 `;
 

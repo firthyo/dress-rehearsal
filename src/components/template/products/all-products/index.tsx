@@ -5,6 +5,7 @@ import { Wrapper } from "./styles";
 import { GET_PRODUCTS, Product } from "graphql/product/getProducts";
 import { useQuery } from "@apollo/client";
 import { Grid } from "@mui/material";
+import { Spacer, Typography } from "components/core";
 
 export const AllProducts = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -13,6 +14,12 @@ export const AllProducts = () => {
   return (
     <Wrapper>
       {/* Collection */}
+      <Spacer y={20} />
+      <Typography variant="titles" color={"primary"}>
+        NEW COLLECTION
+      </Typography>
+      <Spacer y={20} />
+
       <Grid container spacing={2} justifyContent="space-between">
         {data?.getProducts.map((product: Product) => (
           <Grid
@@ -42,6 +49,7 @@ export const AllProducts = () => {
           </Grid>
         ))}
       </Grid>
+      <Spacer y={20}></Spacer>
     </Wrapper>
   );
 };

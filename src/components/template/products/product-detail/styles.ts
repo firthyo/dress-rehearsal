@@ -47,7 +47,15 @@ export const Container = styled.div`
   overflow-y: auto;
   /* margin: 0px 56px; */
   width: 100%;
-  height: calc(
-    100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT}
-  ); // Ensure this calculates to a positive value
+  height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT});
+
+  @media (max-width: ${(props) => props.theme.breakpoints.values.sm}px) {
+    /* Styles for screens smaller than 600px */
+    height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE});
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.values.md}px) {
+    height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE});
+    margin: 0 56px;
+  }
 `;
