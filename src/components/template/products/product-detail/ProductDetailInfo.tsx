@@ -17,9 +17,15 @@ export type VariantsOptionType = {
   value: string;
   color: string;
 };
-type ProductDetailInfoProps = { product: Product };
+type ProductDetailInfoProps = {
+  product: Product;
+  onColorChange?: (colorValue: string) => void;
+};
 
-const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({ product }) => {
+const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
+  product,
+  onColorChange,
+}) => {
   const colors: VariantsOptionType[] = product.variants.map(
     (variant: VariantsOptionType) => ({
       value: variant.value,
@@ -57,7 +63,7 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({ product }) => {
         <Spacer y={8} />
         <InlineWrapper>
           <Spacer x={6} />
-          <RadioColorSelector options={colors} />
+          <RadioColorSelector options={colors} onChange={onColorChange} />
         </InlineWrapper>
       </SelectionContainer>
       <Spacer y={16} />

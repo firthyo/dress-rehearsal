@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_BY_ID } from "graphql/product/getProducts";
 
@@ -15,7 +15,7 @@ import ProductDetailInfo from "./ProductDetailInfo";
 export type VariantsOptionType = {
   value: string;
   color: string;
-  image: string[];
+  images: string[];
 };
 
 export const ProductDetail = () => {
@@ -28,11 +28,28 @@ export const ProductDetail = () => {
     variables: { id: id },
   });
 
+  const [currentVariant, setCurrentVariant] =
+    useState<VariantsOptionType | null>(null);
+
+  // useEffect to update the currentVariant based on data loaded
+  useEffect(() => {
+    if (data && data.getProductById && data.getProductById.variants) {
+      setCurrentVariant(data.getProductById.variants[0]);
+    }
+  }, [data]);
+
+  const handleColorSelection = (colorValue: string) => {
+    const selectedVariant = data?.getProductById?.variants.find(
+      (variant: VariantsOptionType) => variant.value === colorValue
+    );
+    setCurrentVariant(selectedVariant);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  if (!data || !data.getProductById) return <p>Product not found.</p>;
 
   const product = data.getProductById;
-
   return (
     <Container>
       {isSmUp ? (
@@ -40,11 +57,20 @@ export const ProductDetail = () => {
           <Visual>
             {/* <img src={product.productThumbnail} alt={product.name} /> */}
             {product.variants && (
-              <ImageGallery images={product?.variants[0].images} />
+              <ImageGallery
+                images={
+                  currentVariant
+                    ? currentVariant.images
+                    : product?.variants[0].images
+                }
+              />
             )}
           </Visual>
 
-          <ProductDetailInfo product={product}></ProductDetailInfo>
+          <ProductDetailInfo
+            product={product}
+            onColorChange={handleColorSelection}
+          />
         </Wrapper>
       ) : (
         <MobileProductDetail product={product}></MobileProductDetail>

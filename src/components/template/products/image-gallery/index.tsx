@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   GalleryContainer,
   MainImage,
@@ -17,6 +17,11 @@ type ImageGalleryProps = {
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [images]);
+
   const currentImage = images[currentImageIndex];
 
   const goToNextImage = () => {

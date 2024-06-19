@@ -11,11 +11,13 @@ interface ColorOption {
 interface ColorSelectorProps {
   options: ColorOption[];
   isSelectAble?: boolean;
+  onChange?: (value: string) => void;
 }
 
 export const RadioColorSelector: React.FC<ColorSelectorProps> = ({
   options,
   isSelectAble = true,
+  onChange,
 }) => {
   const [selectedValue, setSelectedValue] = React.useState<string>(
     options[0].value
@@ -23,8 +25,10 @@ export const RadioColorSelector: React.FC<ColorSelectorProps> = ({
 
   const handleSelect = (value: string) => {
     setSelectedValue(value);
+    if (onChange) {
+      onChange(value);
+    }
   };
-
   return (
     <div>
       {options.map((option) => (

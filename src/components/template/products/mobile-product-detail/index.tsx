@@ -7,10 +7,14 @@ import SwiperImageGallery from "../swiper-image-gallery";
 import RadioColorSelector from "components/core/radioColorSelector";
 import ProductDetailInfo from "../product-detail/ProductDetailInfo";
 
-type MobileProductDetailProps = { product: Product };
+type MobileProductDetailProps = {
+  product: Product;
+  onColorChange?: (colorValue: string) => void;
+};
 
 const MobileProductDetail: React.FC<MobileProductDetailProps> = ({
   product,
+  onColorChange,
 }) => {
   console.log("this is product", product);
   const colors: any = product.variants.map((variant: any) => ({
@@ -23,7 +27,10 @@ const MobileProductDetail: React.FC<MobileProductDetailProps> = ({
         images={product.variants[0].images}
       ></SwiperImageGallery>
       <Spacer y={16} />
-      <ProductDetailInfo product={product}></ProductDetailInfo>
+      <ProductDetailInfo
+        product={product}
+        onColorChange={onColorChange}
+      ></ProductDetailInfo>
     </Wrapper>
   );
 };
