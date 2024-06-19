@@ -7,6 +7,11 @@ export interface Product {
   price: number;
   productThumbnail: string;
   productImages: {};
+  variants: {
+    color: string;
+    value: string;
+    images: string[];
+  }[];
 }
 
 export const GET_COLLECTIONS = gql`
@@ -39,6 +44,11 @@ export const GET_PRODUCTS = gql`
       collection {
         id
         name
+      }
+      variants {
+        value
+        color
+        images
       }
     }
   }

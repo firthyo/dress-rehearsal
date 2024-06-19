@@ -9,7 +9,6 @@ import { Spacer, Typography } from "components/core";
 
 export const AllProducts = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  console.log("this is data test", data);
 
   return (
     <Wrapper>
@@ -36,11 +35,10 @@ export const AllProducts = () => {
               key={product.id}
               id={product.id}
               image={product.productThumbnail}
-              colorOptions={[
-                { value: "black-practive-etiquette", color: "#0C0C0C" },
-                { value: "green-practive-etiquette", color: "#909225" },
-                { value: "dark-green-practive-etiquette", color: "#748C70" },
-              ]}
+              colorOptions={product.variants.map((variant) => ({
+                value: variant.value,
+                color: variant.color,
+              }))}
               detailText="Detail"
               shirtTitle={product.name}
               sizeText="Size: Over size"

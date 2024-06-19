@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "assets/icons";
 import { useTheme } from "@mui/material/styles";
 
-import { useMediaQuery } from "@mui/material";
+import { CardActions, useMediaQuery } from "@mui/material";
 
 // Define the props interface if using TypeScript
 interface ProductCardProps {
@@ -37,7 +37,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   id,
 }) => {
   const navigate = useNavigate(); // Hook for navigation
-
+  console.log("this is colorOptions", colorOptions);
   const handleCardClick = () => {
     navigate(`/shop/${id}`); // Navigate to product detail page
   };
@@ -46,7 +46,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div onClick={handleCardClick}>
+    <div>
       <Card
         sx={{
           width: isMobile ? 345 : 345, // Responsive width
@@ -62,8 +62,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
         <CardContent>
           <InlineWrapper justifyContent="space-between">
-            <RadioColorSelector options={colorOptions} />
-            <Button type="button" variant="none">
+            <CardActions disableSpacing>
+              <RadioColorSelector options={colorOptions} />
+            </CardActions>
+
+            <Button type="button" variant="none" onClick={handleCardClick}>
               <InlineWrapper>
                 <Typography variant="p-detail" color="systemGrey">
                   {detailText}
