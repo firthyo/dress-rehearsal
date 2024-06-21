@@ -7,6 +7,7 @@ export { CustomizedDialogs } from "./dialog";
 export { Divider } from "./divider";
 export { DividerWithText } from "./divider-with-text";
 export { Footer } from "./footer";
+export { FilterDrawer } from "./filter-drawer";
 export { HeaderNav } from "./header-nav";
 export { InlineWrapper } from "./inline-wrapper";
 export { Modal } from "./modal";

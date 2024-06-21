@@ -8,7 +8,7 @@ export const AccordionWrapper = styled.div`
   width: 100%;
 `;
 
-export const AccordionTitle = styled.button`
+export const AccordionTitle = styled.button<{ titleDivider: boolean }>`
   padding: 10px 0px;
   /* font-size: 16px; */
   background: transparent;
@@ -17,7 +17,8 @@ export const AccordionTitle = styled.button`
   width: 100%;
   text-align: left;
   cursor: pointer;
-  border-bottom: 1px solid #ccc;
+  ${(props) => props.titleDivider && "border-bottom: 1px solid #ccc;"}
+
   display: flex;
   justify-content: space-between;
   align-items: center;

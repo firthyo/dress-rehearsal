@@ -7,10 +7,17 @@ import Spacer from "../spacer";
 type AccordionProps = {
   title: string;
   children: React.ReactNode;
+  titleDivider?: boolean;
+  isOpenAsDefault?: boolean;
 };
 
-export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Accordion: React.FC<AccordionProps> = ({
+  title,
+  children,
+  titleDivider = true,
+  isOpenAsDefault = false,
+}) => {
+  const [isOpen, setIsOpen] = useState(isOpenAsDefault);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const toggleAccordion = () => {
@@ -19,7 +26,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
 
   return (
     <AccordionWrapper>
-      <AccordionTitle onClick={toggleAccordion}>
+      <AccordionTitle onClick={toggleAccordion} titleDivider={titleDivider}>
         <Typography variant="p-detail" color="systemDark">
           {title}
         </Typography>

@@ -24,6 +24,7 @@ import {
   TagsMedium,
   PageSubtitle,
   ParagraphDetail,
+  Tags,
 } from "./styles";
 import { MyTheme } from "styles/Theme";
 
@@ -49,7 +50,8 @@ export type TypographyVariant =
   | "big-numbers"
   | "titles-case"
   | "tags-small"
-  | "tags-medium";
+  | "tags-medium"
+  | "tags";
 
 const mappedStyles: Record<TypographyVariant, any> = {
   h1: Header1,
@@ -74,6 +76,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   "titles-case": TitleCase,
   "tags-small": TagsSmall,
   "tags-medium": TagsMedium,
+  tags: Tags,
 };
 
 export type TypographyProps = {

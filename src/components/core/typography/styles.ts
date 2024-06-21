@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 type Props = {
   color: string;
@@ -197,6 +197,14 @@ export const BigNumbers = styled.p<Props>`
   font-weight: 600;
   font-size: 36px;
   line-height: 110%;
+`;
+export const Tags = styled.p`
+  color: ${(props) => props.color};
+  margin: 0px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 100%;
+  text-decoration: underline;
 `;
 
 export const TagsSmall = styled.p`
