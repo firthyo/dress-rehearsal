@@ -7,7 +7,7 @@ export const FilterProvider: React.FC<{ children: React.ReactNode }> = ({
   const [filters, setFilters] = useState<Filters>({
     size: [],
     color: [],
-    collection: [],
+    collectionId: [],
     typeOfProduct: [],
   });
 
@@ -15,7 +15,7 @@ export const FilterProvider: React.FC<{ children: React.ReactNode }> = ({
     setFilters({
       size: [],
       color: [],
-      collection: [],
+      collectionId: [],
       typeOfProduct: [],
     });
   };

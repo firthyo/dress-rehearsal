@@ -12,6 +12,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "../button";
 import Accordion from "../accordion";
 import { useFilters, Filters } from "../../../context/FilterContext";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_COLLECTIONS } from "graphql/product/getCollection";
 
 interface FilterOption {
   label: string;
@@ -83,41 +85,42 @@ const FILTERS: { label: string; options: FilterOption[] }[] = [
       },
     ],
   },
-  {
-    label: "Collection",
-    options: [
-      {
-        label: "Divertimento",
-        value: "divertimento",
-        ariaLabel: "Divertimento",
-        category: "collection",
-      },
-      {
-        label: "Virtuoso",
-        value: "virtuoso",
-        ariaLabel: "Virtuoso",
-        category: "collection",
-      },
-      {
-        label: "Scherzo",
-        value: "scherzo",
-        ariaLabel: "Scherzo",
-        category: "collection",
-      },
-      {
-        label: "Practice Etiquette",
-        value: "etiquette",
-        ariaLabel: "Practice Etiquette",
-        category: "collection",
-      },
-    ],
-  },
+  // {
+  //   label: "Collection",
+  //   options: [
+  //     {
+  //       label: "Divertimento",
+  //       value: "divertimento",
+  //       ariaLabel: "Divertimento",
+  //       category: "collection",
+  //     },
+  //     {
+  //       label: "Virtuoso",
+  //       value: "virtuoso",
+  //       ariaLabel: "Virtuoso",
+  //       category: "collection",
+  //     },
+  //     {
+  //       label: "Scherzo",
+  //       value: "scherzo",
+  //       ariaLabel: "Scherzo",
+  //       category: "collection",
+  //     },
+  //     {
+  //       label: "Practice Etiquette",
+  //       value: "etiquette",
+  //       ariaLabel: "Practice Etiquette",
+  //       category: "collection",
+  //     },
+  //   ],
+  // },
 ];
 
 export const FilterDrawer: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const { filters, setFilters, clearFilters } = useFilters();
-
+  const { data, loading, error } = useQuery(GET_ALL_COLLECTIONS);
+  console.log("this is data collection", data);
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
@@ -206,6 +209,42 @@ export const FilterDrawer: React.FC = () => {
             <Spacer y={4} />
           </React.Fragment>
         ))}
+        {data && data.getCollections && (
+          <FormControl
+            component="fieldset"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <Accordion
+              isOpenAsDefault={true}
+              titleDivider={false}
+              title="Collection"
+              children={
+                <FormGroup>
+                  {data.getCollections.map((collection: any) => (
+                    <FormControlLabel
+                      key={collection.id}
+                      control={
+                        <Checkbox
+                          aria-label={collection.name}
+                          checked={filters.collectionId.includes(collection.id)}
+                          onChange={handleFilterChange(
+                            "collectionId",
+                            collection.id
+                          )}
+                        />
+                      }
+                      label={collection.name}
+                    />
+                  ))}
+                </FormGroup>
+              }
+            />
+          </FormControl>
+        )}
       </div>
     </Box>
   );

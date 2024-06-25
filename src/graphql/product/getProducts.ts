@@ -100,6 +100,7 @@ export const FILTER_PRODUCTS = gql`
           stock
         }
       }
+      collectionId
       description
       material
       stock

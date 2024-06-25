@@ -3,7 +3,7 @@ import React, { createContext, useContext } from "react";
 export interface Filters {
   size: string[];
   color: string[];
-  collection: string[];
+  collectionId: string[];
   typeOfProduct: string[];
 }
 
