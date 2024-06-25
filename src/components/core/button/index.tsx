@@ -28,6 +28,7 @@ export type MainButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   alignItem?: ButtonAlignItemsProps;
   customColor?: string;
   borderRadius?: ButtonBorderRadius;
+  isUppercase?: boolean;
 };
 export const Button: React.FC<MainButtonProps> = ({
   color,
@@ -37,6 +38,7 @@ export const Button: React.FC<MainButtonProps> = ({
   alignItem = "center",
   children,
   borderRadius = "small",
+  isUppercase = true,
   ...props
 }) => {
   //   const hexColor = useSelectColor(color, customColor);

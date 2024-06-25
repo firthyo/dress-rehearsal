@@ -1,27 +1,72 @@
 import React from "react";
 import ProductCard from "../product-card";
 import { Wrapper } from "./styles";
-
-import { GET_PRODUCTS, Product } from "graphql/product/getProducts";
+import { FILTER_PRODUCTS, Product } from "graphql/product/getProducts";
 import { useQuery } from "@apollo/client";
-import { Grid } from "@mui/material";
-import { FilterDrawer, Spacer, Typography } from "components/core";
+import { Divider, Grid } from "@mui/material";
+import {
+  DropdownMenu,
+  FilterDrawer,
+  InlineWrapper,
+  Spacer,
+  Typography,
+} from "components/core";
+import { useFilters } from "../../../../context/FilterContext"; // Adjust the path as needed
 
 export const AllProducts = () => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const { filters } = useFilters();
+
+  const { loading, error, data } = useQuery(FILTER_PRODUCTS, {
+    variables: { filters },
+  });
+  console.log("this is data", data);
+
+  const handleClose = () => {
+    // Close menu logic
+  };
+
+  const dropdownContent = [
+    {
+      title: <Typography>Newest</Typography>,
+      action: handleClose,
+    },
+    {
+      title: <Typography>Price: High - Low</Typography>,
+      action: handleClose,
+    },
+    {
+      title: <Typography>Price: Low - High</Typography>,
+      action: handleClose,
+    },
+    {
+      title: <Typography>Alphabetically, A-Z</Typography>,
+      action: handleClose,
+    },
+    {
+      title: <Typography>Alphabetically, Z-A</Typography>,
+      action: handleClose,
+    },
+  ];
 
   return (
     <Wrapper>
-      {/* Collection */}
       <Spacer y={20} />
-      <Typography variant="titles" color={"primary"}>
+      <Typography variant="h3" color={"primary"}>
         NEW COLLECTION
       </Typography>
-      <Spacer y={20} />
-      <FilterDrawer></FilterDrawer>
+      <InlineWrapper justifyContent="space-between">
+        <FilterDrawer />
+        <DropdownMenu
+          buttonText={"Sort"}
+          items={dropdownContent}
+        ></DropdownMenu>
+      </InlineWrapper>
 
-      <Grid container spacing={2} justifyContent="space-between">
-        {data?.getProducts.map((product: Product) => (
+      <Spacer y={16} />
+      <Divider></Divider>
+      <Spacer y={32} />
+      <Grid container spacing={2} justifyContent="left">
+        {data?.filterProducts.map((product: Product) => (
           <Grid
             item
             xs={12}

@@ -81,3 +81,28 @@ export const GET_PRODUCT_BY_ID = gql`
     }
   }
 `;
+
+export const FILTER_PRODUCTS = gql`
+  query FilterProducts($filters: FilterInput) {
+    filterProducts(filters: $filters) {
+      id
+      name
+      productThumbnail
+      price
+      sizes
+      typeOfProduct
+      variants {
+        value
+        color
+        images
+        sizes {
+          size
+          stock
+        }
+      }
+      description
+      material
+      stock
+    }
+  }
+`;

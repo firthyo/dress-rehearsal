@@ -37,7 +37,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   id,
 }) => {
   const navigate = useNavigate(); // Hook for navigation
-  console.log("this is colorOptions", colorOptions);
   const handleCardClick = () => {
     navigate(`/shop/${id}`); // Navigate to product detail page
   };
@@ -49,7 +48,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <div>
       <Card
         sx={{
-          width: isMobile ? 345 : 345, // Responsive width
+          width: isMobile ? 345 : 325, // Responsive width
           height: "auto",
           boxShadow: isMobile ? 0 : 1, // Reduce shadow on smaller screens
         }}

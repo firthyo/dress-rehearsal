@@ -6,6 +6,7 @@ export { CustomizedDialogs } from "./dialog";
 
 export { Divider } from "./divider";
 export { DividerWithText } from "./divider-with-text";
+export { DropdownMenu } from "./dropdown-menu";
 export { Footer } from "./footer";
 export { FilterDrawer } from "./filter-drawer";
 export { HeaderNav } from "./header-nav";

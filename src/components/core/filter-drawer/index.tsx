@@ -1,69 +1,146 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-// import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-
 import Checkbox from "@mui/material/Checkbox";
-
 import { CloseIcon, FilterListIcon } from "assets/icons";
 import { Typography } from "../typography";
 import Spacer from "../spacer";
 import { InlineWrapper } from "../inline-wrapper";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
 import { FormGroup, FormControl } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Button from "../button";
 import Accordion from "../accordion";
+import { useFilters, Filters } from "../../../context/FilterContext";
 
-export const FilterDrawer = () => {
+interface FilterOption {
+  label: string;
+  value: string; // Add value property for filtering
+  ariaLabel: string;
+  category: keyof Filters;
+  defaultChecked?: boolean;
+}
+
+const FILTERS: { label: string; options: FilterOption[] }[] = [
+  {
+    label: "Product type",
+    options: [
+      {
+        label: "Tote bag",
+        value: "Tote bag",
+        ariaLabel: "Tote bag",
+        category: "typeOfProduct",
+      },
+      {
+        label: "T-Shirt",
+        value: "T-Shirt",
+        ariaLabel: "T-Shirt",
+        category: "typeOfProduct",
+      },
+      {
+        label: "Sticker",
+        value: "sticker",
+        ariaLabel: "Sticker",
+        category: "typeOfProduct",
+      },
+    ],
+  },
+  {
+    label: "Size",
+    options: [
+      { label: "S", value: "S", ariaLabel: "Size S", category: "size" },
+      { label: "M", value: "M", ariaLabel: "Size M", category: "size" },
+      { label: "L", value: "L", ariaLabel: "Size L", category: "size" },
+      {
+        label: "Oversize",
+        value: "Oversize",
+        ariaLabel: "Size Oversize",
+        category: "size",
+      },
+    ],
+  },
+  {
+    label: "Color",
+    options: [
+      {
+        label: "Black",
+        value: "black",
+        ariaLabel: "Color Black",
+        category: "color",
+      },
+      {
+        label: "White",
+        value: "white",
+        ariaLabel: "Color White",
+        category: "color",
+      },
+      { label: "Red", value: "red", ariaLabel: "Color Red", category: "color" },
+      {
+        label: "Beige",
+        value: "beige",
+        ariaLabel: "Color Beige",
+        category: "color",
+      },
+    ],
+  },
+  {
+    label: "Collection",
+    options: [
+      {
+        label: "Divertimento",
+        value: "divertimento",
+        ariaLabel: "Divertimento",
+        category: "collection",
+      },
+      {
+        label: "Virtuoso",
+        value: "virtuoso",
+        ariaLabel: "Virtuoso",
+        category: "collection",
+      },
+      {
+        label: "Scherzo",
+        value: "scherzo",
+        ariaLabel: "Scherzo",
+        category: "collection",
+      },
+      {
+        label: "Practice Etiquette",
+        value: "etiquette",
+        ariaLabel: "Practice Etiquette",
+        category: "collection",
+      },
+    ],
+  },
+];
+
+export const FilterDrawer: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  const { filters, setFilters, clearFilters } = useFilters();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
-  const filters = [
-    {
-      label: "Product type",
-      options: [
-        { label: "Tote bag", ariaLabel: "Tote bag" },
-        { label: "T-Shirt", ariaLabel: "T-Shirt", defaultChecked: true },
-        { label: "Sticker", ariaLabel: "Sticker" },
-      ],
-    },
-    {
-      label: "Size",
-      options: [
-        { label: "S", ariaLabel: "Size S", defaultChecked: true },
-        { label: "M", ariaLabel: "Size M" },
-        { label: "L", ariaLabel: "Size L" },
-        { label: "Oversize", ariaLabel: "Size Oversize" },
-      ],
-    },
-    {
-      label: "Color",
-      options: [
-        { label: "Black", ariaLabel: "Color Black", defaultChecked: true },
-        { label: "White", ariaLabel: "Color White" },
-        { label: "Red", ariaLabel: "Color Red" },
-        { label: "Beige", ariaLabel: "Color Beige" },
-      ],
-    },
-    {
-      label: "Collection",
-      options: [
-        {
-          label: "Divertimento",
-          ariaLabel: "Divertimento",
-          defaultChecked: true,
-        },
-        { label: "Virtuoso", ariaLabel: "Virtuoso" },
-        { label: "Scherzo", ariaLabel: "Scherzo" },
-        { label: "Practice Etiquette", ariaLabel: "Practice Etiquette" },
-      ],
-    },
-  ];
+
+  const handleFilterChange =
+    (filterCategory: keyof Filters, filterValue: string) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { checked } = event.target;
+      setFilters((prevFilters) => {
+        const newFilters = { ...prevFilters };
+        if (checked) {
+          newFilters[filterCategory] = [
+            ...newFilters[filterCategory],
+            filterValue,
+          ];
+        } else {
+          newFilters[filterCategory] = newFilters[filterCategory].filter(
+            (item) => item !== filterValue
+          );
+        }
+        return newFilters;
+      });
+    };
 
   const DrawerList = (
     <Box sx={{ width: 350, m: "24px" }} role="presentation">
@@ -72,9 +149,14 @@ export const FilterDrawer = () => {
           Filter
         </Typography>
         <InlineWrapper>
-          <Typography variant="tags" color="systemDark">
-            Clear all
-          </Typography>
+          <Box
+            onClick={clearFilters}
+            style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+          >
+            <Typography variant="tags" color="systemDark">
+              Clear all
+            </Typography>
+          </Box>
           <Spacer x={8} />
           <Button onClick={toggleDrawer(false)} variant="none">
             <CloseIcon />
@@ -82,10 +164,9 @@ export const FilterDrawer = () => {
         </InlineWrapper>
       </InlineWrapper>
       <div>
-        {filters.map((filter) => (
-          <>
+        {FILTERS.map((filter) => (
+          <React.Fragment key={filter.label}>
             <FormControl
-              key={filter.label}
               component="fieldset"
               sx={{
                 display: "flex",
@@ -105,7 +186,13 @@ export const FilterDrawer = () => {
                         control={
                           <Checkbox
                             aria-label={option.ariaLabel}
-                            defaultChecked={option.defaultChecked}
+                            checked={filters[option.category].includes(
+                              option.value
+                            )}
+                            onChange={handleFilterChange(
+                              option.category,
+                              option.value
+                            )}
                           />
                         }
                         label={option.label}
@@ -113,14 +200,11 @@ export const FilterDrawer = () => {
                     ))}
                   </FormGroup>
                 }
-              ></Accordion>
-
-              {/* <FormLabel component="legend">{filter.label}</FormLabel> */}
+              />
             </FormControl>
-            <Divider></Divider>
-
-            <Spacer y={4}></Spacer>
-          </>
+            <Divider />
+            <Spacer y={4} />
+          </React.Fragment>
         ))}
       </div>
     </Box>

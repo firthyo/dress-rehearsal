@@ -9,6 +9,7 @@ import { AuthProvider } from "provider/AuthProvider";
 import { ModalProvider } from "provider/ModalProvider";
 
 import AppRoutes from "routes/AppRoutes";
+import { FilterProvider } from "provider/FilterProvider";
 // import { AuthProvider } from "context/Authcontext";
 // import { ModalProvider } from "context/ModalContext";
 
@@ -18,7 +19,9 @@ function App() {
       <AuthProvider>
         <Theme>
           <ModalProvider>
-            <AppRoutes />
+            <FilterProvider>
+              <AppRoutes />
+            </FilterProvider>
           </ModalProvider>
         </Theme>
       </AuthProvider>

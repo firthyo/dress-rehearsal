@@ -15,6 +15,7 @@ type WrapperProps = {
   width?: number;
   alignItem: ButtonAlignItemsProps;
   borderRadius?: string;
+  isUppercase?: boolean;
 };
 
 const variants: Record<ButtonVariantProps, any> = {
@@ -53,7 +54,7 @@ export const Wrapper = styled.button<WrapperProps>`
   justify-content: center;
   text-align: center;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: ${(props) => props.isUppercase && "uppercase"};
   color: white;
   position: relative;
   padding: ${(props) => props.paddingVertical || 0}px
