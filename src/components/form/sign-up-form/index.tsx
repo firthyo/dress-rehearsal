@@ -157,7 +157,9 @@ export const SignUpForm: React.FC<SignUpProps> = ({
             </RowWrapper>
 
             <RowWrapper>
-              <Button type="submit">{"Create account!"}</Button>
+              <Button type="submit" borderRadius="none">
+                {"Create account!"}
+              </Button>
             </RowWrapper>
           </FormContainer>
         </>

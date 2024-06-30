@@ -56,7 +56,7 @@ export const HomePage = () => {
                     type="button"
                     variant="outlined"
                     customColor="#fff"
-                    borderRadius="large"
+                    borderRadius="none"
                   >
                     <ShoppingCartIcon color="#fff" />
                     <Spacer x={8} />
@@ -74,7 +74,7 @@ export const HomePage = () => {
                     type="button"
                     variant="outlined"
                     customColor="#fff"
-                    borderRadius="large"
+                    borderRadius="none"
                   >
                     <ShoppingCartIcon color="#fff" />
                     <Spacer x={8} />
@@ -95,7 +95,7 @@ export const HomePage = () => {
                     type="button"
                     variant="outlined"
                     customColor="#fff"
-                    borderRadius="large"
+                    borderRadius="none"
                   >
                     <ShoppingCartIcon color="#fff" />
                     <Spacer x={8} />

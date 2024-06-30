@@ -17,8 +17,8 @@ export const Container = styled.div<ContainerProps>`
   background-repeat: no-repeat;
   transition: border 0.3s;
 
-  height: 646px;
-  width: ${(props) => (props.fullWidth ? "100%" : "45%")};
+  height: 546px;
+  width: ${(props) => (props.fullWidth ? "100%" : "50%")};
 
   @media (max-width: ${(props) => props.theme.breakpoints.values.sm}px) {
     width: ${(props) => (props.fullWidth ? "100%" : "224px")};

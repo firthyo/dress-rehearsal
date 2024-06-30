@@ -9,6 +9,7 @@ export const FlexBox = styled.div<PropsFlexBox>`
   display: ${props => (props.width && props.width > 0 ? 'inline-flex' : 'flex')};
   flex-grow: 0;
   flex-shrink: 0;
+  padding: 0px;
   width: ${props => (props.width ? `${props.width}px` : 'auto')};
   height: ${props => (props.height ? `${props.height}px` : 'auto')};
 `;

@@ -10,7 +10,7 @@ export const Navbar = styled.nav`
   top: 0;
   width: 100%;
   z-index: 1;
-  max-height: 102px;
+  max-height: 110px;
 `;
 
 export const NavWrapper = styled.div`
@@ -48,7 +48,7 @@ export const LogoWrapper = styled.div`
 export const LogoMobileWrapper = styled.div`
   /* width: 100%; */
   margin-top: 10px;
-  height: 70px;
+  height: 7px;
 `;
 
 interface NavbarLinksContainerProps {

@@ -233,3 +233,12 @@ export const ParagraphDetail = styled.p`
   line-height: 140%;
   text-transform: capitalize;
 `;
+
+export const HighlightText = styled.p`
+  font-family: "IBM Plex Serif", serif;
+  font-size: 32px;
+  line-height: 140%;
+  font-weight: bold;
+  color: ${(props) => props.color};
+
+`;

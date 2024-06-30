@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const AppContainer = styled.div`
   text-align: center;
-  margin-top: 120px;
+  margin-top: 110px;
   overflow-y: auto;
 
   @media (max-width: 600px) {

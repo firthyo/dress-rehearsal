@@ -44,7 +44,7 @@ export const AuthenticationPage = () => {
 
   return (
     <div>
-      <Button onClick={handleOpenModal} type="button">
+      <Button onClick={handleOpenModal} type="button" borderRadius="none">
         Sign up
       </Button>
     </div>

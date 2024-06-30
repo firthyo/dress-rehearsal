@@ -20,11 +20,11 @@ export const Footer = () => {
   return (
     <Wrapper>
       <RightWrapper>
-        <Typography variant="h3" color="surface">
+        <Typography variant="p-articles" color="surface">
           Dress Rehersal
         </Typography>
         <Spacer y={16} />
-        <Typography variant="p-articles" color="surface">
+        <Typography variant="p" color="surface">
           © Copyright Dress Rehearsal, all right reserved
         </Typography>
       </RightWrapper>

@@ -6,6 +6,7 @@ import {
   Header2,
   Header3,
   Header4,
+  HighlightText,
   Label,
   LabelMedium,
   InputValidation,
@@ -33,6 +34,7 @@ export type TypographyVariant =
   | "h2"
   | "h3"
   | "h4"
+  | "highlight-text"
   | "label"
   | "label-medium"
   | "input-validation"
@@ -58,6 +60,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   h2: Header2,
   h3: Header3,
   h4: Header4,
+  "highlight-text": HighlightText,
   label: Label,
   "label-medium": LabelMedium,
   "input-validation": InputValidation,

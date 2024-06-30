@@ -1,4 +1,4 @@
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, styled } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import React from "react";
 
@@ -10,6 +10,16 @@ type TextFieldprops = {
   inputAdornment?: JSX.Element;
   fullWidth?: boolean;
 } & React.ComponentPropsWithoutRef<typeof TextField>;
+
+const StyledTextField = styled(TextField)({
+  "& .MuiInputBase-root": {
+    backgroundColor: "#ffffff",
+  },
+  "& .MuiInputBase-input:-webkit-autofill": {
+    backgroundColor: "#ffffff !important",
+    boxShadow: "0 0 0 100px #ffffff inset",
+  },
+});
 
 export const TextFieldForm = React.forwardRef<HTMLInputElement, TextFieldprops>(
   (props, ref) => {
@@ -24,7 +34,7 @@ export const TextFieldForm = React.forwardRef<HTMLInputElement, TextFieldprops>(
     } = props;
 
     return (
-      <TextField
+      <StyledTextField
         id={`${label}-${variant}-id`}
         label={label}
         variant={variant}
@@ -33,7 +43,7 @@ export const TextFieldForm = React.forwardRef<HTMLInputElement, TextFieldprops>(
         fullWidth={fullWidth}
         inputRef={ref}
         InputProps={{
-          style: { borderRadius: 12 },
+          style: { borderRadius: 0 },
           endAdornment: inputAdornment && (
             <InputAdornment position="end">{inputAdornment}</InputAdornment>
           ),

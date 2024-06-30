@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HeaderNav } from "components/core";
+import { Footer, HeaderNav } from "components/core";
 import ResetPasswordForm from "components/form/reset-password";
 import ProductDetail from "components/template/products/product-detail";
 import { AllProducts } from "components/template/products/all-products";
@@ -10,17 +10,18 @@ import VerifyEmail from "pages/verify-email";
 
 import { Routes, Route } from "react-router-dom";
 import { AppContainer } from "styles/common";
+import AboutUs from "pages/about-us";
 
 export const AppRoutes = () => {
   return (
     <>
       <HeaderNav />
-
       <AppContainer>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sign-up" element={<AuthenticationPage />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
+          <Route path="/about-us" element={<AboutUs></AboutUs>} />
           <Route
             path="/reset-password/:token"
             element={<ResetPasswordForm />}

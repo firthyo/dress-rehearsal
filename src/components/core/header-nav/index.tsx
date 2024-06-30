@@ -39,7 +39,7 @@ export const HeaderNav = () => {
       <Spacer x={24} />
       <List>
         <MenuMobileWrapper>
-          <NavbarLink href="#">ABOUT US</NavbarLink>
+          <NavbarLink href="/about-us">ABOUT US</NavbarLink>
           <NavbarLink href="/shop">SHOP</NavbarLink>
           <NavbarLink href="#">GALLERY</NavbarLink>
           <NavbarLink href="#">CONTACT</NavbarLink>
@@ -71,7 +71,7 @@ export const HeaderNav = () => {
 
           {/* Navbar Links for larger screens */}
           <NavbarLinksContainer>
-            <NavbarLink href="#">ABOUT US</NavbarLink>
+            <NavbarLink href="/about-us">ABOUT US</NavbarLink>
             <NavbarLink href="/shop">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
             <NavbarLink href="#">CONTACT</NavbarLink>
