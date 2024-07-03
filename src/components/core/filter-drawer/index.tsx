@@ -85,35 +85,6 @@ const FILTERS: { label: string; options: FilterOption[] }[] = [
       },
     ],
   },
-  // {
-  //   label: "Collection",
-  //   options: [
-  //     {
-  //       label: "Divertimento",
-  //       value: "divertimento",
-  //       ariaLabel: "Divertimento",
-  //       category: "collection",
-  //     },
-  //     {
-  //       label: "Virtuoso",
-  //       value: "virtuoso",
-  //       ariaLabel: "Virtuoso",
-  //       category: "collection",
-  //     },
-  //     {
-  //       label: "Scherzo",
-  //       value: "scherzo",
-  //       ariaLabel: "Scherzo",
-  //       category: "collection",
-  //     },
-  //     {
-  //       label: "Practice Etiquette",
-  //       value: "etiquette",
-  //       ariaLabel: "Practice Etiquette",
-  //       category: "collection",
-  //     },
-  //   ],
-  // },
 ];
 
 export const FilterDrawer: React.FC = () => {

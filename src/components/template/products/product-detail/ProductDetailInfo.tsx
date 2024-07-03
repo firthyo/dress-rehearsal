@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Drawer, IconButton } from "@mui/material";
 
-import { Container, Detail, SelectionContainer } from "./styles";
 import {
   // AddToBag,
   Button,
@@ -12,21 +12,15 @@ import {
   Typography,
 } from "components/core";
 import RadioColorSelector from "components/core/radioColorSelector";
-import MockProduct from "assets/mock-pic/mock_product1.png";
 import { Accordion } from "components/core/accordion";
 import Breadcrumb from "components/core/Breadcrumb";
 
 import { Product } from "graphql/product/types";
 
-import { CloseIcon, FavoritOutline, ShareIcon } from "assets/icons";
-import {
-  Box,
-  Drawer,
-  IconButton,
-  Snackbar,
-  Divider,
-  SwipeableDrawer,
-} from "@mui/material";
+import { FavoritOutline, ShareIcon } from "assets/icons";
+
+import { useCart } from "context/CartContext";
+import { Detail, SelectionContainer } from "./styles";
 
 export type VariantsOptionType = {
   value: string;
@@ -47,14 +41,36 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
       color: variant.color,
     })
   );
+  console.log("colors", colors);
+
+  const [addToBagInfo, setAddToBagInfo] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+  const [selectedVariant, setSelectedVariant] = useState(colors[0].value);
+  const { cartItems, addItemToCart } = useCart();
   const handleClickAddToBag = () => {
+    console.log("this is product.variants", product.variants);
+    // Send the variant ID
+    const selectedVariantObj = product.variants.find(
+      (variant) => variant.value === selectedVariant
+    );
+    console.log("this is cartItems", cartItems, selectedVariantObj);
+
+    const newItem = {
+      productId: product.id,
+      variantId: selectedVariantObj?.id || "",
+      size: selectedSize,
+      name: product.name,
+      price: product.price,
+      color: selectedVariantObj?.value || "",
+      quantity: 1,
+      image: product.productThumbnail,
+    };
+
+    addItemToCart(newItem);
+
+    // Here you would typically dispatch an action or call an API to add to the cart
     setAddToBagInfo(true);
   };
-  const [addToBagInfo, setAddToBagInfo] = useState(false);
-
-  // const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-  // const [selectedVariant, setSelectedVariant] = useState(colors[0].value);
-
   const handleClose = (
     event: React.SyntheticEvent | Event,
     reason?: string
@@ -109,7 +125,13 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
         <Spacer y={8} />
         <InlineWrapper>
           <Spacer x={6} />
-          <RadioColorSelector options={colors} onChange={onColorChange} />
+          <RadioColorSelector
+            options={colors}
+            onChange={(color) => {
+              setSelectedVariant(color);
+              if (onColorChange) onColorChange(color);
+            }}
+          />
         </InlineWrapper>
       </SelectionContainer>
       <Spacer y={16} />
@@ -135,26 +157,10 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
         >
           ADD TO BAG
         </Button>
-        {/* <AddToBag
-          productId={product.id}
-          quantity={1}
-          variant={{
-            value: selectedVariant || "",
-            color: selectedVariant,
-            size: selectedSize,
-          }}
-        /> */}
+
         <Drawer open={addToBagInfo} onClose={handleClose} anchor={"right"}>
-          <ShoppingBagDrawer></ShoppingBagDrawer>
+          <ShoppingBagDrawer cartItems={cartItems} onClose={handleClose} />
         </Drawer>
-        {/* <Snackbar
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          open={addToBagInfo}
-          autoHideDuration={100000}
-          onClose={handleClose}
-          message="Note archived"
-          action={action}
-        /> */}
       </InlineWrapper>
       <Accordion title={"Product Detail"}>
         <Typography variant="p" color="systemDark">

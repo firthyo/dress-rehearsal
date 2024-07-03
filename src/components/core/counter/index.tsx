@@ -1,75 +1,63 @@
 import * as React from "react";
-import {
-  Unstable_NumberInput as BaseNumberInput,
-  NumberInputProps,
-} from "@mui/base/Unstable_NumberInput";
 import { styled } from "@mui/system";
 import { AddIcon, RemoveIcon } from "assets/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export const Counter = React.forwardRef(function CustomNumberInput(
-  props: NumberInputProps,
-  ref: React.ForwardedRef<HTMLDivElement>
-) {
-  const [value, setValue] = useState<number>(1);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value);
-    if (!isNaN(newValue)) {
-      setValue(newValue);
-    }
-  };
-
-  const handleIncrement = () => {
-    setValue((prevValue) => Math.min(prevValue + 1, props.max || 99));
-  };
-
-  const handleDecrement = () => {
-    setValue((prevValue) => Math.max(prevValue - 1, props.min || 1));
-  };
-
-  return (
-    <BaseNumberInput
-      slots={{
-        root: StyledInputRoot,
-        input: StyledInput,
-        // incrementButton: StyledButton,
-        // decrementButton: StyledButton,
-        incrementButton: (slotProps) => (
-          <StyledButton {...slotProps} onClick={handleIncrement}>
-            <AddIcon />
-          </StyledButton>
-        ),
-        decrementButton: (slotProps) => (
-          <StyledButton {...slotProps} onClick={handleDecrement}>
-            <RemoveIcon />
-          </StyledButton>
-        ),
-      }}
-      slotProps={{
-        incrementButton: {
-          children: <AddIcon />,
-          className: "increment",
-        //   onClick: handleIncrement,
-        },
-        decrementButton: {
-          children: <RemoveIcon />,
-        //   onClick: handleDecrement,
-        },
-        input: {
-          value: value,
-          onChange: handleChange,
-        },
-      }}
-      {...props}
-      ref={ref}
-    />
-  );
-});
-
-export default function QuantityInput() {
-  return <Counter aria-label="Quantity Input" min={1} max={99} />;
+interface CounterProps {
+  initialCount: number;
+  min?: number;
+  max?: number;
+  onChange: (value: number) => void;
 }
+
+export const Counter = React.forwardRef<HTMLDivElement, CounterProps>(
+  function CustomNumberInput(
+    { initialCount, min = 1, max = 99, onChange },
+    ref
+  ) {
+    const [value, setValue] = useState<number>(initialCount);
+
+    useEffect(() => {
+      setValue(initialCount);
+    }, [initialCount]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = parseInt(event.target.value);
+      if (!isNaN(newValue) && newValue >= min && newValue <= max) {
+        setValue(newValue);
+        onChange(newValue);
+      }
+    };
+
+    const handleIncrement = () => {
+      setValue((prevValue) => {
+        const newValue = Math.min(prevValue + 1, max);
+        onChange(newValue);
+        return newValue;
+      });
+    };
+
+    const handleDecrement = () => {
+      setValue((prevValue) => {
+        const newValue = Math.max(prevValue - 1, min);
+        onChange(newValue);
+        return newValue;
+      });
+    };
+
+    return (
+      <StyledInputRoot ref={ref}>
+        <StyledButton onClick={handleDecrement}>
+          <RemoveIcon />
+        </StyledButton>
+        <StyledInput value={value} onChange={handleChange} />
+        <StyledButton onClick={handleIncrement}>
+          <AddIcon />
+        </StyledButton>
+      </StyledInputRoot>
+    );
+  }
+);
 
 const blue = {
   100: "#daecff",

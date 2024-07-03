@@ -10,6 +10,7 @@ import { ModalProvider } from "provider/ModalProvider";
 
 import AppRoutes from "routes/AppRoutes";
 import { FilterProvider } from "provider/FilterProvider";
+import { CartProvider } from "provider/CartProvider";
 // import { AuthProvider } from "context/Authcontext";
 // import { ModalProvider } from "context/ModalContext";
 
@@ -20,7 +21,9 @@ function App() {
         <Theme>
           <ModalProvider>
             <FilterProvider>
-              <AppRoutes />
+              <CartProvider>
+                <AppRoutes />
+              </CartProvider>
             </FilterProvider>
           </ModalProvider>
         </Theme>

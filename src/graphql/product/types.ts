@@ -8,6 +8,7 @@ export interface Variant {
   value: string;
   color: string;
   images: string[];
+  id: string;
   sizes: VariantSize[];
 }
 
@@ -21,7 +22,7 @@ export interface Product {
   name: string;
   productThumbnail: string;
   price: number;
-  sizes: string[]; // Assuming 'sizes' is an array of string size identifiers
+  sizes: string[];
   description: string;
   material: string;
   stock: number;

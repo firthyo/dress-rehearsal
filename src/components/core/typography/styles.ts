@@ -135,7 +135,7 @@ export const ParagraphMedium = styled.h4<Props>`
   font-weight: 600;
   font-size: 16px;
   line-height: 140%;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 `;
 
 export const Paragraph = styled.p<Props>`

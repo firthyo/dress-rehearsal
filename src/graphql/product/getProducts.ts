@@ -11,6 +11,7 @@ export interface Product {
     color: string;
     value: string;
     images: string[];
+    id: string;
   }[];
 }
 
@@ -49,6 +50,7 @@ export const GET_PRODUCTS = gql`
         value
         color
         images
+        id
       }
     }
   }
@@ -69,6 +71,7 @@ export const GET_PRODUCT_BY_ID = gql`
         value
         color
         images
+        id
         sizes {
           size
           stock
@@ -95,6 +98,7 @@ export const FILTER_PRODUCTS = gql`
         value
         color
         images
+        id
         sizes {
           size
           stock

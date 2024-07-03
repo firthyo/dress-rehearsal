@@ -1,82 +1,112 @@
 import React from "react";
-
-import { CloseIcon, FavoritOutline, ShareIcon } from "assets/icons";
-import {
-  Box,
-  Drawer,
-  IconButton,
-  Snackbar,
-  Divider,
-  SwipeableDrawer,
-} from "@mui/material";
-
+import { CloseIcon } from "assets/icons";
+import { Box, Divider, IconButton } from "@mui/material";
 import {
   Button,
   Counter,
   InlineWrapper,
-  SizeSelection,
   Spacer,
   Typography,
 } from "components/core";
-import MockProduct from "assets/mock-pic/mock_product1.png";
+import { useCart } from "context/CartContext";
+import { DetailWrapper, TitleWrapper } from "./styles";
 
-export const ShoppingBagDrawer = () => {
+interface CartItem {
+  productId: string;
+  variantId: string;
+  size: string;
+  name: string;
+  price: number;
+  color?: string;
+  quantity: number;
+  image: string;
+}
+
+interface ShoppingBagDrawerProps {
+  cartItems: CartItem[];
+  onClose: (event: React.SyntheticEvent | Event, reason?: string) => void;  // Updated the onClose prop type
+}
+
+export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
+  cartItems,
+  onClose,
+}) => {
+  const { addItemToCart, subtractItemFromCart } = useCart();
+
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const handleQuantityChange = (item: CartItem, newQuantity: number) => {
+    const quantityDifference = newQuantity - item.quantity;
+    if (quantityDifference > 0) {
+      const updatedItem = { ...item, quantity: quantityDifference };
+      addItemToCart(updatedItem);
+    } else {
+      const updatedItem = { ...item, quantity: Math.abs(quantityDifference) };
+      subtractItemFromCart(updatedItem);
+    }
+  };
+
   return (
     <Box
       sx={{
         width: 380,
-
         display: "flex",
         flexDirection: "column",
         height: "100vh",
       }}
       role="presentation"
     >
-      <div style={{ margin: "24px" }}>
+      <TitleWrapper>
         <InlineWrapper justifyContent="space-between">
           <InlineWrapper>
             <Typography color="systemDark">Your Bag</Typography>
-            <Typography color="systemDark">{"(3 Items)"}</Typography>
+            <Typography color="systemDark">{`(${totalQuantity} Items)`}</Typography>
           </InlineWrapper>
-          <CloseIcon />
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
         </InlineWrapper>
-      </div>
+      </TitleWrapper>
 
       <Divider />
 
       <Box sx={{ flex: 1, overflowY: "auto" }}>
-        <div style={{ margin: "24px" }}>
-          <Typography variant={"p-medium"} color="systemDark">
-            Practice etiquette T-shirt
-          </Typography>
-          <Spacer y={12} />
-          <div style={{ display: "flex" }}>
-            <img src={MockProduct} width={"40%"}></img>
-            <Spacer x={24} />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-              }}
-            >
-              <Typography color="systemDark">Color: Black</Typography>
-              <Typography color="systemDark">Size: Oversize</Typography>
-              <Typography color="systemDark">THB 900</Typography>
-              <Typography color="systemDark">Quantity</Typography>
-              <Counter />
-              <Typography color="systemDark" variant={"p-medium"}>
-                Subtotal : 900
-              </Typography>
+        {cartItems.map((item, index) => (
+          <div key={index} style={{ margin: "24px" }}>
+            <Typography variant={"p-detail"} color="systemDark">
+              {item.name}
+            </Typography>
+            <Spacer y={12} />
+            <div style={{ display: "flex" }}>
+              <img src={item.image} width={"40%"} alt="Product" />
+              <Spacer x={24} />
+              <DetailWrapper>
+                <Typography color="systemDark">Color: {item.color}</Typography>
+                <Typography color="systemDark">Size: {item.size}</Typography>
+                <Typography color="systemDark">THB {item.price}</Typography>
+                <Typography color="systemDark">Quantity</Typography>
+                <Counter
+                  initialCount={item.quantity}
+                  onChange={(value) => handleQuantityChange(item, value)}
+                />
+                <Typography color="systemDark" variant={"p-medium"}>
+                  Subtotal : {item.price * item.quantity}
+                </Typography>
+              </DetailWrapper>
             </div>
+
+            <Spacer y={24} />
+            <Divider />
           </div>
-          <Spacer y={24} />
-          <Divider />
-          <Spacer x={24} />
-        </div>
+        ))}
       </Box>
-      {/* <Button>Checkout</Button> */}
       <Box
         sx={{
           position: "sticky",
@@ -90,7 +120,7 @@ export const ShoppingBagDrawer = () => {
           <Typography color="systemDark" variant="p-medium">
             Est. Total:{" "}
           </Typography>
-          <Typography color="systemDark">THB 1800</Typography>
+          <Typography color="systemDark">THB {totalPrice}</Typography>
         </InlineWrapper>
         <Spacer y={12} />
         <InlineWrapper justifyContent="space-between">
