@@ -37,7 +37,7 @@ export const Button: React.FC<MainButtonProps> = ({
   isLoading,
   alignItem = "center",
   children,
-  borderRadius = "small",
+  borderRadius = "none",
   isUppercase = true,
   ...props
 }) => {

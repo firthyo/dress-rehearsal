@@ -52,9 +52,11 @@ export const ProductDetail = () => {
   const product = data.getProductById;
   return (
     <Container>
+      <Spacer y={32} />
       {isSmUp ? (
         <Wrapper>
           <Visual>
+            <Spacer y={32} />
             {/* <img src={product.productThumbnail} alt={product.name} /> */}
             {product.variants && (
               <ImageGallery

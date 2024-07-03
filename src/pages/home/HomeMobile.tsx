@@ -28,12 +28,7 @@ export const HomeMobile = () => {
       title="Practice etiquette"
       color="systemLight"
       button={
-        <Button
-          type="button"
-          variant="outlined"
-          customColor="#fff"
-          borderRadius="none"
-        >
+        <Button type="button" variant="outlined" customColor="#fff">
           <ShoppingCartIcon color="#fff" />
           <Spacer x={8} />
           <Typography color="systemLight"> {"Shop now"}</Typography>
@@ -45,12 +40,7 @@ export const HomeMobile = () => {
       color="systemLight"
       backgroundUrl={collectionTest2}
       button={
-        <Button
-          type="button"
-          variant="outlined"
-          customColor="#fff"
-          borderRadius="none"
-        >
+        <Button type="button" variant="outlined" customColor="#fff">
           <ShoppingCartIcon color="#fff" />
           <Spacer x={8} />
           <Typography color="systemLight"> {"Shop now"}</Typography>
@@ -62,12 +52,7 @@ export const HomeMobile = () => {
       color="systemLight"
       backgroundUrl={collectionTest3}
       button={
-        <Button
-          type="button"
-          variant="outlined"
-          customColor="#fff"
-          borderRadius="none"
-        >
+        <Button type="button" variant="outlined" customColor="#fff">
           <ShoppingCartIcon color="#fff" />
           <Spacer x={8} />
           <Typography color="systemLight"> {"Shop now"}</Typography>
@@ -78,12 +63,7 @@ export const HomeMobile = () => {
       title="Practice etiquette"
       color="systemLight"
       button={
-        <Button
-          type="button"
-          variant="outlined"
-          customColor="#fff"
-          borderRadius="none"
-        >
+        <Button type="button" variant="outlined" customColor="#fff">
           <ShoppingCartIcon color="#fff" />
           <Spacer x={8} />
           <Typography color="systemLight"> {"Shop now"}</Typography>

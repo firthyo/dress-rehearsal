@@ -19,7 +19,7 @@ export const SizeSelection: React.FC<SizeSelectProps> = ({ sizes }) => {
         >
           <Typography
             variant="p-articles"
-            color={selectedSize === size ? "systemLight" : "systemDark"}
+            color={selectedSize === size ? "systemDark" : "systemDark"}
           >
             {size}
           </Typography>

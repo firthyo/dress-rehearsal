@@ -56,6 +56,6 @@ export const Container = styled.div`
 
   @media (min-width: ${(props) => props.theme.breakpoints.values.md}px) {
     height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE});
-    margin: 0 56px;
+    /* margin: 0 56px; */
   }
 `;

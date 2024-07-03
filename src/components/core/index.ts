@@ -1,7 +1,10 @@
+// export { AddToBag } from "./addToBag";
 export { AlertMessage } from "./alertMessage";
+
 export { Button } from "./button";
 export { CollectionCard } from "./card/collection-card";
 
+export { Counter } from "./counter";
 export { CustomizedDialogs } from "./dialog";
 
 export { Divider } from "./divider";
@@ -13,6 +16,7 @@ export { HeaderNav } from "./header-nav";
 export { InlineWrapper } from "./inline-wrapper";
 export { Modal } from "./modal";
 export { PaletteIcon } from "./paletteIcon";
+export { ShoppingBagDrawer } from "./shopping-bag-drawer";
 export { SizeSelection } from "./size-selection";
 export { Spacer } from "./spacer";
 export { TabNavItem } from "./tabNavItem";
