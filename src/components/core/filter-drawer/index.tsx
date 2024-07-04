@@ -91,7 +91,6 @@ export const FilterDrawer: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const { filters, setFilters, clearFilters } = useFilters();
   const { data, loading, error } = useQuery(GET_ALL_COLLECTIONS);
-  console.log("this is data collection", data);
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };

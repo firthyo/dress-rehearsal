@@ -63,7 +63,6 @@ export const SignUpForm: React.FC<SignUpProps> = ({
         password: formData.password,
         terms: formData.terms,
       });
-      console.log("this is response", response);
 
       if (response.register.success) {
         console.log("Registration successful", response.register.success);

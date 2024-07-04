@@ -17,7 +17,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [authStage, setAuthStage] = useState<AuthStageType>("SIGNUP");
-  console.log("This is user", user);
+
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     const userInfo = localStorage.getItem("userInfo");

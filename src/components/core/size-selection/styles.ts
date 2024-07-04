@@ -9,7 +9,9 @@ export const SizeButton = styled.button<{ isActive: boolean }>`
 
   border: ${(props) =>
     props.isActive ? "2px solid #000" : "2px solid #ededee;"};
-
+  border-radius: 12px;
+  min-height: 55px;
+  min-width: 55px;
   cursor: pointer;
   transition: background-color 0.3s;
 

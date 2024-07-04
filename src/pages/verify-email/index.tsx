@@ -15,7 +15,7 @@ const VerifyEmail = () => {
 
   const [verifyEmail, { data, loading, error }] = useMutation(VERIFY_EMAIL);
   const { loginAuth } = useAuth();
-  console.log("This is data???", data);
+
   useEffect(() => {
     if (data && data.verifyEmail && data.verifyEmail.success) {
       const { authToken, firstName, lastName, email, id } = data.verifyEmail;

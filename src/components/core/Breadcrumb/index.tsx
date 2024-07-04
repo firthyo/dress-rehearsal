@@ -13,7 +13,6 @@ type Props = {
 export const Breadcrumb: React.FC<Props> = ({ lastPath }) => {
   const location = useLocation();
   const { loading, error, data } = useQuery(GET_PRODUCT_BY_ID);
-  console.log("this is data", data);
 
   const pathnames = location.pathname.split("/").filter((x) => x);
 

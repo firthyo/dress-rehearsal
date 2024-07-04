@@ -41,19 +41,15 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
       color: variant.color,
     })
   );
-  console.log("colors", colors);
 
   const [addToBagInfo, setAddToBagInfo] = useState(false);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedVariant, setSelectedVariant] = useState(colors[0].value);
   const { cartItems, addItemToCart } = useCart();
   const handleClickAddToBag = () => {
-    console.log("this is product.variants", product.variants);
-    // Send the variant ID
     const selectedVariantObj = product.variants.find(
       (variant) => variant.value === selectedVariant
     );
-    console.log("this is cartItems", cartItems, selectedVariantObj);
 
     const newItem = {
       productId: product.id,
@@ -63,7 +59,7 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
       price: product.price,
       color: selectedVariantObj?.value || "",
       quantity: 1,
-      image: product.productThumbnail,
+      image: selectedVariantObj?.images[0] || product.productThumbnail,
     };
 
     addItemToCart(newItem);

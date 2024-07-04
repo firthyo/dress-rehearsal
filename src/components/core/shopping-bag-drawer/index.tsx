@@ -24,7 +24,7 @@ interface CartItem {
 
 interface ShoppingBagDrawerProps {
   cartItems: CartItem[];
-  onClose: (event: React.SyntheticEvent | Event, reason?: string) => void;  // Updated the onClose prop type
+  onClose: (event: React.SyntheticEvent | Event, reason?: string) => void; // Updated the onClose prop type
 }
 
 export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
@@ -67,7 +67,10 @@ export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
         <InlineWrapper justifyContent="space-between">
           <InlineWrapper>
             <Typography color="systemDark">Your Bag</Typography>
-            <Typography color="systemDark">{`(${totalQuantity} Items)`}</Typography>
+            <Spacer x={8} />
+            <Typography color="systemDark">
+              {`(${totalQuantity} Items)`}
+            </Typography>
           </InlineWrapper>
           <IconButton onClick={onClose}>
             <CloseIcon />

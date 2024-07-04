@@ -9,7 +9,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addItemToCart = (newItem: CartItem) => {
-    console.log("this is newItem", newItem);
     setCartItems((prevItems) => {
       const existingItemIndex = prevItems.findIndex(
         (item) =>
