@@ -3,7 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 
 // Create an HTTP link
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_BACKEND_CONNECTION_LOCAL,
+  uri: process.env.REACT_APP_BACKEND_CONNECTION,
 });
 
 // Create an auth link to add the JWT token to each request
