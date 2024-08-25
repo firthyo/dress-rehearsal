@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLogo from "assets/logo/MainLogo";
 import Spacer from "components/core/spacer";
 import Divider from "components/core/divider";
@@ -17,6 +17,7 @@ import {
 } from "./styles";
 
 import { MenuIcon } from "assets/icons";
+import BadgeIndicator from "../badge-indicator";
 
 export const HeaderNav = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -25,6 +26,18 @@ export const HeaderNav = () => {
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
   };
+  const [authChecked, setAuthChecked] = useState(false);
+
+  useEffect(() => {
+    // Assuming your AuthContext initializes the state on mount
+    // Set authChecked to true after the initial authentication check
+    setAuthChecked(true);
+  }, []);
+
+  if (!authChecked) {
+    // While authentication is being checked, show a loading indicator or null
+    return null; // or a loading spinner if you prefer
+  }
   const drawer = (
     <Box
       onClick={toggleDrawer}
@@ -71,14 +84,19 @@ export const HeaderNav = () => {
 
           {/* Navbar Links for larger screens */}
           <NavbarLinksContainer>
+            <Spacer x={100} />
             <NavbarLink href="/about-us">ABOUT US</NavbarLink>
             <NavbarLink href="/shop">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
             <NavbarLink href="#">CONTACT</NavbarLink>
-            <Spacer x={24} />
+            {/* <Spacer x={24} />
             <Divider marginHorizontal={4} />
-            <Spacer x={24} />
+            <Spacer x={24} /> */}
+          </NavbarLinksContainer>
+          <NavbarLinksContainer>
             {isLoggedIn ? <ProfileMenu /> : <AuthenticationPage />}
+            <Spacer x={12} />
+            <BadgeIndicator></BadgeIndicator>
           </NavbarLinksContainer>
         </NavWrapper>
       </Navbar>

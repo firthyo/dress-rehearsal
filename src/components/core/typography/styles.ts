@@ -70,7 +70,7 @@ export const LabelMedium = styled.p<Props>`
   margin: 0px;
   font-weight: 600;
   font-size: 18px;
-  line-height: 100%;
+  line-height: 145%;
 `;
 
 export const Label = styled.p<Props>`
@@ -138,6 +138,15 @@ export const ParagraphMedium = styled.h4<Props>`
   /* text-transform: uppercase; */
 `;
 
+export const ActionText = styled.p<Props>`
+  color: ${(props) => props.color};
+  margin: 0px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 145%;
+  text-decoration: underline;
+`;
+
 export const Paragraph = styled.p<Props>`
   color: ${(props) => props.color};
   margin: 0px;
@@ -157,6 +166,8 @@ export const ParagraphArticles = styled.p<Props>`
     font-size: 14px; // Even smaller size on small and below
   }
 `;
+
+
 
 export const ParagraphSemiBold = styled.p<Props>`
   color: ${(props) => props.color};
@@ -240,5 +251,4 @@ export const HighlightText = styled.p`
   line-height: 140%;
   font-weight: bold;
   color: ${(props) => props.color};
-
 `;

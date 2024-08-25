@@ -1,13 +1,9 @@
 import React from "react";
 
-export const ShoppingCartIcon = ({
-  color = "#fff",
-  width = "24px",
-  height = "24px",
-}) => (
+export const ShoppingCartIcon = ({ color = "#1C1B1F", size = 32 }) => (
   <svg
-    width={width}
-    height={height}
+    width={size}
+    height={size}
     viewBox="0 0 24 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

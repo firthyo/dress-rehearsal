@@ -13,8 +13,10 @@ export interface CartItem {
 
 interface CartContextType {
   cartItems: CartItem[];
+  itemCount: number;
   addItemToCart: (item: CartItem) => void;
   subtractItemFromCart: (item: CartItem) => void;
+  clearCart: () => void;
 }
 
 export const CartContext = createContext<CartContextType | undefined>(

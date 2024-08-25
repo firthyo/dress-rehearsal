@@ -19,7 +19,7 @@ export const FormContainer = styled.div`
 export const RowWrapperMultipleCol = styled.div`
   display: flex;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 0px;
 `;
 
 export const RowWrapper = styled.div`
@@ -48,4 +48,8 @@ export const ResetPasswordFormContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: calc(100vh - 160px);
+`;
+
+export const Line = styled.div`
+  border-top: solid 1px #ededee;
 `;

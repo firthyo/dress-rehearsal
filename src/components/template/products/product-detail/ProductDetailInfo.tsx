@@ -41,11 +41,13 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
       color: variant.color,
     })
   );
+  // const { addItemToCart } = useCart();
 
   const [addToBagInfo, setAddToBagInfo] = useState(false);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedVariant, setSelectedVariant] = useState(colors[0].value);
-  const { cartItems, addItemToCart } = useCart();
+  const { itemCount, cartItems, addItemToCart } = useCart();
+  console.log("addToBagInfo", addToBagInfo);
   const handleClickAddToBag = () => {
     const selectedVariantObj = product.variants.find(
       (variant) => variant.value === selectedVariant

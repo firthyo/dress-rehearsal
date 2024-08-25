@@ -22,10 +22,13 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.4",
-    "react-router-dom": "^6.23.0",
+    "react-input-mask": "^2.0.4",
+    "react-places-autocomplete": "^7.3.0",
+    "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.9",
     "swiper": "^11.1.4",
+    "thai-address-autocomplete-react": "^1.1.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -56,6 +59,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/material-ui": "^0.21.17",
+    "@types/react-places-autocomplete": "^7.2.14",
     "@types/react-router-dom": "^5.3.3",
     "@types/swiper": "^6.0.0"
   }

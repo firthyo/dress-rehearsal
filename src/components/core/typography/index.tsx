@@ -26,10 +26,12 @@ import {
   PageSubtitle,
   ParagraphDetail,
   Tags,
+  ActionText,
 } from "./styles";
 import { MyTheme } from "styles/Theme";
 
 export type TypographyVariant =
+  | "action-text"
   | "h1"
   | "h2"
   | "h3"
@@ -56,6 +58,7 @@ export type TypographyVariant =
   | "tags";
 
 const mappedStyles: Record<TypographyVariant, any> = {
+  "action-text": ActionText,
   h1: Header1,
   h2: Header2,
   h3: Header3,
@@ -65,6 +68,7 @@ const mappedStyles: Record<TypographyVariant, any> = {
   "label-medium": LabelMedium,
   "input-validation": InputValidation,
   titles: Titles,
+
   "page-title": PageTitle,
   "page-subtitle": PageSubtitle,
   p: Paragraph,

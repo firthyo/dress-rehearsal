@@ -10,6 +10,7 @@ import {
 } from "components/core";
 import { useCart } from "context/CartContext";
 import { DetailWrapper, TitleWrapper } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface CartItem {
   productId: string;
@@ -32,7 +33,11 @@ export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
   onClose,
 }) => {
   const { addItemToCart, subtractItemFromCart } = useCart();
+  const navigate = useNavigate();
 
+  const navigateToCheckout = () => {
+    navigate("/checkout");
+  };
   const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
@@ -131,7 +136,7 @@ export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
             Review Bag
           </Button>
           <Spacer x={8} />
-          <Button width={162} customColor="#000">
+          <Button width={162} customColor="#000" onClick={navigateToCheckout}>
             Check out
           </Button>
         </InlineWrapper>

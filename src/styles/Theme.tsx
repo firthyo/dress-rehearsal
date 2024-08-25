@@ -34,6 +34,7 @@ export interface MyTheme extends DefaultTheme {
     systemDark: string;
     systemGrey: string;
     info: string;
+    label: string;
   };
   fontWeight: {
     medium: number;
@@ -58,6 +59,7 @@ const theme: MyTheme = {
     systemDark: "#000",
     systemGrey: "#A5A5A5",
     info: "#0077cc",
+    label: "#A5A5A5",
   },
   fontWeight: {
     medium: 500,

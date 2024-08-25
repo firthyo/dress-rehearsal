@@ -22,6 +22,7 @@ export const ADD_TO_CART = gql`
           value
           color
           size
+          id
         }
         quantity
         price

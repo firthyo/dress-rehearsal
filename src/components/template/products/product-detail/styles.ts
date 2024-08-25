@@ -11,7 +11,7 @@ export const Visual = styled.div`
   width: calc(50% - ${STYLE_CONSTANTS.PAGE_HORIZONTAL_SPACE});
   height: calc(100% - ${STYLE_CONSTANTS.HEADER_HEIGHT});
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-right: 5%;
 `;
 

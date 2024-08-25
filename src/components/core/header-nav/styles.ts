@@ -17,7 +17,7 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 32px;
+  padding: 20px 60px;
   @media (max-width: ${({ theme }) => `${theme.breakpoints.values.sm}px`}) {
     padding: 8px 16px; // Reduced padding for 'sm' and below
   }
