@@ -241,7 +241,7 @@ export const ParagraphDetail = styled.p`
   margin: 0px;
   font-weight: 400;
   font-size: 18px;
-  line-height: 140%;
+  line-height: 150%;
   text-transform: capitalize;
 `;
 

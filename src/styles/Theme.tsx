@@ -56,7 +56,7 @@ const theme: MyTheme = {
     surface: "#FFFAF1",
     ternary: "#EDE3DA",
     systemLight: "#fff",
-    systemDark: "#000",
+    systemDark: "#333",
     systemGrey: "#A5A5A5",
     info: "#0077cc",
     label: "#A5A5A5",

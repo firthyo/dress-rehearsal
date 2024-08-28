@@ -7,50 +7,50 @@ import {
   TextFieldForm,
   Typography,
 } from "components/core";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext, useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { Line, Link, RowWrapperMultipleCol } from "../styles";
 import EditIcon from "assets/icons/common/edit-con";
+import { loadStripe } from "@stripe/stripe-js";
 
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormLabel from "@mui/material/FormLabel";
-import { AddressAutocomplete } from "components/core/address-autocomplete";
 
-type CheckoutFormVariables = {
-  email: string;
-  terms: boolean;
-  firstName: string;
-  lastName: string;
-  address: string;
-  province: string;
-  district: string;
-  subDistrict: string;
-  postalcode: string;
-  creditCardName: string;
-  cardNumber: string;
-  expirationDate: string;
-  securityCode: string;
-};
+import { AddressAutocomplete } from "components/core/address-autocomplete";
+import CreditCardInput from "components/core/credit-card";
+import ShippingMethod from "components/core/shipping-method";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { CardElement } from "@stripe/react-stripe-js";
+import { useMutation } from "@apollo/client";
+import { CREATE_PAYMENT_INTENT } from "graphql/payment";
+import { CheckoutFormVariables } from "./types";
+import CheckoutDetail from "./checkout-detail";
+import CheckoutContext from "context/CheckoutContext";
+// import { CREATE_PAYMENT_INTENT } from "graphql/payment";
 
 const EmailLabel = () => (
   <Typography color="systemDark">
     Receive emails about new products, sales, and store events.
   </Typography>
 );
-const handleClose = () => {
-  console.log("choose");
-};
+interface CheckoutFormProps {
+  clientSecret: string | null;
+}
+const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
+  const methods = useForm<CheckoutFormVariables>();
+  const { isDataReady, setIsDataReady } = useContext(CheckoutContext);
 
-const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CheckoutFormVariables>();
+  } = methods;
   const [step, setStep] = useState(1);
+
   const [formData, setFormData] = useState<CheckoutFormVariables>({
     email: "",
     terms: false,
@@ -110,23 +110,91 @@ const CheckoutForm = () => {
     if (section === "payment") setStep(3);
   };
 
-  const saveEdit = (
-    section: keyof typeof editMode,
-    data: CheckoutFormVariables
-  ) => {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const saveContactEdit = async (data: CheckoutFormVariables) => {
+    if (stripe && elements) {
+      const cardElement = elements.getElement(CardElement);
+      if (cardElement) {
+        const clientSecretS = clientSecret || ""; // Use the clientSecret from the parent component
+
+        const { error, paymentIntent } = await stripe.confirmCardPayment(
+          clientSecretS,
+          {
+            payment_method: {
+              card: cardElement,
+              billing_details: {
+                name: data.creditCardName,
+              },
+            },
+          }
+        );
+
+        if (error) {
+          console.error("Payment Error!", error.message);
+        } else if (paymentIntent && paymentIntent.status === "succeeded") {
+          console.log("Payment succeeded!");
+        }
+      }
+    }
+
     setFormData({ ...formData, ...data });
-    setEditMode({ ...editMode, [section]: false });
+    setEditMode({ ...editMode, contact: false });
     setStep(step + 1);
   };
 
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+  const saveShippingEdit = async (data: CheckoutFormVariables) => {
+    setFormData({ ...formData, ...data });
+    setEditMode({ ...editMode, shipping: false });
+    setStep(step + 1);
   };
 
+  const savePaymentEdit = async (data: CheckoutFormVariables) => {
+    // Handle payment logic here
+    setFormData({ ...formData, ...data });
+    setEditMode({ ...editMode, payment: false });
+    setStep(step + 1);
+    checkDataReady();
+  };
+
+  const [selectedShipping, setSelectedShipping] = useState<string>("standard");
+
+  const handleShippingChange = (method: string) => {
+    setSelectedShipping(method);
+  };
+
+  const checkDataReady = () => {
+    if (
+      formData.email &&
+      formData.firstName &&
+      formData.lastName &&
+      formData.address &&
+      formData.province &&
+      formData.district &&
+      formData.subDistrict &&
+      formData.postalcode &&
+      formData.creditCardName &&
+      !errors.email &&
+      !errors.firstName &&
+      !errors.lastName &&
+      !errors.address &&
+      !errors.province &&
+      !errors.district &&
+      !errors.subDistrict &&
+      !errors.postalcode &&
+      !errors.creditCardName
+    ) {
+      setIsDataReady(true);
+    } else {
+      setIsDataReady(false);
+    }
+  };
+
+  //   const [createPaymentIntent] = useMutation(CREATE_PAYMENT_INTENT);
+
   return (
-    <>
+    <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleNext)}>
         {/* Contact Step */}
         <div>
@@ -154,7 +222,7 @@ const CheckoutForm = () => {
               </div>
             )}
           </InlineWrapper>
-
+          <Spacer y={12} />
           {editMode.contact || step === 1 ? (
             <>
               <Typography color="systemDark" variant="p-articles">
@@ -164,11 +232,12 @@ const CheckoutForm = () => {
               <TextFieldForm
                 variant="outlined"
                 label="Email"
+                validationType="email"
                 {...register("email", { required: true })}
                 defaultValue={formData.email}
               />
               <Spacer y={12} />
-              <Line />
+
               <Typography color="systemDark">
                 Got an account? <Link href="/privacy-notice">Login</Link>
               </Typography>
@@ -179,7 +248,7 @@ const CheckoutForm = () => {
               <Button
                 type="button"
                 variant="filled"
-                onClick={handleSubmit((data) => saveEdit("contact", data))}
+                onClick={handleSubmit((data) => saveContactEdit(data))}
               >
                 Save and Continue to Shipping
               </Button>
@@ -198,7 +267,8 @@ const CheckoutForm = () => {
         </div>
 
         <Spacer y={24} />
-
+        <Line />
+        <Spacer y={24} />
         {/* Shipping Step */}
         <div>
           <InlineWrapper justifyContent="space-between">
@@ -225,11 +295,13 @@ const CheckoutForm = () => {
               </div>
             )}
           </InlineWrapper>
+          <Spacer y={24} />
           {editMode.shipping || step === 2 ? (
             <>
               <Typography color="systemDark" variant="p-articles">
                 Shipping Address
               </Typography>
+              <Spacer y={12} />
               <RowWrapperMultipleCol>
                 <TextFieldForm
                   variant="outlined"
@@ -257,91 +329,39 @@ const CheckoutForm = () => {
               <RowWrapperMultipleCol>
                 <AddressAutocomplete onAddressChange={handleAddressChange} />
               </RowWrapperMultipleCol>
-              <Typography color="systemDark" variant="p-articles">
-                Shipping Method
-              </Typography>
-              <FormControl>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                  onChange={handleChange}
-                >
-                  <FormControlLabel
-                    value="standard"
-                    control={<Radio />}
-                    label="Standard: Free"
-                  />
-                  <Typography color="systemDark">
-                    Get it by Saturday, July 13
-                  </Typography>
-
-                  <FormControlLabel
-                    value="express"
-                    control={<Radio />}
-                    label="Express:  $12.95"
-                  />
-                  <Typography color="systemDark">
-                    Get it by Saturday, July 13
-                  </Typography>
-                </RadioGroup>
-              </FormControl>
               <Spacer y={12} />
+
+              <FormControl>
+                <RowWrapperMultipleCol>
+                  <ShippingMethod onChange={handleShippingChange} />
+                </RowWrapperMultipleCol>
+              </FormControl>
+              <Spacer y={24} />
               <Button
                 type="button"
                 variant="filled"
-                onClick={handleSubmit((data) => saveEdit("shipping", data))}
+                onClick={handleSubmit((data) => saveShippingEdit(data))}
               >
                 Save and Continue to Payment
               </Button>
             </>
           ) : (
-            <div>
-              <div style={{ display: "flex" }}>
-                <>
-                  <Spacer y={12}></Spacer>
-                  {formData.firstName && (
-                    <Typography color="systemDark" variant="label-medium">
-                      Shipping Address: <Spacer x={12} />
-                    </Typography>
-                  )}
-                </>
-
-                <div>
-                  {formData.firstName && (
-                    <>
-                      <Typography color="systemDark" variant="p-detail">
-                        {formData.firstName} {formData.lastName}
-                      </Typography>
-                    </>
-                  )}
-                  {formData.address && (
-                    <>
-                      <Typography color="systemDark" variant="p-detail">
-                        {formData.address}
-                      </Typography>
-                    </>
-                  )}
-                  {formData.province && (
-                    <>
-                      <Typography color="systemDark" variant="p-detail">
-                        {formData.province}, {formData.district},{" "}
-                        {formData.subDistrict}
-                      </Typography>
-                    </>
-                  )}
-                  {formData.postalcode && (
-                    <>
-                      <Typography color="systemDark" variant="p-detail">
-                        {formData.postalcode}
-                      </Typography>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
+            <CheckoutDetail
+              section={"SHIPPING"}
+              formData={{
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                address: formData.address,
+                province: formData.province,
+                district: formData.district,
+                subDistrict: formData.subDistrict,
+                postalcode: formData.postalcode,
+              }}
+            />
           )}
         </div>
 
+        <Line />
         <Spacer y={24} />
 
         {/* Payment Step */}
@@ -355,6 +375,7 @@ const CheckoutForm = () => {
             >
               Payment Options
             </Typography>
+            <Spacer y={24} />
             {formData.creditCardName && step > 3 && !editMode.payment && (
               <div
                 onClick={() => handleEdit("payment")}
@@ -377,99 +398,44 @@ const CheckoutForm = () => {
               <RowWrapperMultipleCol>
                 <TextFieldForm
                   variant="outlined"
-                  label="Name on Card"
+                  label="Cardholder name"
                   {...register("creditCardName", { required: true })}
                   defaultValue={formData.creditCardName}
                 />
               </RowWrapperMultipleCol>
-
-              <RowWrapperMultipleCol>
-                <TextFieldForm
-                  variant="outlined"
-                  label="Card Number"
-                  {...register("cardNumber", { required: true })}
-                  defaultValue={formData.cardNumber}
-                />
-              </RowWrapperMultipleCol>
-              <RowWrapperMultipleCol>
-                <TextFieldForm
-                  variant="outlined"
-                  label="Expiration Date"
-                  {...register("expirationDate", { required: true })}
-                  defaultValue={formData.expirationDate}
-                />
-              </RowWrapperMultipleCol>
-              <RowWrapperMultipleCol>
-                <TextFieldForm
-                  variant="outlined"
-                  label="Security Code"
-                  {...register("securityCode", { required: true })}
-                  defaultValue={formData.securityCode}
-                />
-              </RowWrapperMultipleCol>
-
+              <CreditCardInput />
               <Button
                 type="button"
                 variant="filled"
-                onClick={handleSubmit((data) => saveEdit("payment", data))}
+                onClick={handleSubmit((data) => savePaymentEdit(data))}
               >
-                Complete Order
+                Confirm Details
               </Button>
             </>
           ) : (
-            <InlineWrapper>
-              {formData.creditCardName && (
-                <>
-                  <Typography color="systemDark" variant="label-medium">
-                    Name on Card:{" "}
-                  </Typography>
-                  <Spacer x={12} />
-                  <Typography color="systemDark" variant="p-articles">
-                    {formData.creditCardName}
-                  </Typography>
-                </>
-              )}
-              {formData.cardNumber && (
-                <>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="label-medium">
-                    Card Number:{" "}
-                  </Typography>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="p-articles">
-                    {formData.cardNumber}
-                  </Typography>
-                </>
-              )}
-              {formData.expirationDate && (
-                <>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="label-medium">
-                    Expiration Date:{" "}
-                  </Typography>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="p-articles">
-                    {formData.expirationDate}
-                  </Typography>
-                </>
-              )}
-              {formData.securityCode && (
-                <>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="label-medium">
-                    Security Code:{" "}
-                  </Typography>
-                  <Spacer x={4} />
-                  <Typography color="systemDark" variant="p-articles">
-                    {formData.securityCode}
-                  </Typography>
-                </>
-              )}
-            </InlineWrapper>
+            <>
+              <CheckoutDetail
+                section={"PAYMENT"}
+                formData={{
+                  creditCardName: formData.creditCardName,
+                  cardNumber: formData.cardNumber,
+                  expirationDate: formData.expirationDate,
+                  securityCode: formData.securityCode,
+                }}
+              />
+            </>
           )}
         </div>
+
+        <Button
+          type="button"
+          variant="filled"
+          onClick={handleSubmit((data) => savePaymentEdit(data))}
+        >
+          Confirm Details
+        </Button>
       </form>
-    </>
+    </FormProvider>
   );
 };
 

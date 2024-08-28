@@ -1,17 +1,13 @@
-import { Checkbox, FormControlLabel, TextField } from "@mui/material";
-import { Button, Spacer, TextFieldForm, Typography } from "components/core";
-import { Accordion } from "components/core/accordion";
-import React from "react";
-import {
-  Form,
-  Line,
-  Link,
-  Overview,
-  RowWrapperMultipleCol,
-  Wrapper,
-} from "./styles";
-import { useForm } from "react-hook-form";
+import { Button, Spacer, Typography } from "components/core";
+import React, { useContext, useState } from "react";
+import { Form, FormWrapper, Overview, Wrapper } from "./styles";
 import CheckoutForm from "components/form/checkout-form";
+import OrderSummary from "components/core/order-summary";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { useMutation } from "@apollo/client";
+import CheckoutContext from "context/CheckoutContext";
+import { CREATE_PAYMENT_INTENT } from "graphql/payment";
 type CheckoutFormVariables = {
   email: string;
   terms: boolean;
@@ -25,25 +21,63 @@ const EmailLabel = () => {
     </Typography>
   );
 };
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY || "");
+
 export const Checkout = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<CheckoutFormVariables>();
-  const handleNext = () => {
-    console.log("handleNext");
+  const { isDataReady } = useContext(CheckoutContext);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+
+  const [createPaymentIntent, { loading, error }] = useMutation(
+    CREATE_PAYMENT_INTENT,
+    {
+      onCompleted: (data) => {
+        setClientSecret(data.createPaymentIntent.clientSecret);
+      },
+      onError: (error) => {
+        console.error("Error creating payment intent:", error);
+      },
+    }
+  );
+
+  const handleProceedToPayment = async () => {
+    try {
+      await createPaymentIntent({
+        variables: {
+          amount: 1000, // Amount in cents
+          currency: "usd",
+        },
+      });
+    } catch (err) {
+      console.error("Error creating payment intent:", err);
+    }
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <div>
-      <div>
-        <Wrapper>
+      <Wrapper>
+        <FormWrapper>
           <Form>
-            <CheckoutForm></CheckoutForm>
+            <Typography variant="h3" color="systemDark">
+              Checkout
+            </Typography>
+            <Spacer y={24} />
+            <Elements stripe={stripePromise}>
+              <CheckoutForm clientSecret={clientSecret} />
+            </Elements>
           </Form>
-          <Overview>test test</Overview>
-        </Wrapper>
-      </div>
+          <Overview>
+            <OrderSummary></OrderSummary>
+          </Overview>
+          {isDataReady && (
+            <Button onClick={handleProceedToPayment} disabled={loading}>
+              {loading ? "Processing..." : "Proceed to Payment"}
+            </Button>
+          )}
+        </FormWrapper>
+      </Wrapper>
     </div>
   );
 };

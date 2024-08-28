@@ -1,7 +1,7 @@
 import React from "react";
 import { IconProps } from "assets/icons/types";
 
-const LocalShippingOutline: React.FC<IconProps> = ({
+export const LocalShippingOutline: React.FC<IconProps> = ({
   color = "#1C1B1F",
   size = "20px",
 }) => {

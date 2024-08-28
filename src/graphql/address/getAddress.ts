@@ -31,3 +31,4 @@ export const GET_POSTAL_CODE_BY_SUBDISTRICT = gql`
     getPostalCodesBySubdistrict(subdistrictNameEn: $subdistrictNameEn)
   }
 `;
+

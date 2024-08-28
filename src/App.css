@@ -4,11 +4,13 @@
   font-family: 'Poppins', sans-serif;
   background-color: #FFFAF1;
   overflow-y: auto;
-
+  min-height: 100vh
+  
 }
 
 @media (max-width: 600px) {
   .App {
+    min-height: 100vh;
     /* padding-top: 100px; */
     /* Further reduce padding for small screens */
   }
@@ -34,6 +36,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  
 }
 
 .App-link {
