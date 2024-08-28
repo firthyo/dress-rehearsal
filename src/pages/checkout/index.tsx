@@ -71,13 +71,13 @@ export const Checkout = () => {
           <Overview>
             <OrderSummary></OrderSummary>
           </Overview>
-          {isDataReady && (
-            <Button onClick={handleProceedToPayment} disabled={loading}>
-              {loading ? "Processing..." : "Proceed to Payment"}
-            </Button>
-          )}
         </FormWrapper>
       </Wrapper>
+      {!isDataReady && (
+        <Button onClick={handleProceedToPayment} disabled={loading}>
+          {loading ? "Processing..." : "Proceed to Payment"}
+        </Button>
+      )}
     </div>
   );
 };

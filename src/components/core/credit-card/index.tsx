@@ -14,7 +14,9 @@ interface CreditCardInputProps {
   }) => void;
 }
 
-const CreditCardInput: React.FC<CreditCardInputProps> = ({ onChange }) => {
+export const CreditCardInput: React.FC<CreditCardInputProps> = ({
+  onChange,
+}) => {
   const { control } = useFormContext();
   const [cardBrand, setCardBrand] = useState("");
 

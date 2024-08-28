@@ -1,36 +1,29 @@
-import { Checkbox, FormControlLabel, FormHelperText } from "@mui/material";
+import React, { useContext, useState } from "react";
+
+import { Checkbox, FormControlLabel, FormControl } from "@mui/material";
+
+import { useElements, useStripe } from "@stripe/react-stripe-js";
+import { CardElement } from "@stripe/react-stripe-js";
+import { FormProvider, useForm } from "react-hook-form";
+
 import {
   Button,
-  DropdownMenu,
   InlineWrapper,
   Spacer,
   TextFieldForm,
   Typography,
 } from "components/core";
-import React, { useContext, useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { Line, Link, RowWrapperMultipleCol } from "../styles";
-import EditIcon from "assets/icons/common/edit-con";
-import { loadStripe } from "@stripe/stripe-js";
+import CheckoutContext from "context/CheckoutContext";
 
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { Line, Link, RowWrapperMultipleCol } from "../styles";
+import EditIcon from "assets/icons/common/edit-icon";
 
 import { AddressAutocomplete } from "components/core/address-autocomplete";
 import CreditCardInput from "components/core/credit-card";
 import ShippingMethod from "components/core/shipping-method";
-import {
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
-import { CardElement } from "@stripe/react-stripe-js";
-import { useMutation } from "@apollo/client";
-import { CREATE_PAYMENT_INTENT } from "graphql/payment";
+
 import { CheckoutFormVariables } from "./types";
 import CheckoutDetail from "./checkout-detail";
-import CheckoutContext from "context/CheckoutContext";
-// import { CREATE_PAYMENT_INTENT } from "graphql/payment";
 
 const EmailLabel = () => (
   <Typography color="systemDark">
@@ -42,7 +35,7 @@ interface CheckoutFormProps {
 }
 const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
   const methods = useForm<CheckoutFormVariables>();
-  const { isDataReady, setIsDataReady } = useContext(CheckoutContext);
+  const { setIsDataReady } = useContext(CheckoutContext);
 
   const {
     register,
@@ -71,7 +64,6 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
     shipping: false,
     payment: false,
   });
-  console.log("this is formData", formData);
 
   const handleAddressChange = (address: {
     province: string;
@@ -190,8 +182,6 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
       setIsDataReady(false);
     }
   };
-
-  //   const [createPaymentIntent] = useMutation(CREATE_PAYMENT_INTENT);
 
   return (
     <FormProvider {...methods}>
@@ -360,7 +350,7 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
             />
           )}
         </div>
-
+        <Spacer y={24} />
         <Line />
         <Spacer y={24} />
 
@@ -375,7 +365,7 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
             >
               Payment Options
             </Typography>
-            <Spacer y={24} />
+
             {formData.creditCardName && step > 3 && !editMode.payment && (
               <div
                 onClick={() => handleEdit("payment")}
@@ -393,6 +383,7 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
               </div>
             )}
           </InlineWrapper>
+          <Spacer y={12} />
           {editMode.payment || step === 3 ? (
             <>
               <RowWrapperMultipleCol>
@@ -404,6 +395,7 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
                 />
               </RowWrapperMultipleCol>
               <CreditCardInput />
+              <Spacer y={24} />
               <Button
                 type="button"
                 variant="filled"
@@ -427,13 +419,13 @@ const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
           )}
         </div>
 
-        <Button
+        {/* <Button
           type="button"
           variant="filled"
           onClick={handleSubmit((data) => savePaymentEdit(data))}
         >
           Confirm Details
-        </Button>
+        </Button> */}
       </form>
     </FormProvider>
   );

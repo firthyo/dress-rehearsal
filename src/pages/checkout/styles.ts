@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
     /* Styles for screens smaller than 600px */
     height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE});
   }
-
+  background-color: white;
   @media (min-width: ${(props) => props.theme.breakpoints.values.md}px) {
     /* Styles for screens larger than or equal to 960px */
     /* margin: 0 56px; */

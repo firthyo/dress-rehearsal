@@ -1,5 +1,7 @@
 // export { AddToBag } from "./addToBag";
 export { AlertMessage } from "./alertMessage";
+export { Accordion } from "./accordion";
+export { AddressAutocomplete } from "./address-autocomplete";
 
 export { Button } from "./button";
 export { CollectionCard } from "./card/collection-card";

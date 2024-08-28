@@ -1,23 +1,20 @@
 import React from "react";
-import styled from "styled-components";
+
 import { useCart } from "context/CartContext";
 import {
   Divider,
-  ItemDetail,
   ItemDetails,
   ItemImage,
-  ItemName,
   ItemRow,
   ItemsList,
   SummaryContainer,
   SummaryRow,
-  Title,
 } from "./styles";
 
 import Spacer from "../spacer";
 import { Typography } from "../typography";
 import { InlineWrapper } from "../inline-wrapper";
-import EditIcon from "assets/icons/common/edit-con";
+import EditIcon from "assets/icons/common/edit-icon";
 
 export const OrderSummary = () => {
   const { cartItems } = useCart();
