@@ -8,19 +8,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useMutation } from "@apollo/client";
 import CheckoutContext from "context/CheckoutContext";
 import { CREATE_PAYMENT_INTENT } from "graphql/payment";
-type CheckoutFormVariables = {
-  email: string;
-  terms: boolean;
-  firstName: string;
-};
-
-const EmailLabel = () => {
-  return (
-    <Typography>
-      Receive emails about new products, sales and store events.{" "}
-    </Typography>
-  );
-};
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY || "");
 
@@ -52,7 +39,7 @@ export const Checkout = () => {
       console.error("Error creating payment intent:", err);
     }
   };
-
+  console.log("isDataReady", isDataReady);
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   return (
@@ -67,17 +54,18 @@ export const Checkout = () => {
             <Elements stripe={stripePromise}>
               <CheckoutForm clientSecret={clientSecret} />
             </Elements>
+            <Spacer y={24} />
+            {isDataReady && (
+              <Button onClick={handleProceedToPayment} disabled={loading}>
+                {loading ? "Processing..." : "Proceed to Payment"}
+              </Button>
+            )}
           </Form>
           <Overview>
             <OrderSummary></OrderSummary>
           </Overview>
         </FormWrapper>
       </Wrapper>
-      {!isDataReady && (
-        <Button onClick={handleProceedToPayment} disabled={loading}>
-          {loading ? "Processing..." : "Proceed to Payment"}
-        </Button>
-      )}
     </div>
   );
 };

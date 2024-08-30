@@ -13,6 +13,15 @@ import { AppContainer } from "styles/common";
 import AboutUs from "pages/about-us";
 import Checkout from "pages/checkout";
 import CartOverview from "pages/cart-overview";
+import UserProfile from "pages/user-profile";
+
+import {
+  TrackOrders,
+  Profile,
+  MembershipBenefit,
+  ReturnsExchanges,
+  WishList,
+} from "pages/user-profile/detail";
 
 export const AppRoutes = () => {
   return (
@@ -32,6 +41,15 @@ export const AppRoutes = () => {
           <Route path="/shop/:id" element={<ProductDetail />} />
           <Route path="/checkout" element={<Checkout />} />
           {/* <Route path="/cart" element={<CartOverview />} /> */}
+          <Route path="/user-profile/*" element={<UserProfile />}>
+            {/* Nested routes within UserProfile */}
+            <Route path="profile" element={<Profile />} />
+            <Route path="track-orders" element={<TrackOrders />} />
+            <Route path="wish-list" element={<WishList />} />
+            <Route path="membership-benefit" element={<MembershipBenefit />} />
+
+            <Route path="returns-exchanges" element={<ReturnsExchanges />} />
+          </Route>
         </Routes>
       </AppContainer>
     </>

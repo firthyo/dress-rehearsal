@@ -14,6 +14,8 @@ export const FormContainer = styled.div`
   flex-wrap: wrap;
   width: 460px;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 `;
 
 export const RowWrapperMultipleCol = styled.div`

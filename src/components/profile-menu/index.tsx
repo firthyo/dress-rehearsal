@@ -10,14 +10,17 @@ import LocalShippingOutline from "assets/icons/common/local-shipping-outline";
 import LogoutIcon from "assets/icons/common/logout";
 import Spacer from "components/core/spacer";
 import { useAuth } from "context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { isLoggedIn, logoutAuth, user } = useAuth(); // Use the authentication context
   console.log("this is user", user);
+  const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+    // setAnchorEl(event.currentTarget);
+    navigate("/user-profile");
   };
   const handleClose = () => {
     setAnchorEl(null);

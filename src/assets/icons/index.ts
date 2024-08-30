@@ -5,12 +5,17 @@ export { ArrowLeft } from "./common/arrow-left";
 export { ArrowUp } from "./common/arrow-up";
 export { CloseIcon } from "./common/close";
 export { CreditCard } from "./common/credit-card";
-
+export { CheckedIcon } from "./common/check";
+export { DoorOpen } from "./common/door-open";
 export { FavoritOutline } from "./common/favorit-outline";
 export { FilterListIcon } from "./common/filter-list";
+export { Headset } from "./common/headset";
 export { Lighting } from "./common/lighting";
 export { LocalShippingOutline } from "./common/local-shipping-outline";
+export { MagnifyingGlass } from "./common/magnifying-glass";
 export { MenuIcon } from "./common/menu-icon";
+export { PackageIcon } from "./common/package-icon";
+export { PaperIcon } from "./common/paper";
 export { RemoveIcon } from "./common/remove-icon";
 export { ShareIcon } from "./common/share-icon";
 export { VisibilityIcon } from "./common/visibility";

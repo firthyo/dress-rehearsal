@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
     /* Styles for screens larger than or equal to 960px */
     /* margin: 0 56px; */
   }
+  /* padding-bottom: 110px; */
 `;
 
 export const FormWrapper = styled.div`

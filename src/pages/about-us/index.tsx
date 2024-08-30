@@ -47,10 +47,10 @@ export const AboutUs = () => {
 
           <Divider />
           <Spacer y={32} />
+          <ImageWrapper>
+            <img src={StoreImage} alt="Store" />
+          </ImageWrapper>
           <div style={{ display: "flex" }}>
-            <ImageWrapper>
-              <img src={StoreImage} alt="Store" />
-            </ImageWrapper>
             <Spacer y={12} />
             <OurStory>
               <Typography variant="highlight-text" color="surface">
