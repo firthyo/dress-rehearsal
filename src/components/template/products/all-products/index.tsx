@@ -51,7 +51,7 @@ export const AllProducts = () => {
   return (
     <Wrapper>
       <Spacer y={20} />
-      <Typography variant="h3" color={"primary"}>
+      <Typography variant="label-medium" color={"primary"}>
         NEW COLLECTION
       </Typography>
       <InlineWrapper justifyContent="space-between">

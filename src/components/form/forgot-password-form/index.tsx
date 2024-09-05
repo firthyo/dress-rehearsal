@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useAuth } from "context/AuthContext";
 
 import { Typography, Spacer, Button, AlertMessage } from "components/core";
@@ -26,7 +26,7 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<ForgotPasswordVariables>();
-
+  const methods = useForm();
   const { loginAuth, authStage, setAuthStage } = useAuth();
   const onSubmit = async (data: ForgotPasswordVariables) => {
     try {
@@ -41,54 +41,56 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {!error && <Spacer y={24} />}
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {!error && <Spacer y={24} />}
 
-      <TextWrapper>
-        {error ? (
-          <AlertMessage
-            severity="error"
-            color="error"
-            text={
-              <>
-                The email address and password you entered doesn't match our
-                records. Please try again or reset your password.
-              </>
-            }
-          />
-        ) : (
-          <div>
-            <Typography variant="h4" color={"primary"}>
-              Forgot password ?
-            </Typography>
-            <Spacer y={8} />
-            <Typography color={"primary"}>
-              No worries! Just give us your email address, and we'll send you a
-              link to reset your password.
-            </Typography>
-          </div>
-        )}
-      </TextWrapper>
-      <Spacer y={24} />
-      <FormContainer>
-        <RowWrapper>
-          <TextFieldForm
-            variant="outlined"
-            label="Email"
-            {...register("email", { required: true })}
-          />
-          {/* <TextFieldForm
-            variant="outlined"
-            label="Email"
-            {...register("email", { required: true })}
-          /> */}
-        </RowWrapper>
+        <TextWrapper>
+          {error ? (
+            <AlertMessage
+              severity="error"
+              color="error"
+              text={
+                <>
+                  The email address and password you entered doesn't match our
+                  records. Please try again or reset your password.
+                </>
+              }
+            />
+          ) : (
+            <div>
+              <Typography variant="h4" color={"primary"}>
+                Forgot password ?
+              </Typography>
+              <Spacer y={8} />
+              <Typography color={"primary"}>
+                No worries! Just give us your email address, and we'll send you
+                a link to reset your password.
+              </Typography>
+            </div>
+          )}
+        </TextWrapper>
+        <Spacer y={24} />
+        <FormContainer>
+          <RowWrapper>
+            <TextFieldForm
+              variant="outlined"
+              label="Email"
+              {...register("email", { required: true })}
+            />
+            {/* <TextFieldForm
+          variant="outlined"
+          label="Email"
+          {...register("email", { required: true })}
+        /> */}
+          </RowWrapper>
 
-        <RowWrapper>
-          <Button type="submit">{"Reset password"}</Button>
-        </RowWrapper>
-      </FormContainer>
-    </form>
+          <RowWrapper>
+            <Button type="submit">{"Reset password"}</Button>
+          </RowWrapper>
+        </FormContainer>
+      </form>
+    </FormProvider>
   );
 };
 

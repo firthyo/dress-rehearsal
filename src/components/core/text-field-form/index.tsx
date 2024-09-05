@@ -23,6 +23,9 @@ type TextFieldprops = {
 const StyledTextField = styled(TextField)({
   "& .MuiInputBase-root": {
     backgroundColor: "#ffffff",
+    flexGrow: 1, // Allow growing within the container
+    flexShrink: 1, // Allow shrinking within the container
+    minWidth: 0, // Ensure it can shrink below its content's natural width
   },
   "& .MuiInputBase-input:-webkit-autofill": {
     backgroundColor: "#ffffff !important",

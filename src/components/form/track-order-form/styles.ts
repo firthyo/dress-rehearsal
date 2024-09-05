@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { Box } from "@mui/material";
 
 export const FormWapper = styled.div`
-  padding: 32px;
+  /* padding: 32px; */
 
   border-radius: 8px;
   text-align: center;
@@ -10,7 +10,6 @@ export const FormWapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  width: 460px;
   flex-direction: column;
   justify-content: center;
   text-align: center;

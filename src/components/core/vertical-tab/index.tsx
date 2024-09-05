@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { TabStyle, TabsContainer } from "./styles";
+import { TabIndicator, TabStyle, TabsContainer } from "./styles";
 import { LocalShippingOutline } from "assets/icons";
+import Spacer from "../spacer";
+import { Typography } from "../typography";
 
 type TabItem =
   | "Profile"
@@ -30,13 +32,15 @@ export const VerticalTab: React.FC<VerticalTabsProps> = ({ onTabClick }) => {
   return (
     <TabsContainer>
       {tabs.map((tab) => (
-        <TabStyle
-          key={tab.key}
-          onClick={() => handleTabClick(tab.key as TabItem)}
-          isActive={activeTab === tab.key}
-        >
-          {tab.name}
-        </TabStyle>
+        <React.Fragment key={tab.key}>
+          <TabIndicator isActive={activeTab === tab.key} />
+          <TabStyle
+            onClick={() => handleTabClick(tab.key as TabItem)}
+            isActive={activeTab === tab.key}
+          >
+            <Typography variant="p-medium"> {tab.name}</Typography>
+          </TabStyle>
+        </React.Fragment>
       ))}
     </TabsContainer>
   );

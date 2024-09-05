@@ -1,7 +1,8 @@
+import { NoContentFallBack } from "components/core";
 import React from "react";
 
 export const ReturnsExchanges = () => {
-  return <div>ReturnsExchanges</div>;
+  return <NoContentFallBack />;
 };
 
 export default ReturnsExchanges;

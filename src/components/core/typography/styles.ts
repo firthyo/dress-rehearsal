@@ -221,7 +221,7 @@ export const Tags = styled.p`
 export const TagsSmall = styled.p`
   color: ${(props) => props.color};
   margin: 0px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   line-height: 100%;
 `;

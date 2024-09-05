@@ -24,6 +24,7 @@ import {
 } from "components/core";
 import { Divider } from "@mui/material";
 import { useForm } from "react-hook-form";
+import SubscribeForm from "components/form/subscribe-form";
 
 type SubscribeForm = {
   email: string;
@@ -47,11 +48,11 @@ export const AboutUs = () => {
 
           <Divider />
           <Spacer y={32} />
-          <ImageWrapper>
-            <img src={StoreImage} alt="Store" />
-          </ImageWrapper>
-          <div style={{ display: "flex" }}>
-            <Spacer y={12} />
+
+          <div style={{ display: "flex", alignItems: "stretch" }}>
+            <ImageWrapper>
+              <img src={StoreImage} alt="Store" />
+            </ImageWrapper>
             <OurStory>
               <Typography variant="highlight-text" color="surface">
                 Our Story
@@ -130,17 +131,7 @@ export const AboutUs = () => {
         <Spacer y={24} />
         <FormContainer>
           <RowWrapper>
-            <InlineWrapper>
-              <TextFieldForm
-                variant="outlined"
-                label="Email"
-                {...register("email", { required: true })}
-                fullWidth
-              />
-              <Button type="button" borderRadius="none" width={120} height={56}>
-                Submit
-              </Button>
-            </InlineWrapper>
+            <SubscribeForm></SubscribeForm>
           </RowWrapper>
         </FormContainer>
       </Subscribe>

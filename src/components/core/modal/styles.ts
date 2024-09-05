@@ -20,7 +20,7 @@ export const ModalContainer = styled.div<{
   noPadding?: boolean;
   borderRadius?: string;
 }>`
-  background: white;
+  background-color: ${(props) => props.theme.colors.systemLight};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : "0px")};
   padding: ${({ noPadding }) => (noPadding ? "0" : "0px")};
   /* props width */

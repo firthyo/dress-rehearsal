@@ -24,3 +24,5 @@ export { VisibilityOffIcon } from "./common/visibility-off";
 export { Visa } from "./payment/visa";
 export { Mastercard } from "./payment/mastercard";
 export { Jcb } from "./payment/jcb";
+
+export { UnderConstruction } from "./illustrations/under-construction";

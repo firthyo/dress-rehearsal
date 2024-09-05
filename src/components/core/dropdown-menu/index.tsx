@@ -40,7 +40,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         onClick={handleClick}
         variant="none"
       >
-        <Typography variant="p-articles" color="systemDark">
+        <Typography variant="label-medium" color="systemDark">
           {buttonText}
         </Typography>
       </Button>

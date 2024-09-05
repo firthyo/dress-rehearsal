@@ -1,7 +1,9 @@
 import React from "react";
 
+import { NoContentFallBack } from "components/core";
+
 export const MembershipBenefit = () => {
-  return <div>MembershipBenefit</div>;
+  return <NoContentFallBack />;
 };
 
 export default MembershipBenefit;

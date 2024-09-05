@@ -1,7 +1,8 @@
+import { NoContentFallBack } from "components/core";
 import React from "react";
 
 export const WishList = () => {
-  return <div>WishList</div>;
+  return <NoContentFallBack />;
 };
 
 export default WishList;

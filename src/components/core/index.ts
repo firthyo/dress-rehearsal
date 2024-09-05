@@ -17,6 +17,7 @@ export { FilterDrawer } from "./filter-drawer";
 export { HeaderNav } from "./header-nav";
 export { InlineWrapper } from "./inline-wrapper";
 export { Modal } from "./modal";
+export { NoContentFallBack } from "./no-content";
 export { PaletteIcon } from "./paletteIcon";
 export { ShoppingBagDrawer } from "./shopping-bag-drawer";
 export { SizeSelection } from "./size-selection";

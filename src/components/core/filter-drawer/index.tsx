@@ -118,7 +118,7 @@ export const FilterDrawer: React.FC = () => {
   const DrawerList = (
     <Box sx={{ width: 350, m: "24px" }} role="presentation">
       <InlineWrapper justifyContent="space-between">
-        <Typography variant="page-subtitle" color="systemDark">
+        <Typography variant="p-articles" color="systemDark">
           Filter
         </Typography>
         <InlineWrapper>
@@ -224,7 +224,7 @@ export const FilterDrawer: React.FC = () => {
       <Button variant="none" onClick={toggleDrawer(true)}>
         <FilterListIcon size={32} />
         <Spacer x={8} />
-        <Typography color="systemDark" variant="p-articles">
+        <Typography color="systemDark" variant="label-medium">
           Filter
         </Typography>
       </Button>

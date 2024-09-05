@@ -5,8 +5,11 @@ import StoreImage from "assets/mock-pic/mock_product1.png";
 
 import {
   BoxWrapper,
+  FormWapper,
   ImageWrapper,
   ItemImage,
+  SWrapper,
+  SecondBox,
   StyledInfoContainer,
   TrackOrdersContainer,
   TrackOrdersWrapper,
@@ -30,6 +33,8 @@ import {
   PaperIcon,
 } from "assets/icons";
 
+import { Grid } from "@mui/material";
+
 export const TrackOrders = () => {
   const steps = ["Order Placed", "Preparing Shipment", "Shipped", "Delivered"];
 
@@ -42,58 +47,61 @@ export const TrackOrders = () => {
 
   return (
     <>
-      <InlineWrapper justifyContent="flex-start">
-        <Typography variant="h4" color="systemDark">
-          Track your orders
-        </Typography>
-      </InlineWrapper>
-
-      <TrackOrdersContainer>
-        <ImageWrapper>
-          <Typography variant={"p-medium"} color="systemDark">
-            Tracking Order #2345432
+      <div style={{ width: "100%" }}>
+        <InlineWrapper justifyContent="flex-start">
+          <Spacer y={24}></Spacer>
+          <Typography variant="page-subtitle" color="systemDark">
+            Track your orders
           </Typography>
-          <Typography color="systemDark">
-            Order Placed on : Tue, Aug 12
-          </Typography>
+        </InlineWrapper>
 
-          <Typography color="systemDark"> item(s) : 1</Typography>
-          <InlineWrapper>
-            <img
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-              }}
-              src={StoreImage}
-              alt="Store"
+        <Spacer y={24} />
+        <TrackOrdersContainer>
+          <ImageWrapper>
+            <Typography variant={"p-medium"} color="systemDark">
+              Tracking Order #2345432
+            </Typography>
+            <Typography color="systemDark">
+              Order Placed on : Tue, Aug 12
+            </Typography>
+
+            <Typography color="systemDark"> item(s) : 1</Typography>
+            <InlineWrapper>
+              <img
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                }}
+                src={StoreImage}
+                alt="Store"
+              />
+              <img
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  objectFit: "cover",
+                }}
+                src={StoreImage}
+                alt="Store"
+              />
+            </InlineWrapper>
+          </ImageWrapper>
+          <StyledInfoContainer>
+            <CustomizedSteppers
+              steps={stepsData}
+              activeStep={1}
+              statusText="Your order is currently being prepared for shipment. We will notify you when it has been shipped."
             />
-            <img
-              style={{
-                width: "100px",
-                height: "100px",
-                objectFit: "cover",
-              }}
-              src={StoreImage}
-              alt="Store"
-            />
-          </InlineWrapper>
-        </ImageWrapper>
-        <StyledInfoContainer>
-          <CustomizedSteppers
-            steps={stepsData}
-            activeStep={1}
-            statusText="Your order is currently being prepared for shipment. We will notify you when it has been shipped."
-          />
-        </StyledInfoContainer>
-      </TrackOrdersContainer>
-      <InlineWrapper>
-        <TrackingBoxWrapper>
-          <TrackOrderForm></TrackOrderForm>
-        </TrackingBoxWrapper>
-        <Spacer x={32} />
-        <TrackingBoxWrapper>
-          <BoxWrapper>
+          </StyledInfoContainer>
+        </TrackOrdersContainer>
+
+        <Spacer y={16} />
+        <SWrapper>
+          <FormWapper>
+            <TrackOrderForm></TrackOrderForm>
+          </FormWapper>
+          <SecondBox>
             <Headset size={40}></Headset>
             <Spacer y={12} />
             <Typography variant="p-medium" color="systemDark">
@@ -101,18 +109,15 @@ export const TrackOrders = () => {
             </Typography>
             <Spacer y={12} />
             <Typography color="systemDark">
-              Our customer support team is here to assist you. If you have any
-              questions or concerns regarding your order, feel free to reach out
-              to us.
+              Our customer support team is here to assist you.
             </Typography>
             <Spacer y={24}></Spacer>
-
             <InlineWrapper justifyContent="center">
               <Button width={200}>Contact us</Button>
             </InlineWrapper>
-          </BoxWrapper>
-        </TrackingBoxWrapper>
-      </InlineWrapper>
+          </SecondBox>
+        </SWrapper>
+      </div>
     </>
   );
 };
