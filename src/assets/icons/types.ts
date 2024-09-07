@@ -6,4 +6,5 @@ export type IconProps = {
   size?: number;
   color?: string;
   themeColor?: ColorKeys;
+  fill?: string;
 };

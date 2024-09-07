@@ -22,6 +22,7 @@ import {
   ReturnsExchanges,
   WishList,
 } from "pages/user-profile/detail";
+import ContactPage from "pages/contact";
 
 export const AppRoutes = () => {
   return (
@@ -33,6 +34,7 @@ export const AppRoutes = () => {
           <Route path="/sign-up" element={<AuthenticationPage />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
           <Route path="/about-us" element={<AboutUs></AboutUs>} />
+          <Route path="/contact" element={<ContactPage></ContactPage>} />
           <Route
             path="/reset-password/:token"
             element={<ResetPasswordForm />}

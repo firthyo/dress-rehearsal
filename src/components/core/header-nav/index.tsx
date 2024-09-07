@@ -55,7 +55,7 @@ export const HeaderNav = () => {
           <NavbarLink href="/about-us">ABOUT US</NavbarLink>
           <NavbarLink href="/shop">SHOP</NavbarLink>
           <NavbarLink href="#">GALLERY</NavbarLink>
-          <NavbarLink href="#">CONTACT</NavbarLink>
+          <NavbarLink href="/contact">CONTACT</NavbarLink>
         </MenuMobileWrapper>
       </List>
     </Box>
@@ -88,7 +88,7 @@ export const HeaderNav = () => {
             <NavbarLink href="/about-us">ABOUT US</NavbarLink>
             <NavbarLink href="/shop">SHOP</NavbarLink>
             <NavbarLink href="#">GALLERY</NavbarLink>
-            <NavbarLink href="#">CONTACT</NavbarLink>
+            <NavbarLink href="/contact">CONTACT</NavbarLink>
             {/* <Spacer x={24} />
             <Divider marginHorizontal={4} />
             <Spacer x={24} /> */}

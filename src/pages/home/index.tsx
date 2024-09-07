@@ -21,6 +21,7 @@ import Footer from "components/core/footer";
 import HomeMobile from "./HomeMobile";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+
 export const HomePage = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -31,7 +32,6 @@ export const HomePage = () => {
         <HomeMobile></HomeMobile>
       ) : (
         <>
-          {" "}
           <FirstSectionWrapper>
             <DressRehearsalLogo />
           </FirstSectionWrapper>

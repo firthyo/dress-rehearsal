@@ -3,6 +3,7 @@ export { AddIcon } from "./common/add-icon";
 export { ArrowRight } from "./common/arrow-right";
 export { ArrowLeft } from "./common/arrow-left";
 export { ArrowUp } from "./common/arrow-up";
+export { BubbleChat } from "./common/bubble-chat";
 export { CloseIcon } from "./common/close";
 export { CreditCard } from "./common/credit-card";
 export { CheckedIcon } from "./common/check";
@@ -26,3 +27,6 @@ export { Mastercard } from "./payment/mastercard";
 export { Jcb } from "./payment/jcb";
 
 export { UnderConstruction } from "./illustrations/under-construction";
+export { PlusSquare } from "./common/plus-square";
+export { MinusSquare } from "./common/minus-square";
+export { BubbleSquare } from "./common/bubble-square";

@@ -1,28 +1,17 @@
 import React from "react";
 
-import { CustomStepper } from "components/core/stepper";
 import StoreImage from "assets/mock-pic/mock_product1.png";
 
 import {
-  BoxWrapper,
   FormWapper,
   ImageWrapper,
-  ItemImage,
   SWrapper,
   SecondBox,
   StyledInfoContainer,
   TrackOrdersContainer,
-  TrackOrdersWrapper,
-  TrackingBoxWrapper,
 } from "./styles";
-import {
-  Button,
-  InlineWrapper,
-  Spacer,
-  TextFieldForm,
-  Typography,
-} from "components/core";
-import { InfoContainer } from "../styles";
+import { Button, InlineWrapper, Spacer, Typography } from "components/core";
+
 import TrackOrderForm from "components/form/track-order-form";
 import { CustomizedSteppers } from "components/core/progress";
 import {
@@ -33,7 +22,7 @@ import {
   PaperIcon,
 } from "assets/icons";
 
-import { Grid } from "@mui/material";
+import ChatBot from "chat";
 
 export const TrackOrders = () => {
   const steps = ["Order Placed", "Preparing Shipment", "Shipped", "Delivered"];
