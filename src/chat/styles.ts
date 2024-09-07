@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import { keyframes, styled } from "styled-components";
 
 const pulse = keyframes`
   0% {
@@ -18,12 +18,18 @@ const pulse = keyframes`
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  max-width: 400px;
+  position: fixed; /* This makes the chat container float */
+  bottom: 70px; /* Adjusted to match the button position */
+  right: 20px; /* Adjusted to match the button position */
+  width: 330px;
+  height: 620px; /* Fixed width */
+  max-width: 100%; /* Ensures it doesn't overflow */
   margin: auto;
   border: 1px solid #ddd;
   border-radius: 20px;
   background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Adds shadow for floating effect */
+  z-index: 9999; /* Ensure it stays above other content */
 `;
 
 export const ChatHeader = styled.div`
@@ -31,10 +37,33 @@ export const ChatHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  background-color: #7b4b94;
+  background-color: #6d4e39; /* Brown header color */
   color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+`;
+
+export const QuickMenu = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #f1f1f1; /* Light background for the quick menu */
+  border-top: 1px solid #ddd;
+`;
+
+export const QuickMenuItem = styled.div`
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  color: #6d4e39;
+
+  &:hover {
+    color: #5c3e32;
+  }
+
+  & svg {
+    margin-bottom: 5px;
+  }
 `;
 
 export const ChatBody = styled.div`
@@ -43,17 +72,7 @@ export const ChatBody = styled.div`
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-`;
-
-export const MessageBubble = styled.div<{ isUser: boolean }>`
-  max-width: 80%;
-  padding: 10px 15px;
-  margin: 10px 0;
-  border-radius: 15px;
-  position: relative;
-  background-color: ${({ isUser }) => (isUser ? "#7b4b94" : "#f1f0f0")};
-  color: ${({ isUser }) => (isUser ? "white" : "black")};
-  align-self: ${({ isUser }) => (isUser ? "flex-end" : "flex-start")};
+  background-color: #fafafa; /* Slightly lighter background */
 `;
 
 export const ChatFooter = styled.div`
@@ -98,7 +117,7 @@ export const ChatButton = styled.button`
   background: #6d4e39;
   border: none;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1000; /* Ensure it's above other content */
 
   position: fixed;
   bottom: 32px;
@@ -108,5 +127,30 @@ export const ChatButton = styled.button`
 
   &:hover {
     background-color: #5c3e32; /* Darker shade for hover effect */
+  }
+`;
+
+
+
+export const QuickRepliesContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+`;
+
+export const QuickReplyButton = styled.button`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #5c3d2e;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: #f3e9e5;
   }
 `;

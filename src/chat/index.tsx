@@ -1,18 +1,32 @@
-import { BubbleChat, BubbleSquare } from "assets/icons";
-import { InlineWrapper, Spacer, Typography } from "components/core";
 import React, { useState, useEffect, useRef } from "react";
-import { ChatButton } from "./styles";
+import {
+  ChatContainer,
+  ChatHeader,
+  QuickMenu,
+  QuickMenuItem,
+  ChatBody,
+  ChatFooter,
+  Input,
+  SendButton,
+  ChatButton,
+  QuickRepliesContainer,
+  QuickReplyButton,
+} from "./styles";
+import { BubbleSquare } from "assets/icons"; // Assuming you have icons
 
 export const ChatBot = () => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
   const [chat, setChat] = useState<{ sender: string; text: string }[]>([]);
   const [isChatOpen, setIsChatOpen] = useState(false); // State to toggle chat bubble visibility
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const sendMessage = async () => {
-    if (!message) return;
+  const quickReplies = ["What is WappGPT?", "Pricing", "FAQs"];
 
-    setChat([...chat, { sender: "You", text: message }]);
+  const sendMessage = async (messageText?: string) => {
+    const textToSend = messageText || message; // Use the provided messageText, or fall back to the current state
+    if (!textToSend) return;
+
+    setChat([...chat, { sender: "You", text: textToSend }]);
 
     try {
       const result = await fetch("http://localhost:4000/graphql", {
@@ -23,7 +37,7 @@ export const ChatBot = () => {
         body: JSON.stringify({
           query: `
             query {
-              generateResponse(message: "${message}")
+              generateResponse(message: "${textToSend}")
             }
           `,
         }),
@@ -45,7 +59,7 @@ export const ChatBot = () => {
       ]);
     }
 
-    setMessage("");
+    setMessage(""); // Clear the input after sending
   };
 
   useEffect(() => {
@@ -54,6 +68,10 @@ export const ChatBot = () => {
         chatContainerRef.current.scrollHeight;
     }
   }, [chat]);
+
+  const handleQuickReplyClick = (reply: string) => {
+    sendMessage(reply);
+  };
 
   return (
     <div>
@@ -64,99 +82,63 @@ export const ChatBot = () => {
 
       {/* Chat Bubble */}
       {isChatOpen && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: "70px",
-            right: "20px",
-            width: "300px",
-            maxWidth: "100%",
-            backgroundColor: "white",
-            borderRadius: "10px",
-            boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
-            zIndex: 999,
-          }}
-        >
-          <div
-            ref={chatContainerRef}
-            style={{
-              backgroundColor: "#f5f5f5",
-              borderRadius: "10px 10px 0 0",
-              padding: "10px",
-              display: "flex",
-              flexDirection: "column-reverse",
-              height: "300px",
-              overflowY: "scroll",
-            }}
-          >
-            {chat
-              .slice(0)
-              .reverse()
-              .map((entry, index) => (
+        <ChatContainer>
+          <ChatHeader>
+            <span>WappGPT</span> {/* Replace with your bot's name */}
+            <span>Online</span> {/* Online status or similar */}
+          </ChatHeader>
+
+          <ChatBody ref={chatContainerRef}>
+            {chat.map((entry, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  justifyContent:
+                    entry.sender === "You" ? "flex-end" : "flex-start",
+                  marginBottom: "10px",
+                }}
+              >
                 <div
-                  key={index}
                   style={{
-                    display: "flex",
-                    justifyContent:
-                      entry.sender === "You" ? "flex-end" : "flex-start",
-                    marginBottom: "10px",
+                    maxWidth: "60%",
+                    padding: "10px",
+                    borderRadius: "10px",
+                    backgroundColor:
+                      entry.sender === "You" ? "#7b4b94" : "#f1f0f0",
+                    color: entry.sender === "You" ? "white" : "black",
+                    boxShadow: "0px 0px 5px rgba(0,0,0,0.1)",
                   }}
                 >
-                  <div
-                    style={{
-                      maxWidth: "60%",
-                      padding: "10px",
-                      borderRadius: "10px",
-                      backgroundColor:
-                        entry.sender === "You" ? "#DCF8C6" : "#FFFFFF",
-                      boxShadow: "0px 0px 5px rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <div style={{ fontSize: "12px", color: "#888" }}>
-                      {entry.sender}
-                    </div>
-                    <div style={{ fontSize: "14px" }}>{entry.text}</div>
+                  <div style={{ fontSize: "12px", color: "#888" }}>
+                    {entry.sender}
                   </div>
+                  <div style={{ fontSize: "14px" }}>{entry.text}</div>
                 </div>
-              ))}
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              padding: "10px",
-              borderTop: "1px solid #ddd",
-            }}
-          >
-            <input
+              </div>
+            ))}
+          </ChatBody>
+          <QuickRepliesContainer>
+            {quickReplies.map((reply, index) => (
+              <QuickReplyButton
+                key={index}
+                onClick={() => handleQuickReplyClick(reply)}
+              >
+                {reply}
+              </QuickReplyButton>
+            ))}
+          </QuickRepliesContainer>
+          <ChatFooter>
+            <Input
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Type your message"
-              style={{
-                flexGrow: 1,
-                padding: "10px",
-                borderRadius: "10px",
-                border: "1px solid #ddd",
-                marginRight: "10px",
-              }}
+              placeholder="Type your message here..."
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             />
-            <button
-              onClick={sendMessage}
-              style={{
-                padding: "10px",
-                borderRadius: "10px",
-                border: "none",
-                backgroundColor: "#007bff",
-                color: "white",
-                cursor: "pointer",
-              }}
-            >
-              Send
-            </button>
-          </div>
-        </div>
+            <SendButton onClick={() => sendMessage()}>Send</SendButton>
+          </ChatFooter>
+        </ChatContainer>
       )}
     </div>
   );
