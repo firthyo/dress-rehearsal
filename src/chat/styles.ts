@@ -41,6 +41,7 @@ export const ChatHeader = styled.div`
   color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  height: 48px;
 `;
 
 export const QuickMenu = styled.div`
@@ -130,8 +131,6 @@ export const ChatButton = styled.button`
   }
 `;
 
-
-
 export const QuickRepliesContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -153,4 +152,55 @@ export const QuickReplyButton = styled.button`
   &:hover {
     background-color: #f3e9e5;
   }
+`;
+
+export const MessageContainer = styled.div<{ isBot: boolean }>`
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+`;
+
+export const Avatar = styled.div<{ isUser: boolean }>`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: ${({ isUser }) => (isUser ? "#007bff" : "#d9534f")};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 1; /* Ensures the avatar is last */
+
+  margin-left: ${({ isUser }) =>
+    isUser ? "10px" : "0"}; /* For user's avatar */
+  margin-right: ${({ isUser }) =>
+    isUser ? "0" : "10px"}; /* For bot's avatar */
+`;
+
+export const MessageBubble = styled.div<{ isUser: boolean }>`
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background-color: ${({ isUser }) => (isUser ? "#DCF8C6" : "#f1f0f0")};
+  color: ${({ isUser }) => (isUser ? "black" : "black")};
+  border-top-right-radius: ${({ isUser }) =>
+    isUser ? "0px" : "15px"}; /* For user's messages */
+  border-top-left-radius: ${({ isUser }) =>
+    isUser ? "15px" : "0px"}; /* For bot's messages */
+  margin-right: ${({ isUser }) => (isUser ? "10px" : "0px")};
+  margin-left: ${({ isUser }) => (isUser ? "0px" : "10px")};
+  position: relative;
+  order: 1; /* Ensures the bubble is first */
+`;
+
+export const MessageWrapper = styled.div<{ isUser: boolean }>`
+  display: flex;
+  align-items: end;
+  /* justify-content: ${({ isUser }) =>
+    isUser ? "flex-end" : "flex-start"}; */
+  justify-content: ${({ isUser }) => (isUser ? "flex-end" : "flex-start")};
+
+  margin-bottom: 10px;
+  /* margin-left: 20px; */
 `;
