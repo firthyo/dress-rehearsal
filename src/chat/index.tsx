@@ -22,8 +22,8 @@ import { BubbleSquare } from "assets/icons"; // Assuming you have icons
 import { Typography } from "components/core";
 
 const GENERATE_RESPONSE = gql`
-  mutation GenerateResponse($message: String!) {
-    generateResponse(message: $message)
+  mutation GenerateResponse($message: String!, $context: String!) {
+    generateResponse(message: $message, context: $context)
   }
 `;
 
@@ -35,18 +35,28 @@ export const ChatBot = () => {
   const [isChatOpen, setIsChatOpen] = useState(false); // State to toggle chat bubble visibility
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const quickReplies = ["What is WappGPT?", "Pricing", "FAQs"];
+  const quickReplies = ["Return policy", "Exchange policy", "FAQs"];
   const [generateResponse] = useMutation(GENERATE_RESPONSE);
 
-  const sendMessage = async (messageText?: string) => {
+  const sendMessage = async (messageText?: string, contextText?: any) => {
     const textToSend = messageText || message; // Use the provided messageText, or fall back to the current state
+    const contextToSend =
+      contextText ||
+      "Our return policy allows returns within 30 days of purchase."; // You can set a more specific default context here
+
     if (!textToSend) return;
 
     setChat([...chat, { sender: "You", text: textToSend, isBot: false }]);
 
     try {
+      const modelName = "gemini-1.5-flash"; // Set a default model name, or pass this dynamically if needed
+
+      // Make the mutation call
       const { data } = await generateResponse({
-        variables: { message: textToSend },
+        variables: {
+          message: textToSend,
+          context: contextToSend, // Ensure this is provided correctly
+        },
       });
       const botMessage = data?.generateResponse;
 
@@ -69,7 +79,10 @@ export const ChatBot = () => {
   }, [chat]);
 
   const handleQuickReplyClick = (reply: string) => {
-    sendMessage(reply);
+    const context =
+      "Provide the specific context related to the quick reply here";
+
+    sendMessage(reply, context);
   };
 
   return (

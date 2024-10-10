@@ -36,16 +36,10 @@ export const HomePage = () => {
             <DressRehearsalLogo />
           </FirstSectionWrapper>
           <CollectionWrapper>
-            <div
-              style={{
-                maxWidth: "1320px",
-                justifyContent: "flex-start",
-                display: "flex",
-              }}
-            >
+            <CardWrapper>
               <Typography variant="h1">Our Collection</Typography>
-              <Spacer y={32} />
-            </div>
+            </CardWrapper>
+            <Spacer y={40} />
 
             <CardWrapper>
               <CollectionCard

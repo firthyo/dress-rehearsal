@@ -12,6 +12,7 @@ import {
   Typography,
 } from "components/core";
 import { useFilters } from "../../../../context/FilterContext"; // Adjust the path as needed
+import { Sort } from "assets/icons";
 
 export const AllProducts = () => {
   const { filters } = useFilters();
@@ -57,9 +58,10 @@ export const AllProducts = () => {
       <InlineWrapper justifyContent="space-between">
         <FilterDrawer />
         <DropdownMenu
+          icon={<Sort />}
           buttonText={"Sort"}
           items={dropdownContent}
-        ></DropdownMenu>
+        />
       </InlineWrapper>
 
       <Spacer y={16} />

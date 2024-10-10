@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { ApolloError } from "@apollo/client";
 import { useAuth } from "context/AuthContext";
 import GoogleIcon from "assets/icons/social/GoogleIcon";
@@ -39,11 +39,13 @@ const LoginForm: React.FC<LoginFormProps> = ({
 }) => {
   const [loginError, setLoginError] = useState<boolean>(false);
   console.log("this is data", data);
+
+  const methods = useForm<LoginFormType>();
   const {
-    register,
     handleSubmit,
+    register,
     formState: { errors },
-  } = useForm<LoginFormType>();
+  } = methods;
 
   // const [login, { data, loading, error }] = useMutation(LOGIN_USER_MUTATION);
   const { loginAuth, authStage, setAuthStage } = useAuth();
@@ -73,75 +75,77 @@ const LoginForm: React.FC<LoginFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {!loginError && <Spacer y={24} />}
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {!loginError && <Spacer y={24} />}
 
-      <TextWrapper>
-        {loginError ? (
-          <AlertMessage
-            severity="error"
-            color="error"
-            text={
-              <>
-                The email address and password you entered doesn't match our
-                records. Please try again or reset your password.
-              </>
-            }
-          />
-        ) : (
-          <Typography variant="h4" customColor={"#684F3B"}>
-            Welcome back!
-          </Typography>
-        )}
-      </TextWrapper>
-      <Spacer y={24} />
-      <FormContainer>
-        <RowWrapper>
-          <TextFieldForm
-            variant="outlined"
-            label="Email"
-            {...register("email", { required: true })}
-          />
-        </RowWrapper>
-        <RowWrapper>
-          <TextFieldForm
-            variant="outlined"
-            label="Password"
-            type={"password"}
-            {...register("password", { required: true })}
-          />
-        </RowWrapper>
-
+        <TextWrapper>
+          {loginError ? (
+            <AlertMessage
+              severity="error"
+              color="error"
+              text={
+                <>
+                  The email address and password you entered doesn't match our
+                  records. Please try again or reset your password.
+                </>
+              }
+            />
+          ) : (
+            <Typography variant="h4" customColor={"#684F3B"}>
+              Welcome back!
+            </Typography>
+          )}
+        </TextWrapper>
         <Spacer y={24} />
-        <DividerWithText label={"or"} />
-        <Spacer y={24} />
+        <FormContainer>
+          <RowWrapper>
+            <TextFieldForm
+              variant="outlined"
+              label="Email"
+              {...register("email", { required: true })}
+            />
+          </RowWrapper>
+          <RowWrapper>
+            <TextFieldForm
+              variant="outlined"
+              label="Password"
+              type={"password"}
+              {...register("password", { required: true })}
+            />
+          </RowWrapper>
 
-        <RowWrapper>
-          <Button type="button" variant="outlined">
-            <GoogleIcon width="24" height="24" />
-            <Spacer x={8} />
-            {"Sign up with Google"}
-          </Button>
-        </RowWrapper>
+          <Spacer y={24} />
+          <DividerWithText label={"or"} />
+          <Spacer y={24} />
 
-        <Spacer y={24} />
+          <RowWrapper>
+            <Button type="button" variant="outlined">
+              <GoogleIcon width="24" height="24" />
+              <Spacer x={8} />
+              {"Sign up with Google"}
+            </Button>
+          </RowWrapper>
 
-        <RowWrapper>
-          <Link onClick={toggleForgotPassword} linkColor="#6D4E39">
-            Forgot password
-          </Link>
+          <Spacer y={24} />
 
-          {/* <FormControlLabel
+          <RowWrapper>
+            <Link onClick={toggleForgotPassword} linkColor="#6D4E39">
+              Forgot password
+            </Link>
+
+            {/* <FormControlLabel
             control={<Checkbox defaultChecked {...register("rememberMe")} />}
             label={<div>{"Remember me"}</div>}
           /> */}
-        </RowWrapper>
+          </RowWrapper>
 
-        <RowWrapper>
-          <Button type="submit">{"Login"}</Button>
-        </RowWrapper>
-      </FormContainer>
-    </form>
+          <RowWrapper>
+            <Button type="submit">{"Login"}</Button>
+          </RowWrapper>
+        </FormContainer>
+      </form>
+    </FormProvider>
   );
 };
 

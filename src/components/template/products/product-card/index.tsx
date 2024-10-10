@@ -67,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             <Button type="button" variant="none" onClick={handleCardClick}>
               <InlineWrapper>
-                <Typography variant="p-detail" color="systemGrey">
+                <Typography variant="p-detail" color="systemDark">
                   {detailText}
                 </Typography>
 

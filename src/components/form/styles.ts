@@ -28,7 +28,7 @@ export const RowWrapper = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  padding: 10px;
+  margin: 10px 0px;
 `;
 
 export const Link = styled.a<LinkProps>`

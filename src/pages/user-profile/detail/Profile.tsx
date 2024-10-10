@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  FormWapper,
   Line,
   NoDetail,
   ProfileBox,
@@ -66,17 +65,17 @@ export const Profile = () => {
           <Spacer y={12} />
           <InlineWrapper justifyContent="flex-start">
             <ProfileInfoWrapper>
-              Default Shipping Address Home (Default)
+              Default Shipping Address
+              <br />
+              Home (Default)
               <br />
               Firth Maneesuksri
               <br />
-              717 Dexter Ave N Apt 318
+              Jupiter 111, Apt 909
               <br />
               Seattle, WA 98109
               <br />
               United States
-              <br />
-              (206) 371-5496
             </ProfileInfoWrapper>
           </InlineWrapper>
         </ProfileBox>
@@ -105,8 +104,7 @@ export const Profile = () => {
           <Spacer y={12} />
           <Line />
           <Spacer y={12} />
-          <NoDetail
-          >
+          <NoDetail>
             We have no orders saved yet. Get Shopping!
             <br />
             Please Contact Customer Service if you have any trouble accessing

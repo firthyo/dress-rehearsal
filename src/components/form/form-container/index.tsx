@@ -10,6 +10,7 @@ import VerifyEmailInfo from "components/sent-email-info/VerifyEmailInfo";
 import { useModal } from "context/ModalContext";
 import ResetPasswordInfo from "components/sent-email-info/ResetPasswordInfo";
 import ForgotPasswordForm from "../forgot-password-form";
+import { Button } from "components/core";
 
 export const FormContent = () => {
   const getActiveTab = useCallback(() => {
@@ -17,13 +18,14 @@ export const FormContent = () => {
   }, []);
   const [activeTab, setActiveTab] = useState(getActiveTab());
   const { authStage, setAuthStage } = useAuth();
+  // const [showVerifyEmail, setShowVerifyEmail] = useState<boolean>(false);
+
   const [isUserForgotPassword, setIsUserForgotPassword] =
     useState<boolean>(false);
 
   const handleForgotPasswordChange = (newValue: boolean) => {
     setIsUserForgotPassword(newValue);
   };
-  const { hideModal } = useModal();
 
   const {
     loginUser,
@@ -57,22 +59,66 @@ export const FormContent = () => {
 
     return () => clearTimeout(timer);
   }, [registerLoading, loginLoading, forgotPasswordLoading]);
-  console.log("This is registerData", registerData);
-  if (registerData?.register.success) {
-    setAuthStage("VERIFY_EMAIL");
-  } else if (loginData?.login.token) {
-    setAuthStage("LOGIN");
-  }
-  if (loadingInterval) {
-    return <CircularProgress size={68} style={{ color: "#684F3B" }} />;
-  }
+
+  useEffect(() => {
+    if (authStage === "LOGIN") {
+      setActiveTab(1);
+    }
+  }, [authStage]);
+  console.log("This is authStage", authStage);
+  // if (registerData?.register.success) {
+  //   setAuthStage("VERIFY_EMAIL");
+  //   setShowVerifyEmail(true);
+  // } else if (loginData?.login.token) {
+  //   setAuthStage("LOGIN");
+  // }
+  useEffect(() => {
+    const handleStageChange = () => {
+      if (registerData?.register.success) {
+        setAuthStage("VERIFY_EMAIL");
+        // onVerifyEmailSuccess(true);
+      } else if (loginData?.login.token) {
+        setAuthStage("LOGIN");
+      }
+    };
+
+    handleStageChange();
+  }, [registerData, loginData]);
+
+  // if (loadingInterval) {
+  //   return <CircularProgress size={68} style={{ color: "#684F3B" }} />;
+  // }
+  const handleBackToMain = () => {
+    setAuthStage("MAIN");
+    setActiveTab(1);
+    // onVerifyEmailSuccess(false);
+  };
 
   const renderAuthComponent = () => {
     switch (authStage) {
       case "RESET_PASSWORD":
         return <ResetPasswordInfo email={"firth.maneesuksri@gmail.com"} />;
       case "VERIFY_EMAIL":
-        return <VerifyEmailInfo email={"firth.maneesuksri@gmail.com"} />;
+        return (
+          <>
+            {loadingInterval ? (
+              <div
+                style={{
+                  width: "100%",
+                  justifyContent: "center",
+                  display: "flex",
+                }}
+              >
+                <CircularProgress size={68} style={{ color: "#684F3B" }} />
+              </div>
+            ) : (
+              <>
+                <VerifyEmailInfo email={"firth.maneesuksri@gmail.com"} />
+                {/* <Button onClick={handleBackToMain}>Back to Login</Button> */}
+              </>
+            )}
+          </>
+        );
       case "FORGOT_PASSWORD":
         return (
           <ForgotPasswordForm
@@ -115,7 +161,6 @@ export const FormContent = () => {
             ]}
           />
         );
-
       default:
         return (
           <Tabs

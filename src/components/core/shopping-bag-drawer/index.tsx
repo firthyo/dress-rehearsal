@@ -132,11 +132,11 @@ export const ShoppingBagDrawer: React.FC<ShoppingBagDrawerProps> = ({
         </InlineWrapper>
         <Spacer y={12} />
         <InlineWrapper justifyContent="space-between">
-          <Button width={162} variant="outlined" customColor="#000">
+          <Button width={162} variant="outlined">
             Review Bag
           </Button>
           <Spacer x={8} />
-          <Button width={162} customColor="#000" onClick={navigateToCheckout}>
+          <Button width={162} onClick={navigateToCheckout}>
             Check out
           </Button>
         </InlineWrapper>

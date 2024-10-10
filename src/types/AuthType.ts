@@ -3,4 +3,6 @@ export type AuthStageType =
   | "SIGNUP"
   | "RESET_PASSWORD"
   | "VERIFY_EMAIL"
-  | "FORGOT_PASSWORD";
+  | "FORGOT_PASSWORD"
+  | "MAIN"
+  | "LOG_OUT";

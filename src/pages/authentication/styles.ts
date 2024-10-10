@@ -16,8 +16,9 @@ export const FormWrapper = styled.div`
   border-radius: 20px;
 
   padding: 0px 36px;
-  width: 50%;
+  width: 50vw;
   min-height: 674px;
+  height: 100%;
   margin: 48px 0px;
   justify-content: center;
   display: flex;
@@ -29,6 +30,7 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: stretch;
   max-width: 1332px;
+  width: 100%;
 `;
 
 export const CenteredContent = styled.div<CenteredContentProps>`
@@ -41,7 +43,7 @@ export const CenteredContent = styled.div<CenteredContentProps>`
   justify-content: center;
   align-items: center;
   flex: 1;
-
+  flex: 1 0 50%;
   width: 100%;
   flex-basis: 50%;
   overflow: hidden;

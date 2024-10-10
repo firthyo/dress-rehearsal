@@ -21,6 +21,7 @@ interface CustomizedDialogsProps {
   body: JSX.Element;
   dialogActions?: DialogAction[];
   isPadding?: boolean;
+  customClose?(): void;
 }
 
 export const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
@@ -28,6 +29,7 @@ export const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
   body,
   dialogActions,
   isPadding = false,
+  customClose,
 }) => {
   const modalContext = useContext(ModalContext);
   if (!modalContext) {
@@ -35,9 +37,14 @@ export const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
   }
   const { hideModal } = modalContext;
 
+  const handleCustomClose = () => {
+    customClose && customClose();
+    hideModal();
+  };
+
   return (
     <BootstrapDialog
-      onClose={hideModal}
+      onClose={handleCustomClose}
       aria-labelledby="customized-dialog-title"
       open={true}
       isPadding={isPadding}
@@ -49,7 +56,7 @@ export const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
       )}
       <IconButton
         aria-label="close"
-        onClick={hideModal}
+        onClick={handleCustomClose}
         sx={{
           position: "absolute",
           right: 8,
@@ -59,7 +66,7 @@ export const CustomizedDialogs: React.FC<CustomizedDialogsProps> = ({
       >
         <CloseIcon />
       </IconButton>
-      <DialogContent>{body}</DialogContent>
+      <DialogContent sx={{ overflow: "hidden" }}>{body}</DialogContent>
       {dialogActions && (
         <DialogActions>
           {dialogActions.map((action, index) => (

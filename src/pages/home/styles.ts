@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.values.sm}px) {
     height: calc(100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE});
   }
-  overflow-y: auto;
+  /* overflow-y: auto; */
   position: relative;
   width: 100%;
 `;
@@ -25,7 +25,7 @@ export const FirstSectionWrapper = styled.div`
       100vh - ${STYLE_CONSTANTS.HEADER_HEIGHT_MOBILE}
     ); // Example: Adjust height for small devices
   }
-  width: 100vw;
+  width: 100%;
 `;
 
 export const CollectionWrapper = styled.div`
@@ -36,6 +36,12 @@ export const CollectionWrapper = styled.div`
 export const CardWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 `;
 

@@ -2,8 +2,8 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { deepOrange, deepPurple, brown } from "@mui/material/colors";
-import { Avatar, Divider, Paper, Typography } from "@mui/material";
+import { brown } from "@mui/material/colors";
+import { Avatar, Divider, Typography } from "@mui/material";
 import FavoritOutline from "assets/icons/common/favorit-outline";
 import AccountIcon from "assets/icons/common/account";
 import LocalShippingOutline from "assets/icons/common/local-shipping-outline";
@@ -15,12 +15,12 @@ import { useNavigate } from "react-router-dom";
 export const ProfileMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { isLoggedIn, logoutAuth, user } = useAuth(); // Use the authentication context
-  console.log("this is user", user);
+  const { logoutAuth, user } = useAuth(); // Use the authentication context
+
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     // setAnchorEl(event.currentTarget);
-    navigate("/user-profile");
+    navigate("/user-profile/profile");
   };
   const handleClose = () => {
     setAnchorEl(null);

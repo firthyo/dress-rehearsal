@@ -99,7 +99,7 @@ export const Typography: React.FC<TypographyProps> = ({
   variant = "p",
   title,
   children,
-  color = "primary",
+  color = "systemDark",
 }) => {
   const theme = useContext(ThemeContext);
   const Component = mappedStyles[variant];

@@ -140,7 +140,7 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
           type="button"
           variant="filled"
           borderRadius="none"
-          customColor="#000"
+          // customColor="#000"
           width={155}
         >
           BUY NOW
@@ -150,7 +150,7 @@ const ProductDetailInfo: React.FC<ProductDetailInfoProps> = ({
           type="button"
           variant="outlined"
           borderRadius="none"
-          customColor="#000"
+          // customColor="#000"
           onClick={handleClickAddToBag}
         >
           ADD TO BAG

@@ -30,3 +30,6 @@ export { UnderConstruction } from "./illustrations/under-construction";
 export { PlusSquare } from "./common/plus-square";
 export { MinusSquare } from "./common/minus-square";
 export { BubbleSquare } from "./common/bubble-square";
+
+export { Sort } from "./common/sort";
+export { UserCircle } from "./common/user-circle";

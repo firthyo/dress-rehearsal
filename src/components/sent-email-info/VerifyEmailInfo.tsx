@@ -7,12 +7,14 @@ import { Link, VerifyEmailWrapper } from "../../pages/authentication/styles";
 import { InlineWrapper } from "components/core/inline-wrapper";
 import Spacer from "components/core/spacer";
 import MailFill from "assets/icons/common/mail-fill";
+import { useAuth } from "context/AuthContext";
 
 type VerifyEmailInfoProps = {
   email: string;
 };
 
 export const VerifyEmailInfo: React.FC<VerifyEmailInfoProps> = ({ email }) => {
+  const { setAuthStage } = useAuth();
   return (
     <VerifyEmailWrapper>
       <PaletteIcon icon={<MailFill size="48" color="#684F3B" />} />
@@ -38,7 +40,7 @@ export const VerifyEmailInfo: React.FC<VerifyEmailInfoProps> = ({ email }) => {
         </Link>
       </InlineWrapper>
       <Spacer y={16} />
-      <Button>Back to sign up</Button>
+      <Button onClick={() => setAuthStage("LOGIN")}>Back to login up</Button>
     </VerifyEmailWrapper>
   );
 };

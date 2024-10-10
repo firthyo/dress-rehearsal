@@ -52,7 +52,7 @@ export const FAQ = () => {
           </Question>
           {openIndex === index && (
             <Answer>
-              <Typography variant="p-detail" color="systemDark">
+              <Typography variant="p" color="systemDark">
                 {faq.answer}
               </Typography>
             </Answer>

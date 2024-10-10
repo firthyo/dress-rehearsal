@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { FormControlLabel, Checkbox } from "@mui/material";
 
 import GoogleIcon from "assets/icons/social/GoogleIcon";
@@ -52,7 +52,9 @@ export const SignUpForm: React.FC<SignUpProps> = ({
   data,
   error,
 }) => {
-  const { register, handleSubmit } = useForm<SignUpVariables>();
+  const methods = useForm<SignUpVariables>();
+
+  const { handleSubmit, register } = methods;
 
   const onSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
     try {
@@ -96,7 +98,7 @@ export const SignUpForm: React.FC<SignUpProps> = ({
   }, [loading]);
 
   return (
-    <>
+    <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <>
           <Spacer y={8} />
@@ -163,7 +165,7 @@ export const SignUpForm: React.FC<SignUpProps> = ({
           </FormContainer>
         </>
       </form>
-    </>
+    </FormProvider>
   );
 };
 

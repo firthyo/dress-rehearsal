@@ -3,26 +3,22 @@ import React from "react";
 import Divertimento from "assets/dress-rehearsal/divertimento-white.svg";
 import Drbg from "assets/dress-rehearsal/Dr-bg-light.svg";
 
-import {
-  CenteredContent,
-  Container,
-  FormWrapper,
-  IconWrapper,
-  PageWrapper,
-} from "./styles";
+import { CenteredContent, Container, FormWrapper } from "./styles";
 import { useModal } from "context/ModalContext";
-import Button from "components/core/button";
 
 import FormContent from "components/form/form-container";
-import { CloseIcon } from "assets/icons";
+import { UserCircle } from "assets/icons";
 import { CustomizedDialogs } from "components/core";
+import { useAuth } from "context/AuthContext";
 
 export const AuthenticationPage = () => {
   const { showModal } = useModal();
+  const { setAuthStage } = useAuth();
 
   const handleOpenModal = () => {
     showModal(
       <CustomizedDialogs
+        customClose={() => setAuthStage("LOGIN")}
         body={
           <Container>
             <CenteredContent backgroundImage={Drbg}>
@@ -44,9 +40,19 @@ export const AuthenticationPage = () => {
 
   return (
     <div>
-      <Button onClick={handleOpenModal} type="button" borderRadius="none">
-        Sign up
-      </Button>
+      <button
+        onClick={handleOpenModal}
+        type="button"
+        style={{
+          padding: "8px",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+          backgroundColor: "transparent",
+        }}
+      >
+        <UserCircle></UserCircle>
+      </button>
     </div>
   );
 };

@@ -13,11 +13,13 @@ type MenuItemType = {
 type DropdownMenuProps = {
   items: MenuItemType[];
   buttonText: React.ReactNode;
+  icon?: JSX.Element;
 };
 
 export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   items,
   buttonText,
+  icon,
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -40,6 +42,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         onClick={handleClick}
         variant="none"
       >
+        {icon}
         <Typography variant="label-medium" color="systemDark">
           {buttonText}
         </Typography>
@@ -59,7 +62,9 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
               {item.icon && item.icon}
 
               <Spacer x={12} />
-              <Typography variant="p">{item.title}</Typography>
+              <Typography variant="p" color="systemDark">
+                {item.title}
+              </Typography>
             </MenuItem>
             {index < items.length - 1 && <Divider />}
           </React.Fragment>
