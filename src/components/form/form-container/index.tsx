@@ -113,7 +113,7 @@ export const FormContent = () => {
               </div>
             ) : (
               <>
-                <VerifyEmailInfo email={"firth.maneesuksri@gmail.com"} />
+                <VerifyEmailInfo email={"example@gmail.com"} />
                 {/* <Button onClick={handleBackToMain}>Back to Login</Button> */}
               </>
             )}
