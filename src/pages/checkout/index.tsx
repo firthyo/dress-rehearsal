@@ -1,13 +1,15 @@
-import { Button, Spacer, Typography } from "components/core";
 import React, { useContext, useState } from "react";
-import { Form, FormWrapper, Overview, Wrapper } from "./styles";
-import CheckoutForm from "components/form/checkout-form";
-import OrderSummary from "components/core/order-summary";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useMutation } from "@apollo/client";
-import CheckoutContext from "context/CheckoutContext";
 import { CREATE_PAYMENT_INTENT } from "graphql/payment";
+
+import { Button, Spacer, Typography } from "components/core";
+import CheckoutForm from "components/form/checkout-form";
+import OrderSummary from "components/core/order-summary";
+import CheckoutContext from "context/CheckoutContext";
+
+import { Form, FormWrapper, Overview, Wrapper } from "./styles";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_API_KEY || "");
 
